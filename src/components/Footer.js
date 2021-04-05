@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../geminikast.jpg';
 import { SocialIcon } from 'react-social-icons';
 
 export default function Footer() {

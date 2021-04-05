@@ -8,14 +8,7 @@ export default function Home() {
       <p>
         Edit <code>src/App.js</code> and save to reload.
       </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Podcast
-      </a>
+      <iframe src="https://open.spotify.com/embed-podcast/show/77QfKMGg067YXiJnb1Ic3q" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     </header>
   )
 }

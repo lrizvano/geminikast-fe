@@ -2,8 +2,8 @@ import './App.css';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './components/Navigation.js';
-import Home from './components/home/Home.js';
-import Podcast from './components/podcast/Podcast.js';
+import Home from './components/Home/Home.js';
+import Podcast from './components/Podcast/Podcast.js';
 import Footer from './components/Footer.js';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 

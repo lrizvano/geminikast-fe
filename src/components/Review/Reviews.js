@@ -1,6 +1,6 @@
 import React from 'react'
 import Prismic from '@prismicio/client'
-import { Date, Link, RichText } from 'prismic-reactjs'
+import { RichText } from 'prismic-reactjs'
 import { client, linkResolver } from '../../prismic-configuration.js'
 
 export default function Reviews() {

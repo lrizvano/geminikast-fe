@@ -27,7 +27,7 @@ export default function Reviews() {
               <div>
                 <h1>{RichText.asText(review.data.title)}</h1>
                 <img alt='cover' src={review.data.image.url} />
-                <RichText render={review.data.description} linkResolver={linkResolver} />
+                <RichText render={review.data.description} linkResolver={linkResolver}/>
               </div>
             ) : <div>No content</div>
           }

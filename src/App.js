@@ -7,6 +7,7 @@ import Articles from './components/Article/Articles.js'
 import Reviews from './components/Review/Reviews.js'
 import About from './components/About/About.js'
 import Footer from './components/Footer/Footer.js'
+import Layout from './components/Layout.js'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 function App() {
@@ -14,12 +15,14 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navigation/>
-        <Switch>
-          <Route path="/" exact component={Podcast}/>
-          <Route path="/news" component={Articles}/>
-          <Route path="/reviews" component={Reviews}/>
-          <Route path="/about" component={About}/>
-        </Switch>
+        <Layout>
+          <Switch>
+            <Route path="/" exact component={Podcast}/>
+            <Route path="/news" component={Articles}/>
+            <Route path="/reviews" component={Reviews}/>
+            <Route path="/about" component={About}/>
+          </Switch>
+        </Layout>
         <Footer/>
       </BrowserRouter>
     </div>

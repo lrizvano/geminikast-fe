@@ -5,7 +5,7 @@ import { Date, Link, RichText } from 'prismic-reactjs'
 import { client, linkResolver } from '../../prismic-configuration.js';
 
 export default function About() {
-  const [doc, setDocData] = React.useState(null);
+  const [authors, setAuthors] = React.useState([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -13,23 +13,33 @@ export default function About() {
         Prismic.Predicates.at('document.type', 'author')
       );
       if (response) {
-        setDocData(response.results[0]);
+        setAuthors(response.results);
       }
     }
     fetchData()
   }, []);
 
+  const renderAuthors = () => {
+    return (
+      authors.map(author => (
+        <React.Fragment>
+          {
+            author ? (
+              <div>
+                <h1>{RichText.asText(author.data.title)}</h1>
+                <img alt='cover' src={author.data.image.url} />
+                <RichText render={author.data.description} linkResolver={linkResolver} />
+              </div>
+            ) : <div>No content</div>
+          }
+        </React.Fragment>
+      ))
+    )
+  }
+
   return (
-    <React.Fragment>
-      {
-        doc ? (
-          <div>
-            <h1>{RichText.asText(doc.data.title)}</h1>
-            <img alt='cover' src={doc.data.profile.url} />
-            <RichText render={doc.data.description} linkResolver={linkResolver} />
-          </div>
-        ) : <div>No content</div>
-      }
-    </React.Fragment>
+    <>
+      {renderAuthors()}
+    </>
   )
 }

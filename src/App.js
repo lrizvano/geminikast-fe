@@ -2,7 +2,6 @@ import './App.css';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './components/Navigation/Navigation.js';
-import Home from './components/Home/Home.js';
 import Podcast from './components/Podcast/Podcast.js';
 import Reviews from './components/Reviews/Reviews.js';
 import About from './components/About/About.js';
@@ -15,8 +14,7 @@ function App() {
       <BrowserRouter>
         <Navigation/>
         <Switch>
-          <Route path="/" exact component={Home}/>
-          <Route path="/podcast" component={Podcast}/>
+          <Route path="/" exact component={Podcast}/>
           <Route path="/reviews" component={Reviews}/>
           <Route path="/about" component={About}/>
         </Switch>

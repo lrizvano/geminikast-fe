@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import logo from '../../geminikast.jpg';
+import logo from '../../geminikast-logo.jpg';
 import { Link } from 'react-router-dom';
 
 export default function Navigation() {

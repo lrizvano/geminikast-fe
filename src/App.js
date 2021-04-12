@@ -1,6 +1,6 @@
 import './App.css'
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 import Navigation from './components/Navigation/Navigation.js'
 import Podcast from './components/Podcast/Podcast.js'
 import Articles from './components/Article/Articles.js'

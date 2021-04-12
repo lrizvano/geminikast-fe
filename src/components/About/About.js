@@ -25,9 +25,9 @@ export default function About() {
           {
             author ? (
               <div>
-                <h1>{RichText.asText(author.data.title)}</h1>
+                <h1>{RichText.asText(author.data.name)}</h1>
                 <img alt='cover' src={author.data.image.url} />
-                <RichText render={author.data.description} linkResolver={linkResolver}/>
+                <RichText render={author.data.bio} linkResolver={linkResolver}/>
               </div>
             ) : <div>No content</div>
           }

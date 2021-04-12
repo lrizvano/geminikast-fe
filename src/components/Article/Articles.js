@@ -27,7 +27,7 @@ export default function Articles() {
               <div>
                 <h1>{RichText.asText(article.data.title)}</h1>
                 <img alt='cover' src={article.data.image.url} />
-                <RichText render={article.data.description} linkResolver={linkResolver} />
+                <RichText render={article.data.description} linkResolver={linkResolver}/>
               </div>
             ) : <div>No content</div>
           }

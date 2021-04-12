@@ -1,13 +1,13 @@
-import './App.css';
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Navigation from './components/Navigation/Navigation.js';
-import Podcast from './components/Podcast/Podcast.js';
-import Articles from './components/Article/Articles.js';
-import Reviews from './components/Review/Reviews.js';
-import About from './components/About/About.js';
-import Footer from './components/Footer/Footer.js';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import './App.css'
+import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Navigation from './components/Navigation/Navigation.js'
+import Podcast from './components/Podcast/Podcast.js'
+import Articles from './components/Article/Articles.js'
+import Reviews from './components/Review/Reviews.js'
+import About from './components/About/About.js'
+import Footer from './components/Footer/Footer.js'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         <Footer/>
       </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

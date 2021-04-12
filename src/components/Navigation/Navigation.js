@@ -2,7 +2,6 @@ import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import logo from '../../geminikast.jpg';
 import { Link } from 'react-router-dom';
-import style from './Navigation.css'
 
 export default function Navigation() {
   return (
@@ -16,13 +15,14 @@ export default function Navigation() {
             height="30"
             className="d-inline-block align-top"
           />
-          {' Geminikast'}
+          {'Geminikast'}
         </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Link to="/podcast">Podcast</Link>
+          <Link to="/about">About</Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

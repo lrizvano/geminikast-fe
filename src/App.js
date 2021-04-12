@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './components/Navigation/Navigation.js';
 import Home from './components/Home/Home.js';
 import Podcast from './components/Podcast/Podcast.js';
+import Reviews from './components/Reviews/Reviews.js';
 import About from './components/About/About.js';
 import Footer from './components/Footer/Footer.js';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -16,6 +17,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home}/>
           <Route path="/podcast" component={Podcast}/>
+          <Route path="/reviews" component={Reviews}/>
           <Route path="/about" component={About}/>
         </Switch>
         <Footer/>

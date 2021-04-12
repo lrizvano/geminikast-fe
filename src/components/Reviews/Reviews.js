@@ -3,31 +3,31 @@ import Prismic from '@prismicio/client'
 import { Date, Link, RichText } from 'prismic-reactjs'
 import { client, linkResolver } from '../../prismic-configuration.js'
 
-export default function About() {
-  const [authors, setAuthors] = React.useState([])
+export default function Reviews() {
+  const [reviews, setReviews] = React.useState([])
 
   React.useEffect(() => {
     const fetchData = async () => {
       const response = await client.query(
-        Prismic.Predicates.at('document.type', 'author')
+        Prismic.Predicates.at('document.type', 'review')
       )
       if (response) {
-        setAuthors(response.results)
+        setReviews(response.results)
       }
     }
     fetchData()
   }, [])
 
-  const renderAuthors = () => {
+  const renderReviews = () => {
     return (
-      authors.map(author => (
+      reviews.map(review => (
         <React.Fragment>
           {
-            author ? (
+            review ? (
               <div>
-                <h1>{RichText.asText(author.data.title)}</h1>
-                <img alt='cover' src={author.data.image.url} />
-                <RichText render={author.data.description} linkResolver={linkResolver} />
+                <h1>{RichText.asText(review.data.title)}</h1>
+                <img alt='cover' src={review.data.image.url} />
+                <RichText render={review.data.description} linkResolver={linkResolver} />
               </div>
             ) : <div>No content</div>
           }
@@ -38,7 +38,7 @@ export default function About() {
 
   return (
     <>
-      {renderAuthors()}
+      {renderReviews()}
     </>
   )
 }

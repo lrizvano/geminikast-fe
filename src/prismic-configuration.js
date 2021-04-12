@@ -11,6 +11,7 @@ const accessToken = 'MC5ZSE9jUmhNQUFDQUFub2Qz.GO-_ve-_ve-_vV7vv73vv70m77-977-977
 // -- Link resolution rules
 // Manages the url links to internal Prismic documents
 export const linkResolver = (doc) => {
+  if (doc.type === 'review') return `/review/${doc.uid}`
   if (doc.type === 'author') return `/author/${doc.uid}`
   return '/'
 }

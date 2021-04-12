@@ -22,6 +22,7 @@ export default function Navigation() {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Link to="/podcast">Podcast</Link>
+          <Link to="/reviews">Reviews</Link>
           <Link to="/about">About</Link>
         </Nav>
       </Navbar.Collapse>

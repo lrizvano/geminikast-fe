@@ -1,7 +1,7 @@
 import React from 'react'
 import Prismic from '@prismicio/client'
 import { RichText } from 'prismic-reactjs'
-import { client, linkResolver } from '../../prismic-configuration.js'
+import { client } from '../../prismic-configuration.js'
 import Carousel from 'react-bootstrap/Carousel'
 
 export default function Podcast() {
@@ -22,7 +22,7 @@ export default function Podcast() {
   const renderDocs = () => {
     return (
       docs.map(doc => (
-        <Carousel.Item>
+        <Carousel.Item key={doc.uid}>
           <img
             className="d-block w-100"
             src={doc.data.image.url}

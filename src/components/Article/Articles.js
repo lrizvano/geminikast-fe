@@ -1,7 +1,7 @@
 import React from 'react'
 import Prismic from '@prismicio/client'
 import { RichText, Date } from 'prismic-reactjs'
-import { client, linkResolver } from '../../prismic-configuration.js'
+import { client } from '../../prismic-configuration.js'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Card from 'react-bootstrap/Card'
 

@@ -2,6 +2,8 @@ import React from 'react'
 import Prismic from '@prismicio/client'
 import { RichText } from 'prismic-reactjs'
 import { client, linkResolver } from '../../prismic-configuration.js'
+import CardDeck from 'react-bootstrap/CardDeck'
+import Card from 'react-bootstrap/Card'
 
 export default function About() {
   const [authors, setAuthors] = React.useState([])
@@ -21,24 +23,24 @@ export default function About() {
   const renderAuthors = () => {
     return (
       authors.map(author => (
-        <React.Fragment>
-          {
-            author ? (
-              <div>
-                <h1>{RichText.asText(author.data.name)}</h1>
-                <img alt='cover' src={author.data.image.url} />
-                <RichText render={author.data.bio} linkResolver={linkResolver}/>
-              </div>
-            ) : <div>No content</div>
-          }
-        </React.Fragment>
+        <Card>
+          <Card.Img variant="top" src={author.data.image.url}/>
+          <Card.Body>
+            <Card.Title>{RichText.asText(author.data.name)}</Card.Title>
+          </Card.Body>
+          <Card.Footer>
+            <small className="text-muted">{RichText.asText(author.data.role)}</small>
+          </Card.Footer>
+        </Card>
       ))
     )
   }
 
   return (
     <>
-      {renderAuthors()}
+      <CardDeck>
+        {renderAuthors()}
+      </CardDeck>
     </>
   )
 }

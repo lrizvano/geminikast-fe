@@ -24,7 +24,7 @@ export default function Reviews() {
   const renderReviews = () => {
     return (
       reviews.map(review => (
-        <Card>
+        <Card key={review.uid}>
           <Link to={`reviews/${review.uid}`}>
             <Card.Img variant="top" src={review.data.image.url}/>
             <Card.Body>

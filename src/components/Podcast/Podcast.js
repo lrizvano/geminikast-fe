@@ -3,6 +3,7 @@ import Prismic from '@prismicio/client'
 import { RichText } from 'prismic-reactjs'
 import { client } from '../../prismic-configuration.js'
 import Carousel from 'react-bootstrap/Carousel'
+import { Link } from 'react-router-dom'
 
 export default function Podcast() {
   const [docs, setDocs] = React.useState([])
@@ -23,15 +24,17 @@ export default function Podcast() {
     return (
       docs.map(doc => (
         <Carousel.Item key={doc.uid}>
-          <img
-            className="d-block w-100"
-            src={doc.data.image.url}
-            alt=""
-          />
-          <Carousel.Caption>
-            <h3>{doc.type === 'article' ? RichText.asText(doc.data.headline) : RichText.asText(doc.data.game)}</h3>
-            <p>{RichText.asText(doc.type)}</p>
-          </Carousel.Caption>
+          <Link to={doc.type === 'article' ? `news/${doc.uid}` : `reviews/${doc.uid}`}>
+            <img
+              className="d-block w-100"
+              src={doc.data.image.url}
+              alt=""
+            />
+            <Carousel.Caption>
+              <h3>{doc.type === 'article' ? RichText.asText(doc.data.headline) : RichText.asText(doc.data.game)}</h3>
+              <p>{RichText.asText(doc.type)}</p>
+            </Carousel.Caption>
+            </Link>
         </Carousel.Item>
       ))
     )

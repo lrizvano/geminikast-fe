@@ -8,6 +8,7 @@ import Article from './components/Article/Article.js'
 import Reviews from './components/Review/Reviews.js'
 import Review from './components/Review/Review.js'
 import About from './components/About/About.js'
+import Author from './components/About/Author.js'
 import Footer from './components/Footer/Footer.js'
 import Layout from './components/Layout.js'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
@@ -25,6 +26,7 @@ function App() {
             <Route path="/reviews" exact component={Reviews}/>
             <Route path="/reviews/:uid" component={Review}/>
             <Route path="/about" component={About}/>
+            <Route path="/author/:uid" component={Author}/>
           </Switch>
         </Layout>
         <Footer/>

@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Navigation from './components/Navigation/Navigation.js'
 import Podcast from './components/Podcast/Podcast.js'
 import Articles from './components/Article/Articles.js'
+import Article from './components/Article/Article.js'
 import Reviews from './components/Review/Reviews.js'
 import Review from './components/Review/Review.js'
 import About from './components/About/About.js'
@@ -19,7 +20,8 @@ function App() {
         <Layout>
           <Switch>
             <Route path="/" exact component={Podcast}/>
-            <Route path="/news" component={Articles}/>
+            <Route path="/news" exact component={Articles}/>
+            <Route path="/news/:uid" component={Article}/>
             <Route path="/reviews" exact component={Reviews}/>
             <Route path="/reviews/:uid" component={Review}/>
             <Route path="/about" component={About}/>

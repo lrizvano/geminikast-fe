@@ -23,7 +23,7 @@ export default function Review(props) {
   const renderReview = () => {
     if (review) {
       return (
-        <Card>
+        <Card bg="primary">
           <Card.Img variant="top" src={review.data.image.url}/>
           <Card.Body>
             <Card.Title>{RichText.asText(review.data.game)}</Card.Title>

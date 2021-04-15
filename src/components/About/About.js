@@ -26,7 +26,7 @@ export default function About() {
     return (
       authors.map(author => (
         <Col xs={6} md={4}>
-          <Card key={author.uid}>
+          <Card key={author.uid} bg="primary">
             <Link to={`author/${author.uid}`}>
               <Card.Img variant="top" src={author.data.image.url}/>
               <Card.Body>

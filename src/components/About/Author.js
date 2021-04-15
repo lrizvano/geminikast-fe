@@ -23,7 +23,7 @@ export default function Author(props) {
   const renderAuthor = () => {
     if (author) {
       return (
-        <Card>
+        <Card bg="primary">
           <Card.Img variant="top" src={author.data.image.url}/>
           <Card.Body>
             <Card.Title>{RichText.asText(author.data.name)}</Card.Title>

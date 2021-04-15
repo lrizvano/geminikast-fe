@@ -1,11 +1,11 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import logo from '../../geminikast-logo.jpg'
+import logo from '../geminikast-logo.jpg'
 
 export default function Navigation() {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="secondary" expand="lg">
       <Navbar.Brand href='/'>
         <img
           alt=""

@@ -23,7 +23,7 @@ export default function Article(props) {
   const renderArticle = () => {
     if (article) {
       return (
-        <Card>
+        <Card bg="primary">
           <Card.Img variant="top" src={article.data.image.url}/>
           <Card.Body>
             <Card.Title>{RichText.asText(article.data.headline)}</Card.Title>

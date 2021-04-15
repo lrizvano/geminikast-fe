@@ -26,7 +26,7 @@ export default function Reviews() {
     return (
       reviews.map(review => (
         <Col xs={6} md={4}>
-          <Card key={review.uid}>
+          <Card key={review.uid} bg="primary">
             <Link to={`reviews/${review.uid}`}>
               <Card.Img variant="top" src={review.data.image.url}/>
               <Card.Body>

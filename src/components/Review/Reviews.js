@@ -5,7 +5,7 @@ import { client } from '../../prismic-configuration.js'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
-import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 
 export default function Reviews() {
   const [reviews, setReviews] = React.useState([])
@@ -27,15 +27,12 @@ export default function Reviews() {
       reviews.map(review => (
         <Col xs={6} md={4}>
           <Card key={review.uid} bg="primary">
-            <Link to={`reviews/${review.uid}`}>
+            <Button href={`reviews/${review.uid}`}>
               <Card.Img variant="top" src={review.data.image.url}/>
               <Card.Body>
                 <Card.Title>{RichText.asText(review.data.game)}</Card.Title>
               </Card.Body>
-              <Card.Footer>
-                <small className="text-muted">{review.data.score}</small>
-              </Card.Footer>
-            </Link>
+            </Button>
           </Card>
         </Col>
       ))

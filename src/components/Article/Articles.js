@@ -5,7 +5,7 @@ import { client } from '../../prismic-configuration.js'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
-import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 
 export default function Articles() {
   const [articles, setArticles] = React.useState([])
@@ -27,7 +27,7 @@ export default function Articles() {
       articles.map(article => (
         <Col xs={6} md={4} bg="primary">
           <Card key={article.uid} bg="primary">
-            <Link to={`news/${article.uid}`}>
+            <Button href={`news/${article.uid}`}>
               <Card.Img variant="top" src={article.data.image.url}/>
               <Card.Body>
                 <Card.Title>{RichText.asText(article.data.headline)}</Card.Title>
@@ -35,7 +35,7 @@ export default function Articles() {
               <Card.Footer>
                 <small className="text-muted">{Date(article.data.date).toString()}</small>
               </Card.Footer>
-            </Link>
+            </Button>
           </Card>
         </Col>
       ))

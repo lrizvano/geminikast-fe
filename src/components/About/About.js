@@ -5,7 +5,7 @@ import { client } from '../../prismic-configuration.js'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
-import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 
 export default function About() {
   const [authors, setAuthors] = React.useState([])
@@ -27,7 +27,7 @@ export default function About() {
       authors.map(author => (
         <Col xs={6} md={4}>
           <Card key={author.uid} bg="primary">
-            <Link to={`author/${author.uid}`}>
+            <Button href={`author/${author.uid}`}>
               <Card.Img variant="top" src={author.data.image.url}/>
               <Card.Body>
                 <Card.Title>{RichText.asText(author.data.name)}</Card.Title>
@@ -35,7 +35,7 @@ export default function About() {
               <Card.Footer>
                 <small className="text-muted">{RichText.asText(author.data.role)}</small>
               </Card.Footer>
-            </Link>
+            </Button>
           </Card>
         </Col>
       ))

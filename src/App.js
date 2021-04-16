@@ -1,6 +1,5 @@
 import './App.scss'
 import React from 'react'
-import './custom.scss'
 import Navigation from './components/Navigation.js'
 import Podcast from './components/Podcast/Podcast.js'
 import Articles from './components/Article/Articles.js'

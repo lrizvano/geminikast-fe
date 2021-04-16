@@ -1,8 +1,18 @@
-@import './custom.scss';
+$primary: #A8D0E6;
+$secondary: #F76C6C;
+$dark: #24305E;
+$light: #374785;
+$success: #0fa;
+$info: #F8E9A1;
+$warning: #ff0;
+$danger: #f00;
 
 .App {
-  background-color: $dark;
+  background-color: #282c34;
+  min-height: 100vh;
   align-items: center;
   justify-content: center;
   color: $light;
 }
+
+@import '~bootstrap/scss/bootstrap.scss';

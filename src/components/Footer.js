@@ -16,7 +16,7 @@ export default function Footer() {
   const renderLinks = () => {
       return (
         links.map(link => (
-          <Col xs={1}>
+          <Col xs={2} lg={1}>
             <SocialIcon url={`${link}`}/>
           </Col>
         ))
@@ -24,10 +24,12 @@ export default function Footer() {
   }
 
   return (
-    <Layout>
-      <Row className="justify-content-md-center">
-        {renderLinks()}
-      </Row>
-    </Layout>
+    <div className="Footer">
+      <Layout>
+        <Row className="justify-content-center">
+          {renderLinks()}
+        </Row>
+      </Layout>
+    </div>
   )
 }

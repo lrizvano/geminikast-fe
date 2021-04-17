@@ -17,17 +17,19 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navigation/>
-        <Layout>
-          <Switch>
-            <Route path="/" exact component={Podcast}/>
-            <Route path="/news" exact component={Articles}/>
-            <Route path="/news/:uid" component={Article}/>
-            <Route path="/reviews" exact component={Reviews}/>
-            <Route path="/reviews/:uid" component={Review}/>
-            <Route path="/about" component={About}/>
-            <Route path="/author/:uid" component={Author}/>
-          </Switch>
-        </Layout>
+        <div className="content">
+          <Layout>
+            <Switch>
+              <Route path="/" exact component={Podcast}/>
+              <Route path="/news" exact component={Articles}/>
+              <Route path="/news/:uid" component={Article}/>
+              <Route path="/reviews" exact component={Reviews}/>
+              <Route path="/reviews/:uid" component={Review}/>
+              <Route path="/about" component={About}/>
+              <Route path="/author/:uid" component={Author}/>
+            </Switch>
+          </Layout>
+        </div>
         <Footer/>
       </BrowserRouter>
     </div>

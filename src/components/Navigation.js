@@ -1,19 +1,19 @@
-import React from 'react'
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
-import logo from '../geminikast-logo.jpg'
+import React from "react";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import logo from "../geminikast-logo.jpg";
 
 export default function Navigation() {
   return (
     <Navbar bg="secondary" expand="lg">
-      <Navbar.Brand href='/'>
+      <Navbar.Brand href="/">
         <img
           alt=""
           src={logo}
           width="30"
           height="30"
           className="d-inline-block align-top"
-        />{' '}
+        />{" "}
         Geminikast
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -25,5 +25,5 @@ export default function Navigation() {
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-  )
+  );
 }

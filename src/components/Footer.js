@@ -3,6 +3,7 @@ import { SocialIcon } from "react-social-icons";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Layout from "./Layout.js";
+import styled from "styled-components";
 
 const links = [
   "https://twitter.com/geminikatz",
@@ -11,6 +12,15 @@ const links = [
   "https://www.instagram.com/thegeminikast",
   "https://www.twitch.tv/geminikatz",
 ];
+
+const Wrapper = styled.section`
+  background-color: var(--secondary);
+  position: "relative";
+  bottom: 0;
+  height: 4rem;
+  padding: auto;
+  align-items: center;
+`;
 
 export default function Footer() {
   const renderLinks = () => {
@@ -22,10 +32,10 @@ export default function Footer() {
   };
 
   return (
-    <div className="Footer">
+    <Wrapper>
       <Layout>
         <Row className="justify-content-center">{renderLinks()}</Row>
       </Layout>
-    </div>
+    </Wrapper>
   );
 }

@@ -11,28 +11,35 @@ import Author from "./components/About/Author.js";
 import Footer from "./components/Footer.js";
 import Layout from "./components/Layout.js";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import styled from "styled-components";
+
+const Wrapper = styled.section`
+  background-color: var(--dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--light);
+`;
 
 function App() {
   return (
-    <div className="App">
+    <Wrapper>
       <BrowserRouter>
         <Navigation />
-        <div className="content">
-          <Layout>
-            <Switch>
-              <Route path="/" exact component={Podcast} />
-              <Route path="/news" exact component={Articles} />
-              <Route path="/news/:uid" component={Article} />
-              <Route path="/reviews" exact component={Reviews} />
-              <Route path="/reviews/:uid" component={Review} />
-              <Route path="/about" component={About} />
-              <Route path="/author/:uid" component={Author} />
-            </Switch>
-          </Layout>
-        </div>
+        <Layout>
+          <Switch>
+            <Route path="/" exact component={Podcast} />
+            <Route path="/news" exact component={Articles} />
+            <Route path="/news/:uid" component={Article} />
+            <Route path="/reviews" exact component={Reviews} />
+            <Route path="/reviews/:uid" component={Review} />
+            <Route path="/about" component={About} />
+            <Route path="/author/:uid" component={Author} />
+          </Switch>
+        </Layout>
         <Footer />
       </BrowserRouter>
-    </div>
+    </Wrapper>
   );
 }
 

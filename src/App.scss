@@ -1,31 +1,10 @@
 $primary: #a8d0e6;
 $secondary: #f76c6c;
-$dark: #24305e;
-$light: #374785;
+$dark: #282c34;
+$light: #ffffff;
 $success: #0fa;
 $info: #f8e9a1;
 $warning: #ff0;
 $danger: #f00;
-
-.App {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  color: $light;
-}
-
-.content {
-  flex: 1;
-}
-
-.Footer {
-  background-color: $secondary;
-  position: "relative";
-  bottom: 0;
-  height: 4rem;
-  padding: auto;
-  align-items: center;
-}
 
 @import "~bootstrap/scss/bootstrap.scss";

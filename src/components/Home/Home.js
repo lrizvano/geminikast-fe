@@ -1,6 +1,6 @@
 import React from "react";
 import Podcast from "./Podcast.js";
-import Featured from "./Featured.js";
+import Features from "./Features.js";
 import styled from "styled-components";
 
 const Title = styled.h1`
@@ -11,8 +11,8 @@ const Title = styled.h1`
 export default function Home() {
   return (
     <>
-      <Title>Recent Updates</Title>
-      <Featured />
+      <Title>Features</Title>
+      <Features />
 
       <Title>Newest Episode</Title>
       <Podcast />

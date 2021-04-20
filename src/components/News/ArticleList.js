@@ -23,23 +23,31 @@ export default function Articles() {
   }, []);
 
   const renderArticles = () => {
-    return articles.map((article) => (
-      <Col xs={6} md={4} bg="primary">
-        <Card key={article.uid} bg="primary">
-          <Button href={`news/${article.uid}`}>
-            <Card.Img variant="top" src={article.data.image.url} />
-            <Card.Body>
-              <Card.Title>{RichText.asText(article.data.headline)}</Card.Title>
-            </Card.Body>
-            <Card.Footer>
-              <small className="text-muted">
-                {Date(article.data.date).toString()}
-              </small>
-            </Card.Footer>
-          </Button>
-        </Card>
-      </Col>
-    ));
+    return articles.map((article) => {
+      const formattedDate = new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "2-digit",
+      }).format(Date(article.data.date));
+
+      return (
+        <Col xs={6} md={4} bg="primary">
+          <Card key={article.uid} bg="primary">
+            <Button href={`news/${article.uid}`}>
+              <Card.Img variant="top" src={article.data.image.url} />
+              <Card.Body>
+                <Card.Title>
+                  {RichText.asText(article.data.headline)}
+                </Card.Title>
+              </Card.Body>
+              <Card.Footer>
+                <small className="text-muted">{formattedDate}</small>
+              </Card.Footer>
+            </Button>
+          </Card>
+        </Col>
+      );
+    });
   };
 
   return (

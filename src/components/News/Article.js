@@ -1,6 +1,6 @@
 import React from "react";
 import Prismic from "@prismicio/client";
-import { RichText } from "prismic-reactjs";
+import { RichText, Date } from "prismic-reactjs";
 import { client } from "../../prismic-configuration.js";
 import Card from "react-bootstrap/Card";
 
@@ -22,6 +22,12 @@ export default function Article(props) {
 
   const renderArticle = () => {
     if (article) {
+      const formattedDate = new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "2-digit",
+      }).format(Date(article.data.date));
+
       return (
         <Card bg="primary">
           <Card.Img variant="top" src={article.data.image.url} />
@@ -30,9 +36,7 @@ export default function Article(props) {
             <Card.Text>{RichText.asText(article.data.body)}</Card.Text>
           </Card.Body>
           <Card.Footer>
-            <small className="text-muted">
-              {Date(article.data.date).toString()}
-            </small>
+            <small className="text-muted">{formattedDate}</small>
           </Card.Footer>
         </Card>
       );

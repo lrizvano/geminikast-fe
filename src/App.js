@@ -2,8 +2,8 @@ import "./App.scss";
 import React from "react";
 import Navigation from "./components/Navigation.js";
 import Home from "./components/Home/Home.js";
-import Articles from "./components/Article/Articles.js";
-import Article from "./components/Article/Article.js";
+import News from "./components/News/News.js";
+import Article from "./components/News/Article.js";
 import Reviews from "./components/Review/Reviews.js";
 import Review from "./components/Review/Review.js";
 import About from "./components/About/About.js";
@@ -29,7 +29,7 @@ function App() {
         <Layout>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/news" exact component={Articles} />
+            <Route path="/news" exact component={News} />
             <Route path="/news/:uid" component={Article} />
             <Route path="/reviews" exact component={Reviews} />
             <Route path="/reviews/:uid" component={Review} />

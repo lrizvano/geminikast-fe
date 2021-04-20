@@ -1,7 +1,7 @@
 import "./App.scss";
 import React from "react";
 import Navigation from "./components/Navigation.js";
-import Podcast from "./components/Podcast/Podcast.js";
+import Home from "./components/Home/Home.js";
 import Articles from "./components/Article/Articles.js";
 import Article from "./components/Article/Article.js";
 import Reviews from "./components/Review/Reviews.js";
@@ -28,7 +28,7 @@ function App() {
         <Navigation />
         <Layout>
           <Switch>
-            <Route path="/" exact component={Podcast} />
+            <Route path="/" exact component={Home} />
             <Route path="/news" exact component={Articles} />
             <Route path="/news/:uid" component={Article} />
             <Route path="/reviews" exact component={Reviews} />

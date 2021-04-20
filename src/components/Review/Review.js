@@ -27,7 +27,12 @@ export default function Review(props) {
           <Card.Img variant="top" src={review.data.image.url} />
           <Card.Body>
             <Card.Title>{RichText.asText(review.data.game)}</Card.Title>
-            <Card.Text>{RichText.asText(review.data.body)}</Card.Text>
+            <Card.Text>
+              <RichText
+                render={review.data.body}
+                htmlSerializer={client.htmlSerializer}
+              ></RichText>
+            </Card.Text>
           </Card.Body>
           <Card.Footer>
             <small className="text-muted">{review.data.score}</small>

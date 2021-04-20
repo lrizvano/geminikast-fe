@@ -33,7 +33,12 @@ export default function Article(props) {
           <Card.Img variant="top" src={article.data.image.url} />
           <Card.Body>
             <Card.Title>{RichText.asText(article.data.headline)}</Card.Title>
-            <Card.Text>{RichText.asText(article.data.body)}</Card.Text>
+            <Card.Text>
+              <RichText
+                render={article.data.body}
+                htmlSerializer={client.htmlSerializer}
+              ></RichText>
+            </Card.Text>
           </Card.Body>
           <Card.Footer>
             <small className="text-muted">{formattedDate}</small>

@@ -2,7 +2,7 @@ import React from "react";
 import Prismic from "@prismicio/client";
 import { RichText, Date } from "prismic-reactjs";
 import { client } from "../../prismic-configuration.js";
-import Card from "react-bootstrap/Card";
+import Image from "react-bootstrap/Image";
 
 export default function Article(props) {
   const [article, setArticle] = React.useState(null);
@@ -29,21 +29,15 @@ export default function Article(props) {
       }).format(Date(article.data.date));
 
       return (
-        <Card bg="primary">
-          <Card.Img variant="top" src={article.data.image.url} />
-          <Card.Body>
-            <Card.Title>{RichText.asText(article.data.headline)}</Card.Title>
-            <Card.Text>
-              <RichText
-                render={article.data.body}
-                htmlSerializer={client.htmlSerializer}
-              ></RichText>
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">{formattedDate}</small>
-          </Card.Footer>
-        </Card>
+        <>
+          <Image fluid src={article.data.image.url} />
+          {RichText.asText(article.data.game)}
+          <RichText
+            render={article.data.body}
+            htmlSerializer={client.htmlSerializer}
+          ></RichText>
+          <small className="text-muted">{formattedDate}</small>
+        </>
       );
     }
     return <></>;

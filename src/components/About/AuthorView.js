@@ -2,7 +2,7 @@ import React from "react";
 import Prismic from "@prismicio/client";
 import { RichText } from "prismic-reactjs";
 import { client } from "../../prismic-configuration.js";
-import Card from "react-bootstrap/Card";
+import Image from "react-bootstrap/Image";
 
 export default function Author(props) {
   const [author, setAuthor] = React.useState(null);
@@ -23,17 +23,17 @@ export default function Author(props) {
   const renderAuthor = () => {
     if (author) {
       return (
-        <Card bg="primary">
-          <Card.Img variant="top" src={author.data.image.url} />
-          <Card.Body>
-            <Card.Title>{RichText.asText(author.data.name)}</Card.Title>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">
-              {RichText.asText(author.data.role)}
-            </small>
-          </Card.Footer>
-        </Card>
+        <>
+          <Image fluid src={author.data.image.url} />
+          {RichText.asText(author.data.name)}
+          <RichText
+            render={author.data.bio}
+            htmlSerializer={client.htmlSerializer}
+          ></RichText>
+          <small className="text-muted">
+            {RichText.asText(author.data.role)}
+          </small>
+        </>
       );
     }
     return <></>;

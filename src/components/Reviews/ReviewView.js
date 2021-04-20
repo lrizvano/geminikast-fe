@@ -2,7 +2,7 @@ import React from "react";
 import Prismic from "@prismicio/client";
 import { RichText } from "prismic-reactjs";
 import { client } from "../../prismic-configuration.js";
-import Card from "react-bootstrap/Card";
+import Image from "react-bootstrap/Image";
 
 export default function Review(props) {
   const [review, setReview] = React.useState(null);
@@ -23,21 +23,15 @@ export default function Review(props) {
   const renderReview = () => {
     if (review) {
       return (
-        <Card bg="primary">
-          <Card.Img variant="top" src={review.data.image.url} />
-          <Card.Body>
-            <Card.Title>{RichText.asText(review.data.game)}</Card.Title>
-            <Card.Text>
-              <RichText
-                render={review.data.body}
-                htmlSerializer={client.htmlSerializer}
-              ></RichText>
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">{review.data.score}</small>
-          </Card.Footer>
-        </Card>
+        <>
+          <Image fluid src={review.data.image.url} />
+          {RichText.asText(review.data.game)}
+          <RichText
+            render={review.data.body}
+            htmlSerializer={client.htmlSerializer}
+          ></RichText>
+          <small className="text-muted">{review.data.score}</small>
+        </>
       );
     }
     return <></>;

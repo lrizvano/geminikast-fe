@@ -3,13 +3,12 @@ import Prismic from "@prismicio/client";
 import { RichText, Date } from "prismic-reactjs";
 import { client } from "../../prismic-configuration.js";
 import Image from "react-bootstrap/Image";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Title from "../Title.js";
 import Line from "../Line.js";
 import DateFormat from "../DateFormat.js";
 
-export default function Article(props) {
+export default function ArticleView(props) {
   const [article, setArticle] = React.useState(null);
 
   React.useEffect(() => {

@@ -4,7 +4,7 @@ import { RichText } from "prismic-reactjs";
 import { client } from "../../prismic-configuration.js";
 import Image from "react-bootstrap/Image";
 
-export default function Author(props) {
+export default function AuthorView(props) {
   const [author, setAuthor] = React.useState(null);
 
   React.useEffect(() => {

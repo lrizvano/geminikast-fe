@@ -8,7 +8,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import DateFormat from "../DateFormat.js";
 
-export default function Articles() {
+export default function ArticleList() {
   const [articles, setArticles] = React.useState([]);
 
   React.useEffect(() => {

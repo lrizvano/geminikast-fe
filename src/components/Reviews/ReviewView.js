@@ -8,12 +8,9 @@ import Badge from "react-bootstrap/Badge";
 import { Link } from "react-router-dom";
 import Title from "../Title.js";
 import DateFormat from "../DateFormat.js";
+import Line from "../Line.js";
 
-const Line = styled.hr`
-  background-color: var(--primary);
-`;
-
-export default function Review(props) {
+export default function ReviewView(props) {
   const [review, setReview] = React.useState(null);
 
   React.useEffect(() => {

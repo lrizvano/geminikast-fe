@@ -5,7 +5,7 @@ import Home from "./components/Home/Home.js";
 import News from "./components/News/News.js";
 import ArticleView from "./components/News/ArticleView.js";
 import Reviews from "./components/Reviews/Reviews.js";
-import ReviewView from "./components/Reviews/ReviewView.js";
+import ReviewView from "./components/Reviews/ReviewView/ReviewView.js";
 import About from "./components/About/About.js";
 import AuthorView from "./components/About/AuthorView.js";
 import Footer from "./components/Footer.js";

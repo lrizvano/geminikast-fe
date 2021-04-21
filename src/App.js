@@ -3,7 +3,7 @@ import React from "react";
 import Navigation from "./components/Navigation.js";
 import Home from "./components/Home/Home.js";
 import News from "./components/News/News.js";
-import ArticleView from "./components/News/ArticleView.js";
+import ArticleView from "./components/News/ArticleView/ArticleView.js";
 import Reviews from "./components/Reviews/Reviews.js";
 import ReviewView from "./components/Reviews/ReviewView/ReviewView.js";
 import About from "./components/About/About.js";

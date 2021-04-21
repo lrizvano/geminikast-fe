@@ -5,6 +5,7 @@ import { client } from "../../prismic-configuration.js";
 import Image from "react-bootstrap/Image";
 import styled from "styled-components";
 import Badge from "react-bootstrap/Badge";
+import { Link } from "react-router-dom";
 
 const Title = styled.h1`
   margin-top: 1rem;
@@ -43,7 +44,10 @@ export default function Review(props) {
         <>
           <Image fluid src={review.data.image.url} />
           <Title>{RichText.asText(review.data.game)} Review</Title>
-          By {RichText.asText(review.data.author.data.name)}
+          {"By "}
+          <Link replace to={`/author/${review.data.author.uid}`}>
+            {RichText.asText(review.data.author.data.name)}
+          </Link>
           <br />
           <small className="text-muted">{formattedDate}</small>
           <Line />

@@ -4,6 +4,7 @@ import { RichText, Date } from "prismic-reactjs";
 import { client } from "../../prismic-configuration.js";
 import Image from "react-bootstrap/Image";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Title = styled.h1`
   margin-top: 1rem;
@@ -42,7 +43,10 @@ export default function Article(props) {
         <>
           <Image fluid src={article.data.image.url} />
           <Title>{RichText.asText(article.data.headline)}</Title>
-          By {RichText.asText(article.data.author.data.name)}
+          {"By "}
+          <Link replace to={`/author/${article.data.author.uid}`}>
+            {RichText.asText(article.data.author.data.name)}
+          </Link>{" "}
           <br />
           <small className="text-muted">{formattedDate}</small>
           <Line />

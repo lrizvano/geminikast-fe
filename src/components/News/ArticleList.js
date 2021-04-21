@@ -26,8 +26,8 @@ export default function ArticleList() {
   const renderArticles = () => {
     return articles.map((article) => {
       return (
-        <Col xs={6} md={4} bg="primary">
-          <Card key={article.uid} bg="primary">
+        <Col xs={6} md={4} bg="primary" key={article.uid}>
+          <Card bg="primary">
             <Button href={`news/${article.uid}`}>
               <Card.Img variant="top" src={article.data.image.url} />
               <Card.Body>

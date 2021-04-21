@@ -24,8 +24,8 @@ export default function ReviewList() {
 
   const renderReviews = () => {
     return reviews.map((review) => (
-      <Col xs={6} md={4}>
-        <Card key={review.uid} bg="primary">
+      <Col xs={6} md={4} key={review.uid}>
+        <Card bg="primary">
           <Button href={`reviews/${review.uid}`}>
             <Card.Img variant="top" src={review.data.image.url} />
             <Card.Body>

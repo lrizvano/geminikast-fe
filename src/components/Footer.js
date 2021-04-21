@@ -25,8 +25,8 @@ const Wrapper = styled.section`
 export default function Footer() {
   const renderLinks = () => {
     return links.map((link) => (
-      <Col xs={2} lg={1}>
-        <SocialIcon url={`${link}`} />
+      <Col xs={2} lg={1} key={link}>
+        <SocialIcon url={link} />
       </Col>
     ));
   };

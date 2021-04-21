@@ -24,8 +24,8 @@ export default function AuthorList() {
 
   const renderAuthors = () => {
     return authors.map((author) => (
-      <Col xs={6} md={4}>
-        <Card key={author.uid} bg="primary">
+      <Col xs={6} md={4} key={author.uid}>
+        <Card bg="primary">
           <Button href={`author/${author.uid}`}>
             <Card.Img variant="top" src={author.data.image.url} />
             <Card.Body>

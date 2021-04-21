@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import DateFormat from "../DateFormat.js";
 
 export default function Articles() {
   const [articles, setArticles] = React.useState([]);
@@ -24,12 +25,6 @@ export default function Articles() {
 
   const renderArticles = () => {
     return articles.map((article) => {
-      const formattedDate = new Intl.DateTimeFormat("en-US", {
-        year: "numeric",
-        month: "short",
-        day: "2-digit",
-      }).format(Date(article.data.date));
-
       return (
         <Col xs={6} md={4} bg="primary">
           <Card key={article.uid} bg="primary">
@@ -41,7 +36,9 @@ export default function Articles() {
                 </Card.Title>
               </Card.Body>
               <Card.Footer>
-                <small className="text-muted">{formattedDate}</small>
+                <small className="text-muted">
+                  <DateFormat date={Date(article.data.date)} />
+                </small>
               </Card.Footer>
             </Button>
           </Card>

@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Title from "../Title.js";
 import Line from "../Line.js";
+import DateFormat from "../DateFormat.js";
 
 export default function Article(props) {
   const [article, setArticle] = React.useState(null);
@@ -26,12 +27,6 @@ export default function Article(props) {
 
   const renderArticle = () => {
     if (article) {
-      const formattedDate = new Intl.DateTimeFormat("en-US", {
-        year: "numeric",
-        month: "short",
-        day: "2-digit",
-      }).format(Date(article.data.date));
-
       return (
         <>
           <Image fluid src={article.data.image.url} />
@@ -41,7 +36,9 @@ export default function Article(props) {
             {RichText.asText(article.data.author.data.name)}
           </Link>
           <br />
-          <small className="text-muted">{formattedDate}</small>
+          <small className="text-muted">
+            <DateFormat date={Date(article.data.date)} />
+          </small>
           <Line />
           <RichText
             render={article.data.body}

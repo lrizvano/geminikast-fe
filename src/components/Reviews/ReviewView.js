@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Badge from "react-bootstrap/Badge";
 import { Link } from "react-router-dom";
 import Title from "../Title.js";
+import DateFormat from "../DateFormat.js";
 
 const Line = styled.hr`
   background-color: var(--primary);
@@ -30,12 +31,6 @@ export default function Review(props) {
 
   const renderReview = () => {
     if (review) {
-      const formattedDate = new Intl.DateTimeFormat("en-US", {
-        year: "numeric",
-        month: "short",
-        day: "2-digit",
-      }).format(Date(review.data.date));
-
       return (
         <>
           <Image fluid src={review.data.image.url} />
@@ -45,7 +40,9 @@ export default function Review(props) {
             {RichText.asText(review.data.author.data.name)}
           </Link>
           <br />
-          <small className="text-muted">{formattedDate}</small>
+          <small className="text-muted">
+            <DateFormat date={Date(review.data.date)} />
+          </small>
           <Line />
           <RichText
             render={review.data.body}

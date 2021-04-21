@@ -3,6 +3,16 @@ import Prismic from "@prismicio/client";
 import { RichText, Date } from "prismic-reactjs";
 import { client } from "../../prismic-configuration.js";
 import Image from "react-bootstrap/Image";
+import styled from "styled-components";
+
+const Title = styled.h1`
+  margin-top: 1rem;
+  color: var(--primary);
+`;
+
+const Line = styled.hr`
+  background-color: var(--primary);
+`;
 
 export default function Article(props) {
   const [article, setArticle] = React.useState(null);
@@ -31,12 +41,13 @@ export default function Article(props) {
       return (
         <>
           <Image fluid src={article.data.image.url} />
-          {RichText.asText(article.data.game)}
+          <Title>{RichText.asText(article.data.headline)}</Title>
+          {formattedDate}
+          <Line />
           <RichText
             render={article.data.body}
             htmlSerializer={client.htmlSerializer}
           ></RichText>
-          <small className="text-muted">{formattedDate}</small>
         </>
       );
     }

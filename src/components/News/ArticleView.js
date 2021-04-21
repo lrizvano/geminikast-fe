@@ -5,15 +5,8 @@ import { client } from "../../prismic-configuration.js";
 import Image from "react-bootstrap/Image";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
-const Title = styled.h1`
-  margin-top: 1rem;
-  color: var(--primary);
-`;
-
-const Line = styled.hr`
-  background-color: var(--primary);
-`;
+import Title from "../Title.js";
+import Line from "../Line.js";
 
 export default function Article(props) {
   const [article, setArticle] = React.useState(null);
@@ -46,7 +39,7 @@ export default function Article(props) {
           {"By "}
           <Link replace to={`/author/${article.data.author.uid}`}>
             {RichText.asText(article.data.author.data.name)}
-          </Link>{" "}
+          </Link>
           <br />
           <small className="text-muted">{formattedDate}</small>
           <Line />

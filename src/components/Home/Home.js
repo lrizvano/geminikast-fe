@@ -2,11 +2,7 @@ import React from "react";
 import Podcast from "./Podcast.js";
 import Features from "./Features.js";
 import styled from "styled-components";
-
-const Title = styled.h1`
-  margin-top: 1rem;
-  color: var(--primary);
-`;
+import Title from "../Title.js";
 
 export default function Home() {
   return (

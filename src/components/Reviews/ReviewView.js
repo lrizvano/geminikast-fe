@@ -6,11 +6,7 @@ import Image from "react-bootstrap/Image";
 import styled from "styled-components";
 import Badge from "react-bootstrap/Badge";
 import { Link } from "react-router-dom";
-
-const Title = styled.h1`
-  margin-top: 1rem;
-  color: var(--primary);
-`;
+import Title from "../Title.js";
 
 const Line = styled.hr`
   background-color: var(--primary);

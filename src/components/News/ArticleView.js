@@ -21,7 +21,7 @@ export default function Article(props) {
     const fetchData = async () => {
       const response = await client.query(
         Prismic.Predicates.at("my.article.uid", `${props.match.params.uid}`),
-        { lang: "*" }
+        { fetchLinks: "author.name" }
       );
       if (response) {
         setArticle(response.results[0]);
@@ -42,7 +42,9 @@ export default function Article(props) {
         <>
           <Image fluid src={article.data.image.url} />
           <Title>{RichText.asText(article.data.headline)}</Title>
-          {formattedDate}
+          By {RichText.asText(article.data.author.data.name)}
+          <br />
+          <small className="text-muted">{formattedDate}</small>
           <Line />
           <RichText
             render={article.data.body}

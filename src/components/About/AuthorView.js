@@ -18,7 +18,7 @@ export default function AuthorView(props) {
       }
     };
     fetchData();
-  }, []);
+  }, [props.match.params.uid]);
 
   const renderAuthor = () => {
     if (author) {

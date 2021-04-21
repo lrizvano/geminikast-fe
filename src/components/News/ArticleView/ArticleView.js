@@ -20,7 +20,7 @@ export default function ArticleView(props) {
       }
     };
     fetchData();
-  }, []);
+  }, [props.match.params.uid]);
 
   const renderArticle = () => {
     if (article) {

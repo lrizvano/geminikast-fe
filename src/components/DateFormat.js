@@ -1,7 +1,6 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
 
-export default function DateFormatter(props) {
+export default function DateFormat(props) {
   const formattedDate = new Intl.DateTimeFormat("en-US", {
     year: "numeric",
     month: "short",

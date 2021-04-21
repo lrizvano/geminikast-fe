@@ -21,7 +21,7 @@ export default function ReviewView(props) {
       }
     };
     fetchData();
-  }, []);
+  }, [props.match.params.uid]);
 
   const renderReview = () => {
     if (review) {

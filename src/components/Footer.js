@@ -18,14 +18,14 @@ const Wrapper = styled.section`
   position: "relative";
   bottom: 0;
   height: 4rem;
-  padding: auto;
+  display: flex;
   align-items: center;
 `;
 
 export default function Footer() {
   const renderLinks = () => {
     return links.map((link) => (
-      <Col xs={2} lg={1} key={link}>
+      <Col xs="auto" key={link}>
         <SocialIcon url={link} />
       </Col>
     ));

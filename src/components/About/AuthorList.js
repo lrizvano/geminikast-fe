@@ -23,7 +23,7 @@ export default function AuthorList() {
 
   const renderAuthors = () => {
     return authors.map((author) => (
-      <Col xs={6} md={4} key={author.uid}>
+      <Col xs={6} md={3} key={author.uid}>
         <Card bg="primary">
           <Card.Link href={`author/${author.uid}`} style={{ color: "#000000" }}>
             <Card.Img variant="top" src={author.data.image.url} />

@@ -5,7 +5,6 @@ import { client } from "../../prismic-configuration.js";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 
 export default function ReviewList() {
   const [reviews, setReviews] = React.useState([]);
@@ -13,7 +12,8 @@ export default function ReviewList() {
   React.useEffect(() => {
     const fetchData = async () => {
       const response = await client.query(
-        Prismic.Predicates.at("document.type", "review")
+        Prismic.Predicates.at("document.type", "review"),
+        { fetchLinks: "author.name" }
       );
       if (response) {
         setReviews(response.results);
@@ -26,12 +26,20 @@ export default function ReviewList() {
     return reviews.map((review) => (
       <Col xs={6} md={4} key={review.uid}>
         <Card bg="primary">
-          <Button href={`reviews/${review.uid}`}>
+          <Card.Link
+            href={`reviews/${review.uid}`}
+            style={{ color: "#000000" }}
+          >
             <Card.Img variant="top" src={review.data.image.url} />
             <Card.Body>
               <Card.Title>{RichText.asText(review.data.game)}</Card.Title>
             </Card.Body>
-          </Button>
+            <Card.Footer>
+              <small className="text-muted">
+                By {RichText.asText(review.data.author.data.name)}
+              </small>
+            </Card.Footer>
+          </Card.Link>
         </Card>
       </Col>
     ));

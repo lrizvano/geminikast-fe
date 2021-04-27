@@ -7,7 +7,7 @@ import ArticleView from "./components/News/ArticleView/ArticleView.js";
 import Reviews from "./components/Reviews/Reviews.js";
 import ReviewView from "./components/Reviews/ReviewView/ReviewView.js";
 import About from "./components/About/About.js";
-import AuthorView from "./components/About/AuthorView.js";
+import AuthorView from "./components/About/AuthorView/AuthorView.js";
 import Footer from "./components/Footer.js";
 import Layout from "./components/Layout.js";
 import { BrowserRouter, Route, Switch } from "react-router-dom";

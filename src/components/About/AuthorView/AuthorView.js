@@ -1,12 +1,9 @@
 import React from "react";
 import Prismic from "@prismicio/client";
 import { RichText } from "prismic-reactjs";
-import { client } from "../../prismic-configuration.js";
-import Image from "react-bootstrap/Image";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Line from "../Line.js";
-import Title from "../Title.js";
+import { client } from "../../../prismic-configuration.js";
+import Line from "../../Line.js";
+import AuthorCover from "./AuthorCover.js";
 
 export default function AuthorView(props) {
   const [author, setAuthor] = React.useState(null);
@@ -26,19 +23,15 @@ export default function AuthorView(props) {
 
   const renderAuthor = () => {
     if (author) {
+      const authorCoverData = {
+        image: author.data.image.url,
+        name: RichText.asText(author.data.name),
+        role: RichText.asText(author.data.role),
+      };
+
       return (
         <>
-          <Row>
-            <Col xs="auto">
-              <Image fluid src={author.data.image.url} />
-            </Col>
-            <Col xs="auto">
-              <Title>{RichText.asText(author.data.name)}</Title>
-              <small className="text-muted">
-                {RichText.asText(author.data.role)}
-              </small>
-            </Col>
-          </Row>
+          <AuthorCover {...authorCoverData} />
           <Line />
           <RichText
             render={author.data.bio}

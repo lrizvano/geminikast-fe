@@ -12,7 +12,7 @@ export default function ArticleList() {
     const fetchData = async () => {
       const response = await client.query(
         Prismic.Predicates.at("document.type", "article"),
-        { fetchLinks: "author.name" }
+        { fetchLinks: "author.name", orderings: "[my.article.date desc]" }
       );
       if (response) {
         setArticles(response.results);

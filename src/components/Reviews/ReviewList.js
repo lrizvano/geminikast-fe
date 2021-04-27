@@ -12,7 +12,7 @@ export default function ReviewList() {
     const fetchData = async () => {
       const response = await client.query(
         Prismic.Predicates.at("document.type", "review"),
-        { fetchLinks: "author.name" }
+        { fetchLinks: "author.name", orderings: "[my.review.date desc]" }
       );
       if (response) {
         setReviews(response.results);

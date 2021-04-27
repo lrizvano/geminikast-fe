@@ -11,7 +11,8 @@ export default function Features() {
   React.useEffect(() => {
     const fetchData = async () => {
       const response = await client.query(
-        Prismic.Predicates.any("document.type", ["article", "review"])
+        Prismic.Predicates.any("document.type", ["article", "review"]),
+        { orderings: "[document.first_publication_date desc]" }
       );
       if (response) {
         setDocs(response.results);

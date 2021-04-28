@@ -29,7 +29,13 @@ export default function Features() {
         >
           <img className="d-block w-100" src={doc.data.image.url} alt="" />
           <Carousel.Caption>
-            <h3>
+            <h3
+              class="font-weight-bold"
+              style={{
+                "-webkit-text-stroke-width": "0.5px",
+                "-webkit-text-stroke-color": "black",
+              }}
+            >
               {doc.type === "article"
                 ? RichText.asText(doc.data.headline)
                 : RichText.asText(doc.data.game)}

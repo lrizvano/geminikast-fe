@@ -5,7 +5,6 @@ import { client } from "../../../prismic-configuration.js";
 import ReviewCover from "./ReviewCover.js";
 import ReviewBody from "./ReviewBody.js";
 import ReviewScore from "./ReviewScore.js";
-import Line from "../../Line.js";
 
 export default function ReviewView(props) {
   const [review, setReview] = React.useState(null);
@@ -44,7 +43,7 @@ export default function ReviewView(props) {
       return (
         <>
           <ReviewCover {...reviewCoverData} />
-          <Line />
+          <hr className="bg-primary" />
           <ReviewBody {...reviewBodyData} />
           <ReviewScore {...reviewScoreData} />
         </>

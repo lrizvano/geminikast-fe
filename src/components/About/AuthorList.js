@@ -23,7 +23,7 @@ export default function AuthorList() {
   const renderAuthors = () => {
     return authors.map((author) => (
       <Card bg="primary">
-        <Card.Link href={`author/${author.uid}`} style={{ color: "#000000" }}>
+        <Card.Link href={`author/${author.uid}`} className="text-dark">
           <Card.Img variant="top" src={`${author.data.image.url}/200px200`} />
           <Card.Body>
             <Card.Title>{RichText.asText(author.data.name)}</Card.Title>

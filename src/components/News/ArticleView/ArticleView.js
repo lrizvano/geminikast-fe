@@ -2,7 +2,6 @@ import React from "react";
 import Prismic from "@prismicio/client";
 import { RichText, Date } from "prismic-reactjs";
 import { client } from "../../../prismic-configuration.js";
-import Line from "../../Line.js";
 import ArticleCover from "./ArticleCover.js";
 import ArticleBody from "./ArticleBody.js";
 
@@ -39,7 +38,7 @@ export default function ArticleView(props) {
       return (
         <>
           <ArticleCover {...articleCoverData} />
-          <Line />
+          <hr className="bg-primary" />
           <ArticleBody {...articleBodyData} />
         </>
       );

@@ -2,7 +2,6 @@ import React from "react";
 import Prismic from "@prismicio/client";
 import { RichText } from "prismic-reactjs";
 import { client } from "../../../prismic-configuration.js";
-import Line from "../../Line.js";
 import AuthorCover from "./AuthorCover.js";
 import AuthorContent from "./AuthorContent.js";
 
@@ -38,7 +37,7 @@ export default function AuthorView(props) {
       return (
         <>
           <AuthorCover {...authorCoverData} />
-          <Line />
+          <hr className="bg-primary" />
           <AuthorContent {...authorContentData} />
         </>
       );

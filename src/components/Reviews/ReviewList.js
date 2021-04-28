@@ -24,7 +24,7 @@ export default function ReviewList() {
   const renderReviews = () => {
     return reviews.map((review) => (
       <Card bg="primary">
-        <Card.Link href={`reviews/${review.uid}`} style={{ color: "#000000" }}>
+        <Card.Link href={`reviews/${review.uid}`} className="text-dark">
           <Card.Img variant="top" src={`${review.data.image.url}/200px200`} />
           <Card.Body>
             <Card.Title>{RichText.asText(review.data.game)}</Card.Title>

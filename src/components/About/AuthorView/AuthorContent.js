@@ -4,7 +4,6 @@ import { RichText, Date } from "prismic-reactjs";
 import { client } from "../../../prismic-configuration.js";
 import Card from "react-bootstrap/Card";
 import CardColumns from "react-bootstrap/CardColumns";
-import Title from "../../Title.js";
 
 export default function AuthorContent(props) {
   const [docs, setDocs] = React.useState([]);
@@ -36,7 +35,7 @@ export default function AuthorContent(props) {
           href={
             doc.type === "article" ? `/news/${doc.uid}` : `/reviews/${doc.uid}`
           }
-          style={{ color: "#000000" }}
+          className="text-dark"
         >
           <Card.Img variant="top" src={`${doc.data.image.url}/200px200`} />
           <Card.Body>
@@ -53,7 +52,7 @@ export default function AuthorContent(props) {
 
   return (
     <>
-      <Title>Content</Title>
+      <h1 className="mt-3 text-primary">Content</h1>
       <CardColumns>{renderDocs()}</CardColumns>
     </>
   );

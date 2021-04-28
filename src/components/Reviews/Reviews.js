@@ -1,11 +1,10 @@
 import React from "react";
 import ReviewList from "./ReviewList.js";
-import Title from "../Title.js";
 
 export default function Reviews() {
   return (
     <>
-      <Title>Reviews</Title>
+      <h1 className="mt-3 text-primary">Reviews</h1>
       <ReviewList />
     </>
   );

@@ -25,7 +25,7 @@ export default function ArticleList() {
     return articles.map((article) => {
       return (
         <Card bg="primary">
-          <Card.Link href={`news/${article.uid}`} style={{ color: "#000000" }}>
+          <Card.Link href={`news/${article.uid}`} className="text-dark">
             <Card.Img
               variant="top"
               src={`${article.data.image.url}/200px200`}

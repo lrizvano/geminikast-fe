@@ -1,15 +1,14 @@
 import React from "react";
 import Podcast from "./Podcast.js";
 import Features from "./Features.js";
-import Title from "../Title.js";
 
 export default function Home() {
   return (
     <>
-      <Title>Features</Title>
+      <h1 className="mt-3 text-primary">Features</h1>
       <Features />
 
-      <Title>Newest Episode</Title>
+      <h1 className="mt-3 text-primary">Newest Episode</h1>
       <Podcast />
     </>
   );

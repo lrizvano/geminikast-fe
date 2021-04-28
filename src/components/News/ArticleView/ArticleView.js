@@ -4,6 +4,7 @@ import { RichText, Date } from "prismic-reactjs";
 import { client } from "../../../prismic-configuration.js";
 import ArticleCover from "./ArticleCover.js";
 import ArticleBody from "./ArticleBody.js";
+import ArticleAuthor from "./ArticleAuthor.js";
 
 export default function ArticleView(props) {
   const [article, setArticle] = React.useState(null);
@@ -35,11 +36,17 @@ export default function ArticleView(props) {
         body: article.data.body,
       };
 
+      const articleAuthorData = {
+        id: article.data.author.id,
+      };
+
       return (
         <>
           <ArticleCover {...articleCoverData} />
           <hr className="bg-primary" />
           <ArticleBody {...articleBodyData} />
+          <hr className="bg-primary" />
+          <ArticleAuthor {...articleAuthorData} />
         </>
       );
     }

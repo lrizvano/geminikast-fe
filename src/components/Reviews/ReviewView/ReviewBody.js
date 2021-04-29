@@ -17,7 +17,7 @@ export default function ReviewBody(props) {
         <Row>
           <Col xs="auto">
             <h1>
-              <Badge variant="secondary">{props.score / 10}</Badge>
+              <Badge variant="primary text-dark">{props.score / 10}</Badge>
             </h1>
           </Col>
           <Col>{props.summary}</Col>

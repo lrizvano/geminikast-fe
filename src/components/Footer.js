@@ -26,7 +26,7 @@ export default function Footer() {
   const renderLinks = () => {
     return links.map((link) => (
       <Col xs="auto" key={link}>
-        <SocialIcon url={link} />
+        <SocialIcon url={link} fgColor="#282c34" />
       </Col>
     ));
   };

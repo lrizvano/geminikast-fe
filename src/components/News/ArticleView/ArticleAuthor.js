@@ -5,6 +5,14 @@ import { client } from "../../../prismic-configuration.js";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+const Wrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 
 export default function AuthorContent(props) {
   const [author, setAuthor] = React.useState(null);
@@ -12,7 +20,7 @@ export default function AuthorContent(props) {
   React.useEffect(() => {
     const fetchData = async () => {
       const response = await client.query(
-        Prismic.Predicates.at("document.id", `${props.id}`),
+        Prismic.Predicates.at("my.author.uid", `${props.uid}`),
         { lang: "*" }
       );
       if (response) {
@@ -20,28 +28,36 @@ export default function AuthorContent(props) {
       }
     };
     fetchData();
-  }, [props.id]);
+  }, [props.uid]);
 
   const renderAuthor = () => {
     if (author) {
       return (
-        <Row>
-          <Col xs="auto">
-            <Image src={author.data.image.url} />
-          </Col>
-          <Col xs="auto">
-            <h1 className="mt-3 text-primary">
-              {RichText.asText(author.data.name)}
-            </h1>
-            <small className="text-muted">
-              {RichText.asText(author.data.role)}
-            </small>
+        <>
+          <Row className="justify-content-center mb-3">
+            <Col xs="auto">
+              <Image src={author.data.image.url} />
+            </Col>
+            <Wrapper>
+              <Col xs="auto">
+                <h1 className="mt-3 text-primary">
+                  <Link replace to={`/author/${props.uid}`}>
+                    {RichText.asText(author.data.name)}
+                  </Link>
+                </h1>
+                <small className="text-muted">
+                  {RichText.asText(author.data.role)}
+                </small>
+              </Col>
+            </Wrapper>
+          </Row>
+          <div className="text-center">
             <RichText
               render={author.data.bio}
               htmlSerializer={client.htmlSerializer}
             ></RichText>
-          </Col>
-        </Row>
+          </div>
+        </>
       );
     }
     return <></>;

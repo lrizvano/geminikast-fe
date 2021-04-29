@@ -37,7 +37,7 @@ export default function ArticleView(props) {
       };
 
       const articleAuthorData = {
-        id: article.data.author.id,
+        uid: article.data.author.uid,
       };
 
       return (

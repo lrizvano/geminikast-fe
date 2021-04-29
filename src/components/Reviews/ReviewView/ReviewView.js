@@ -39,7 +39,7 @@ export default function ReviewView(props) {
       };
 
       const reviewAuthorData = {
-        id: review.data.author.id,
+        uid: review.data.author.uid,
       };
 
       return (

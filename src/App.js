@@ -19,6 +19,12 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   color: var(--light);
+  font-size: 18px;
+
+  .quote {
+    color: var(--primary);
+    font-size: 16px;
+  }
 `;
 
 function App() {

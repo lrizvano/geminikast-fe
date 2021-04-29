@@ -27,7 +27,12 @@ export default function Features() {
         <Link
           to={doc.type === "article" ? `news/${doc.uid}` : `reviews/${doc.uid}`}
         >
-          <img className="d-block w-100" src={doc.data.image.url} alt="" />
+          <img
+            rounded
+            className="d-block w-100"
+            src={doc.data.image.url}
+            alt=""
+          />
           <Carousel.Caption>
             <h3
               class="font-weight-bold"

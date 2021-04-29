@@ -7,7 +7,7 @@ export default function ArticleCover(props) {
   return (
     <>
       <Image fluid src={props.image} />
-      <h1 className="mt-3 text-primary">{props.game} Review</h1>
+      <h1 className="mt-3 text-primary">{props.headline}</h1>
       {"By "}
       <Link replace to={`/author/${props.uid}`}>
         {props.name}

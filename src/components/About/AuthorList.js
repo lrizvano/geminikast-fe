@@ -2,8 +2,8 @@ import React from "react";
 import Prismic from "@prismicio/client";
 import { RichText } from "prismic-reactjs";
 import { client } from "../../prismic-configuration.js";
-import Card from "react-bootstrap/Card";
-import CardColumns from "react-bootstrap/CardColumns";
+import Row from "react-bootstrap/Row";
+import AuthorCard from "./AuthorCard.js";
 
 export default function AuthorList() {
   const [authors, setAuthors] = React.useState([]);
@@ -21,26 +21,17 @@ export default function AuthorList() {
   }, []);
 
   const renderAuthors = () => {
-    return authors.map((author) => (
-      <Card bg="primary">
-        <Card.Link href={`author/${author.uid}`} className="text-dark">
-          <Card.Img variant="top" src={`${author.data.image.url}/200px200`} />
-          <Card.Body>
-            <Card.Title>{RichText.asText(author.data.name)}</Card.Title>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">
-              {RichText.asText(author.data.role)}
-            </small>
-          </Card.Footer>
-        </Card.Link>
-      </Card>
-    ));
+    return authors.map((author) => {
+      const authorCardData = {
+        uid: author.uid,
+        image: author.data.image.url,
+        name: RichText.asText(author.data.name),
+        role: RichText.asText(author.data.role),
+      };
+
+      return <AuthorCard {...authorCardData} />;
+    });
   };
 
-  return (
-    <>
-      <CardColumns>{renderAuthors()}</CardColumns>
-    </>
-  );
+  return <Row>{renderAuthors()}</Row>;
 }

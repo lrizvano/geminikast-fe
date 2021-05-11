@@ -4,6 +4,8 @@ import { RichText } from "prismic-reactjs";
 import { client } from "../../prismic-configuration.js";
 import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export default function Features() {
   const [docs, setDocs] = React.useState([]);
@@ -54,7 +56,14 @@ export default function Features() {
 
   return (
     <>
-      <Carousel>{renderDocs()}</Carousel>
+      <Row>
+        <Col xs="12" sm="12" md="3" lg="2" xl="2">
+          <h3 className="mt-3 text-primary text-center">Newest Features</h3>
+        </Col>
+        <Col>
+          <Carousel>{renderDocs()}</Carousel>
+        </Col>
+      </Row>
     </>
   );
 }

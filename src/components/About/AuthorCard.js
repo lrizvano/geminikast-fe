@@ -8,9 +8,11 @@ const Hover = styled.section`
     #card {
       border-color: var(--dark);
       background-color: var(--dark);
+      transition: border-color 500ms ease, background-color 500ms ease;
     }
     #picture {
       border-radius: 50%;
+      transition: border-radius 500ms ease;
     }
     #text {
       color: white;

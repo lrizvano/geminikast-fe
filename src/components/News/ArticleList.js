@@ -2,8 +2,8 @@ import React from "react";
 import Prismic from "@prismicio/client";
 import { RichText } from "prismic-reactjs";
 import { client } from "../../prismic-configuration.js";
-import Card from "react-bootstrap/Card";
-import CardColumns from "react-bootstrap/CardColumns";
+import Row from "react-bootstrap/Row";
+import ArticleCard from "./ArticleCard.js";
 
 export default function ArticleList() {
   const [articles, setArticles] = React.useState([]);
@@ -23,30 +23,19 @@ export default function ArticleList() {
 
   const renderArticles = () => {
     return articles.map((article) => {
-      return (
-        <Card bg="primary">
-          <Card.Link href={`news/${article.uid}`} className="text-dark">
-            <Card.Img
-              variant="top"
-              src={`${article.data.image.url}/200px200`}
-            />
-            <Card.Body>
-              <Card.Title>{RichText.asText(article.data.headline)}</Card.Title>
-            </Card.Body>
-            <Card.Footer>
-              <small className="text-muted">
-                By {RichText.asText(article.data.author.data.name)}
-              </small>
-            </Card.Footer>
-          </Card.Link>
-        </Card>
-      );
+      const articleCardData = {
+        uid: article.uid,
+        image: article.data.image.url,
+        headline: RichText.asText(article.data.headline),
+        author: RichText.asText(article.data.author.data.name),
+      };
+      return <ArticleCard {...articleCardData} />;
     });
   };
 
   return (
     <>
-      <CardColumns>{renderArticles()}</CardColumns>
+      <Row>{renderArticles()}</Row>
     </>
   );
 }

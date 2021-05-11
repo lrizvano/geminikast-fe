@@ -2,8 +2,8 @@ import React from "react";
 import Prismic from "@prismicio/client";
 import { RichText } from "prismic-reactjs";
 import { client } from "../../prismic-configuration.js";
-import Card from "react-bootstrap/Card";
-import CardColumns from "react-bootstrap/CardColumns";
+import Row from "react-bootstrap/Row";
+import ReviewCard from "./ReviewCard.js";
 
 export default function ReviewList() {
   const [reviews, setReviews] = React.useState([]);
@@ -22,26 +22,20 @@ export default function ReviewList() {
   }, []);
 
   const renderReviews = () => {
-    return reviews.map((review) => (
-      <Card bg="primary">
-        <Card.Link href={`reviews/${review.uid}`} className="text-dark">
-          <Card.Img variant="top" src={`${review.data.image.url}/200px200`} />
-          <Card.Body>
-            <Card.Title>{RichText.asText(review.data.game)}</Card.Title>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">
-              By {RichText.asText(review.data.author.data.name)}
-            </small>
-          </Card.Footer>
-        </Card.Link>
-      </Card>
-    ));
+    return reviews.map((review) => {
+      const reviewCardData = {
+        uid: review.uid,
+        image: review.data.image.url,
+        game: RichText.asText(review.data.game),
+        author: RichText.asText(review.data.author.data.name),
+      };
+      return <ReviewCard {...reviewCardData} />;
+    });
   };
 
   return (
     <>
-      <CardColumns>{renderReviews()}</CardColumns>
+      <Row>{renderReviews()}</Row>
     </>
   );
 }

@@ -26,7 +26,7 @@ export default function ArticleView(props) {
     if (article) {
       const articleCoverData = {
         image: article.data.image.url,
-        headline: RichText.asText(article.data.headline),
+        title: RichText.asText(article.data.headline),
         uid: article.data.author.uid,
         name: RichText.asText(article.data.author.data.name),
         date: Date(article.data.date),

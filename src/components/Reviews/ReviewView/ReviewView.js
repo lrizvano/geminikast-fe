@@ -24,9 +24,9 @@ export default function ReviewView(props) {
 
   const renderReview = () => {
     if (review) {
-      const reviewCoverData = {
+      const contentCoverData = {
         image: review.data.image.url,
-        game: RichText.asText(review.data.game),
+        title: `${RichText.asText(review.data.game)} Review`,
         uid: review.data.author.uid,
         name: RichText.asText(review.data.author.data.name),
         date: Date(review.data.date),
@@ -44,7 +44,7 @@ export default function ReviewView(props) {
 
       return (
         <>
-          <ContentCover {...reviewCoverData} />
+          <ContentCover {...contentCoverData} />
           <hr className="bg-primary" />
           <ReviewBody {...reviewBodyData} />
           <hr className="bg-primary" />

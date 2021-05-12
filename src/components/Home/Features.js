@@ -6,6 +6,19 @@ import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import styled from "styled-components";
+
+const Icons = styled.section`
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .carousel-indicators li {
+    width: 60px;
+    height: 6px;
+  }
+`;
 
 export default function Features() {
   const [docs, setDocs] = React.useState([]);
@@ -61,7 +74,9 @@ export default function Features() {
           <h3 className="mt-3 text-primary text-center">Newest Features</h3>
         </Col>
         <Col>
-          <Carousel>{renderDocs()}</Carousel>
+          <Icons>
+            <Carousel>{renderDocs()}</Carousel>
+          </Icons>
         </Col>
       </Row>
     </>

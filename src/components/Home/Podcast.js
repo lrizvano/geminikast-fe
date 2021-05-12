@@ -7,7 +7,7 @@ export default function Podcast() {
     <>
       <Row>
         <Col xs="12" sm="12" md="3" lg="2" xl="2">
-          <h3 className="mt-3 text-primary text-center">Newest Episode</h3>
+          <h3 className="text-primary text-center">Newest Episode</h3>
         </Col>
         <Col>
           <iframe

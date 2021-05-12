@@ -38,7 +38,7 @@ export default function ArticleCard(props) {
     <Col xs="12" sm="12" md="6" lg="4" xl="4">
       <Hover>
         <Card id="card" className="mb-4">
-          <Card.Link href={`reviews/${props.uid}`}>
+          <Card.Link href={`news/${props.uid}`}>
             <Card.Img variant="top" src={props.image} />
             <Card.Body id="text">
               <Card.Title>{props.headline}</Card.Title>

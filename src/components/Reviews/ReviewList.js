@@ -3,7 +3,7 @@ import Prismic from "@prismicio/client";
 import { RichText } from "prismic-reactjs";
 import { client } from "../../prismic-configuration.js";
 import Row from "react-bootstrap/Row";
-import ReviewCard from "./ReviewCard.js";
+import ContentCard from "../Content/ContentCard.js";
 
 export default function ReviewList() {
   const [reviews, setReviews] = React.useState([]);
@@ -23,13 +23,13 @@ export default function ReviewList() {
 
   const renderReviews = () => {
     return reviews.map((review) => {
-      const reviewCardData = {
-        uid: review.uid,
+      const contentCardData = {
+        link: `reviews/${review.uid}`,
         image: review.data.image.url,
-        game: RichText.asText(review.data.game),
-        author: RichText.asText(review.data.author.data.name),
+        title: RichText.asText(review.data.game),
+        text: RichText.asText(review.data.author.data.name),
       };
-      return <ReviewCard {...reviewCardData} />;
+      return <ContentCard {...contentCardData} />;
     });
   };
 

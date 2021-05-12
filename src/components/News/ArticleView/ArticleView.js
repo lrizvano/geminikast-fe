@@ -2,9 +2,9 @@ import React from "react";
 import Prismic from "@prismicio/client";
 import { RichText, Date } from "prismic-reactjs";
 import { client } from "../../../prismic-configuration.js";
-import ArticleCover from "./ArticleCover.js";
+import ContentCover from "../../Content/ContentCover.js";
 import ArticleBody from "./ArticleBody.js";
-import ArticleAuthor from "./ArticleAuthor.js";
+import ContentAuthor from "../../Content/ContentAuthor.js";
 
 export default function ArticleView(props) {
   const [article, setArticle] = React.useState(null);
@@ -36,17 +36,17 @@ export default function ArticleView(props) {
         body: article.data.body,
       };
 
-      const articleAuthorData = {
+      const contentAuthorData = {
         uid: article.data.author.uid,
       };
 
       return (
         <>
-          <ArticleCover {...articleCoverData} />
+          <ContentCover {...articleCoverData} />
           <hr className="bg-primary" />
           <ArticleBody {...articleBodyData} />
           <hr className="bg-primary" />
-          <ArticleAuthor {...articleAuthorData} />
+          <ContentAuthor {...contentAuthorData} />
         </>
       );
     }

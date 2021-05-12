@@ -33,16 +33,16 @@ const Hover = styled.section`
   }
 `;
 
-export default function ReviewCard(props) {
+export default function ContentCard(props) {
   return (
     <Col xs="12" sm="12" md="6" lg="4" xl="4">
       <Hover>
         <Card id="card" className="mb-4">
-          <Card.Link href={`reviews/${props.uid}`}>
+          <Card.Link href={props.link}>
             <Card.Img variant="top" src={props.image} />
             <Card.Body id="text">
-              <Card.Title>{props.game}</Card.Title>
-              <small className="text-muted">By {props.author}</small>
+              <Card.Title>{props.title}</Card.Title>
+              <small className="text-muted">{props.text}</small>
             </Card.Body>
           </Card.Link>
         </Card>

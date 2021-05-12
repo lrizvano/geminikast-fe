@@ -2,8 +2,9 @@ import React from "react";
 import Prismic from "@prismicio/client";
 import { RichText, Date } from "prismic-reactjs";
 import { client } from "../../../prismic-configuration.js";
-import Card from "react-bootstrap/Card";
-import CardColumns from "react-bootstrap/CardColumns";
+import Row from "react-bootstrap/Row";
+import ContentCard from "../../Content/ContentCard.js";
+import DateFormat from "../../DateFormat.js";
 
 export default function AuthorContent(props) {
   const [docs, setDocs] = React.useState([]);
@@ -29,31 +30,25 @@ export default function AuthorContent(props) {
   }, [props.id]);
 
   const renderDocs = () => {
-    return docs.map((doc) => (
-      <Card bg="primary">
-        <Card.Link
-          href={
-            doc.type === "article" ? `/news/${doc.uid}` : `/reviews/${doc.uid}`
-          }
-          className="text-dark"
-        >
-          <Card.Img variant="top" src={`${doc.data.image.url}/200px200`} />
-          <Card.Body>
-            <Card.Title>
-              {doc.type === "article"
-                ? RichText.asText(doc.data.headline)
-                : RichText.asText(doc.data.game)}
-            </Card.Title>
-          </Card.Body>
-        </Card.Link>
-      </Card>
-    ));
+    return docs.map((doc) => {
+      const contentCardData = {
+        link:
+          doc.type === "article" ? `/news/${doc.uid}` : `/reviews/${doc.uid}`,
+        image: doc.data.image.url,
+        title:
+          doc.type === "article"
+            ? RichText.asText(doc.data.headline)
+            : RichText.asText(doc.data.game),
+        text: <DateFormat date={Date(doc.data.date)} />,
+      };
+      return <ContentCard {...contentCardData} />;
+    });
   };
 
   return (
     <>
       <h1 className="mt-3 text-primary">Content</h1>
-      <CardColumns>{renderDocs()}</CardColumns>
+      <Row>{renderDocs()}</Row>
     </>
   );
 }

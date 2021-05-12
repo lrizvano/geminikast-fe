@@ -2,9 +2,9 @@ import React from "react";
 import Prismic from "@prismicio/client";
 import { RichText, Date } from "prismic-reactjs";
 import { client } from "../../../prismic-configuration.js";
-import ReviewCover from "./ReviewCover.js";
+import ContentCover from "../../Content/ContentCover.js";
 import ReviewBody from "./ReviewBody.js";
-import ReviewAuthor from "./ReviewAuthor.js";
+import ContentAuthor from "../../Content/ContentAuthor.js";
 
 export default function ReviewView(props) {
   const [review, setReview] = React.useState(null);
@@ -38,17 +38,17 @@ export default function ReviewView(props) {
         summary: RichText.asText(review.data.summary),
       };
 
-      const reviewAuthorData = {
+      const contentAuthorData = {
         uid: review.data.author.uid,
       };
 
       return (
         <>
-          <ReviewCover {...reviewCoverData} />
+          <ContentCover {...reviewCoverData} />
           <hr className="bg-primary" />
           <ReviewBody {...reviewBodyData} />
           <hr className="bg-primary" />
-          <ReviewAuthor {...reviewAuthorData} />
+          <ContentAuthor {...contentAuthorData} />
         </>
       );
     }

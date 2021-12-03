@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import logo from "../geminikast-logo.jpg";
+import logo from "../geminikast-logo.png";
 
 export default function Navigation() {
   return (

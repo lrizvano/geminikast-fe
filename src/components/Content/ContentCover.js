@@ -4,19 +4,6 @@ import Image from "react-bootstrap/Image";
 import DateFormat from "../DateFormat.js";
 
 export default function ArticleCover(props) {
-  const populateFields = () => {
-    switch (props.type) {
-      case "article":
-        return {
-          title: props.headline,
-        };
-      default:
-        return {
-          title: props.game,
-        };
-    }
-  };
-
   return (
     <>
       <Image fluid src={props.image} />

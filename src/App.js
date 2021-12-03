@@ -22,7 +22,7 @@ const Wrapper = styled.section`
   font-size: 18px;
 
   .quote {
-    color: var(--primary);
+    color: var(--secondary);
     font-size: 16px;
   }
 `;

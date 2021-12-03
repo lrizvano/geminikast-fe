@@ -8,11 +8,14 @@ import Col from "react-bootstrap/Col";
 import styled from "styled-components";
 
 const Score = styled.section`
+  #card {
+    margin: 3rem 3rem 0 3rem;
+  }
   #banner {
     position: absolute;
     top: 0;
     left: 2%;
-    color: var(--primary);
+    color: var(--light);
     background-color: var(--dark);
     padding-bottom: 0.5em;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
@@ -26,8 +29,11 @@ export default function ReviewBody(props) {
         render={props.body}
         htmlSerializer={client.htmlSerializer}
       ></RichText>
-      <Score>
-        <Card className="bg-primary text-dark p-3 mb-3">
+      <Score className="mt-3">
+        <Card
+          id="card"
+          className="bg-secondary text-light p-3 mb-3 font-weight-bold"
+        >
           <Row>
             <Col md={{ span: 11, offset: 1 }} xs={{ span: 10, offset: 2 }}>
               {props.summary}

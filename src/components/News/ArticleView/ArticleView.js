@@ -43,9 +43,9 @@ export default function ArticleView(props) {
       return (
         <>
           <ContentCover {...articleCoverData} />
-          <hr className="bg-primary" />
+          <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
           <ArticleBody {...articleBodyData} />
-          <hr className="bg-primary" />
+          <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
           <ContentAuthor {...contentAuthorData} />
         </>
       );

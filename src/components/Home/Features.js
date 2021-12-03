@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Icons = styled.section`
+  margin: 0 3rem 0 3rem;
+
   .carousel-inner {
     border-radius: 12px 12px 0 0;
   }

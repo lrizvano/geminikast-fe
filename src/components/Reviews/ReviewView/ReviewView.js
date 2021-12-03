@@ -45,9 +45,9 @@ export default function ReviewView(props) {
       return (
         <>
           <ContentCover {...contentCoverData} />
-          <hr className="bg-primary" />
+          <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
           <ReviewBody {...reviewBodyData} />
-          <hr className="bg-primary" />
+          <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
           <ContentAuthor {...contentAuthorData} />
         </>
       );

@@ -37,7 +37,7 @@ export default function AuthorView(props) {
       return (
         <>
           <AuthorCover {...authorCoverData} />
-          <hr className="bg-primary" />
+          <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
           <AuthorContent {...authorContentData} />
         </>
       );

@@ -5,7 +5,7 @@ export default function About() {
   return (
     <>
       <h1 className="mt-3 text-primary">Kast</h1>
-      <hr className="bg-primary m-3" />
+      <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
       <AuthorList />
     </>
   );

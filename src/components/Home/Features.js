@@ -4,8 +4,6 @@ import { RichText } from "prismic-reactjs";
 import { client } from "../../prismic-configuration.js";
 import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import styled from "styled-components";
 
 const Icons = styled.section`

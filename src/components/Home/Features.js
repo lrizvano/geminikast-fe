@@ -69,16 +69,10 @@ export default function Features() {
 
   return (
     <>
-      <Row>
-        <Col xs="12" sm="12" md="3" lg="2" xl="2">
-          <h3 className="text-primary text-center">Newest Features</h3>
-        </Col>
-        <Col>
-          <Icons>
-            <Carousel>{renderDocs()}</Carousel>
-          </Icons>
-        </Col>
-      </Row>
+      <h3 className="text-primary">Newest Features</h3>
+      <Icons>
+        <Carousel>{renderDocs()}</Carousel>
+      </Icons>
     </>
   );
 }

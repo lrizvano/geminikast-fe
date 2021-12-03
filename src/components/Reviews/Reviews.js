@@ -5,6 +5,7 @@ export default function Reviews() {
   return (
     <>
       <h1 className="mt-3 text-primary">Reviews</h1>
+      <hr className="bg-primary m-3" />
       <ReviewList />
     </>
   );

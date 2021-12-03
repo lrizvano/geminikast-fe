@@ -6,7 +6,7 @@ import logo from "../geminikast-logo.png";
 export default function Navigation() {
   return (
     <Navbar bg="secondary" expand="lg">
-      <Navbar.Brand href="/">
+      <Navbar.Brand href="/" className="text-light">
         <img
           alt=""
           src={logo}
@@ -19,9 +19,15 @@ export default function Navigation() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/news">News</Nav.Link>
-          <Nav.Link href="/reviews">Reviews</Nav.Link>
-          <Nav.Link href="/about">About</Nav.Link>
+          <Nav.Link href="/news" className="text-light">
+            News
+          </Nav.Link>
+          <Nav.Link href="/reviews" className="text-light">
+            Reviews
+          </Nav.Link>
+          <Nav.Link href="/about" className="text-light">
+            About
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

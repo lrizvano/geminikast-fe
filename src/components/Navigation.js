@@ -5,7 +5,7 @@ import logo from "../geminikast-logo.png";
 
 export default function Navigation() {
   return (
-    <Navbar bg="secondary" expand="lg">
+    <Navbar bg="dark" expand="lg">
       <Navbar.Brand href="/" className="text-light">
         <img
           alt=""

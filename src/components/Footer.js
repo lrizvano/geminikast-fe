@@ -14,7 +14,6 @@ const links = [
 ];
 
 const Wrapper = styled.section`
-  background-color: var(--secondary);
   position: "relative";
   bottom: 0;
   height: 4rem;
@@ -26,7 +25,7 @@ export default function Footer() {
   const renderLinks = () => {
     return links.map((link) => (
       <Col xs="auto" key={link}>
-        <SocialIcon url={link} fgColor="#282c34" />
+        <SocialIcon url={link} fgColor="var(--dark)" />
       </Col>
     ));
   };

@@ -22,13 +22,10 @@ const Hover = styled.section`
   &:hover,
   &:focus-within {
     #card {
-      border-color: var(--primary);
-      background-color: var(--primary);
+      border-color: var(--secondary);
+      background-color: var(--secondary);
       #picture {
         border-radius: 0%;
-      }
-      #text {
-        color: var(--dark);
       }
     }
   }
@@ -42,8 +39,8 @@ export default function AuthorCard(props) {
           <Card.Link href={`author/${props.uid}`}>
             <Card.Img id="picture" variant="top" src={props.image} />
             <Card.Body id="text">
-              <Card.Title>{props.name}</Card.Title>
-              <small className="text-muted">{props.role}</small>
+              <Card.Title className="font-weight-bold">{props.name}</Card.Title>
+              <small>{props.role}</small>
             </Card.Body>
           </Card.Link>
         </Card>

@@ -8,14 +8,9 @@ const Hover = styled.section`
     border-color: var(--dark);
     background-color: var(--dark);
     transition: border-color 500ms ease, background-color 500ms ease;
-    #picture {
-      border-radius: 50%;
-      transition: border-radius 500ms ease;
-    }
+
     #text {
       color: white;
-      text-align: center;
-      overflow: hidden;
     }
   }
 
@@ -24,9 +19,6 @@ const Hover = styled.section`
     #card {
       border-color: var(--secondary);
       background-color: var(--secondary);
-      #picture {
-        border-radius: 0%;
-      }
     }
   }
 `;
@@ -42,7 +34,7 @@ export default function ContentCard(props) {
               <Card.Title className="font-weight-bold">
                 {props.title}
               </Card.Title>
-              <small>{props.text}</small>
+              <Card.Subtitle className="mb-2">{props.text}</Card.Subtitle>
             </Card.Body>
           </Card.Link>
         </Card>

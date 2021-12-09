@@ -2,6 +2,13 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import ContentCard from "../Content/ContentCard.js";
 import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
+import styled from "styled-components";
+
+const Wrapper = styled.section`
+  display: flex;
+  justify-content: center;
+`;
 
 export default function Features(props) {
   const renderFeatures = () => {
@@ -27,6 +34,15 @@ export default function Features(props) {
         {props.page === "news" ? "Newest Articles" : "Newest Reviews"}
       </h3>
       <Row>{renderFeatures()}</Row>
+      <Wrapper>
+        <Button
+          className="align-content-center"
+          variant="secondary"
+          href={`${props.page === "news" ? "/news" : "/reviews"}`}
+        >
+          {`See All ${props.page === "news" ? "Articles" : "Reviews"}`}
+        </Button>
+      </Wrapper>
     </>
   );
 }

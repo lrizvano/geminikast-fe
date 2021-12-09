@@ -29,8 +29,7 @@ export default function Features(props) {
 
   return (
     <>
-      <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
-      <h3 className="text-primary">
+      <h3 className="text-primary mb-3">
         {props.page === "news" ? "Newest Articles" : "Newest Reviews"}
       </h3>
       <Row>{renderFeatures()}</Row>
@@ -43,6 +42,7 @@ export default function Features(props) {
           {`See All ${props.page === "news" ? "Articles" : "Reviews"}`}
         </Button>
       </Wrapper>
+      <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
     </>
   );
 }

@@ -33,5 +33,11 @@ export default function AuthorList() {
     });
   };
 
-  return <Row>{renderAuthors()}</Row>;
+  return (
+    <>
+      <h1 className="mb-3 text-primary">Kast</h1>
+      <Row>{renderAuthors()}</Row>
+      <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
+    </>
+  );
 }

@@ -13,7 +13,6 @@ export default function Podcast() {
         allowtransparency="true"
         allow="encrypted-media"
       ></iframe>
-      <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
     </>
   );
 }

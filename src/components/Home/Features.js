@@ -42,7 +42,6 @@ export default function Features(props) {
           {`See All ${props.page === "news" ? "Articles" : "Reviews"}`}
         </Button>
       </Wrapper>
-      <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
     </>
   );
 }

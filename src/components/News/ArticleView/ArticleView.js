@@ -47,6 +47,7 @@ export default function ArticleView(props) {
           <ArticleBody {...articleBodyData} />
           <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
           <ContentAuthor {...contentAuthorData} />
+          <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
         </>
       );
     }

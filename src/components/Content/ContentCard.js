@@ -5,29 +5,27 @@ import styled from "styled-components";
 
 const Hover = styled.section`
   #card {
-    position: relative;
-    overflow: hidden;
     border-color: var(--dark);
-    #text {
-      position: absolute;
-      bottom: 0px;
-      color: var(--light);
-      width: 100%;
-      background: linear-gradient(hsl(0 0% 0% / 0), hsl(0 0% 0% / 1));
+    background-color: var(--dark);
+    transition: border-color 500ms ease, background-color 500ms ease;
+    #picture {
+      border-radius: 50%;
+      transition: border-radius 500ms ease;
     }
+    #text {
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+  }
 
-    @media (hover) {
-      #text {
-        transform: translateY(35%);
-        transition: transform 500ms ease;
-      }
-      &:hover,
-      &:focus-within {
-        border-color: var(--primary);
-        #text {
-          color: var(--primary);
-          transform: translateY(0%);
-        }
+  &:hover,
+  &:focus-within {
+    #card {
+      border-color: var(--secondary);
+      background-color: var(--secondary);
+      #picture {
+        border-radius: 0%;
       }
     }
   }
@@ -41,8 +39,10 @@ export default function ContentCard(props) {
           <Card.Link href={props.link}>
             <Card.Img variant="top" src={props.image} />
             <Card.Body id="text">
-              <Card.Title>{props.title}</Card.Title>
-              <small className="text-muted">{props.text}</small>
+              <Card.Title className="font-weight-bold">
+                {props.title}
+              </Card.Title>
+              <small>{props.text}</small>
             </Card.Body>
           </Card.Link>
         </Card>

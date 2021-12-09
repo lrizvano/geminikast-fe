@@ -35,7 +35,7 @@ export default function ReviewList() {
 
   return (
     <>
-      <h1 className="mt-5 mb-3 text-primary">Reviews</h1>
+      <h1 className="mt-5 mb-3 text-primary">All Reviews</h1>
       <Row>{renderReviews()}</Row>
     </>
   );

@@ -5,8 +5,8 @@ import logo from "../geminikast-logo.png";
 
 export default function Navigation() {
   return (
-    <Navbar bg="dark" expand="lg">
-      <Navbar.Brand href="/" className="text-light">
+    <Navbar bg="dark" expand="lg" variant="dark">
+      <Navbar.Brand href="/">
         <img
           alt=""
           src={logo}
@@ -14,20 +14,14 @@ export default function Navigation() {
           height="30"
           className="d-inline-block align-top"
         />{" "}
-        Geminikast
+        The Geminikast
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/news" className="text-light">
-            News
-          </Nav.Link>
-          <Nav.Link href="/reviews" className="text-light">
-            Reviews
-          </Nav.Link>
-          <Nav.Link href="/about" className="text-light">
-            About
-          </Nav.Link>
+          <Nav.Link href="/news">News</Nav.Link>
+          <Nav.Link href="/reviews">Reviews</Nav.Link>
+          <Nav.Link href="/about">About</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

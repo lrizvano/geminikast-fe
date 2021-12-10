@@ -1,9 +1,9 @@
 import React from "react";
 import Prismic from "@prismicio/client";
-import { RichText } from "prismic-reactjs";
 import { client } from "../../prismic-configuration.js";
-import Row from "react-bootstrap/Row";
-import ContentCard from "../Content/ContentCard.js";
+import ContentRow from "../Content/ContentRow.js";
+import { RichText, Date } from "prismic-reactjs";
+import DateFormat from "../DateFormat.js";
 
 export default function ReviewList() {
   const [reviews, setReviews] = React.useState([]);
@@ -23,20 +23,21 @@ export default function ReviewList() {
 
   const renderReviews = () => {
     return reviews.map((review) => {
-      const contentCardData = {
+      const contentRowData = {
         link: `reviews/${review.uid}`,
         image: review.data.image.url,
         title: RichText.asText(review.data.game),
-        text: RichText.asText(review.data.author.data.name),
+        author: RichText.asText(review.data.author.data.name),
+        date: <DateFormat date={Date(review.data.date)} />,
       };
-      return <ContentCard {...contentCardData} />;
+      return <ContentRow {...contentRowData} />;
     });
   };
 
   return (
     <>
       <h1 className="mt-5 mb-3 text-primary">All Reviews</h1>
-      <Row>{renderReviews()}</Row>
+      {renderReviews()}
     </>
   );
 }

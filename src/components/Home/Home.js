@@ -32,9 +32,9 @@ export default function Home() {
     <>
       <Podcast />
       <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
-      <Features page={"news"} features={articles} />
-      <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
       <Features page={"reviews"} features={reviews} />
+      <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
+      <Features page={"news"} features={articles} />
       <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
     </>
   );

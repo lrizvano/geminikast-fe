@@ -5,25 +5,18 @@ import styled from "styled-components";
 import Row from "react-bootstrap/Row";
 
 const Hover = styled.section`
-  #card {
+  .card {
     border-color: var(--dark);
     background-color: var(--dark);
     transition: border-color 500ms ease, background-color 500ms ease;
-
-    #row {
-      margin: 0 0 0 0;
-    }
-    #text {
-      color: white;
-    }
-    #image {
-      padding: 0;
-    }
+  }
+  .card-body {
+    color: white;
   }
 
   &:hover,
   &:focus-within {
-    #card {
+    .card {
       border-color: var(--secondary);
       background-color: var(--secondary);
     }
@@ -33,14 +26,14 @@ const Hover = styled.section`
 export default function ContentCard(props) {
   return (
     <Hover>
-      <Card id="card" className="mb-3">
+      <Card className="mb-3">
         <Card.Link href={props.link}>
-          <Row id="row">
-            <Col id="image" xs="6" sm="4">
+          <Row>
+            <Col xs="6" sm="4">
               <Card.Img variant="top" src={props.image} />
             </Col>
             <Col>
-              <Card.Body id="text">
+              <Card.Body>
                 <Card.Title className="font-weight-bold">
                   {props.title}
                 </Card.Title>

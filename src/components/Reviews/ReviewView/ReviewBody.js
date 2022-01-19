@@ -8,10 +8,10 @@ import Col from "react-bootstrap/Col";
 import styled from "styled-components";
 
 const Score = styled.section`
-  #card {
+  .card {
     margin: 3rem 3rem 0 3rem;
   }
-  #banner {
+  .score {
     position: absolute;
     top: 0;
     left: 2%;
@@ -30,17 +30,14 @@ export default function ReviewBody(props) {
         htmlSerializer={client.htmlSerializer}
       ></RichText>
       <Score className="mt-3">
-        <Card
-          id="card"
-          className="bg-secondary text-light p-3 mb-3 font-weight-bold"
-        >
+        <Card className="bg-secondary text-light p-3 mb-3 font-weight-bold">
           <Row>
             <Col md={{ span: 11, offset: 1 }} xs={{ span: 10, offset: 2 }}>
               {props.summary}
             </Col>
-            <h2 id="banner">
+            <div className="score">
               <Badge>{props.score / 10}</Badge>
-            </h2>
+            </div>
           </Row>
         </Card>
       </Score>

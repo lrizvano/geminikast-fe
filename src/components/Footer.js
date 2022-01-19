@@ -4,8 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Layout from "./Layout.js";
 import styled from "styled-components";
-import logo from "../geminikast-logo.png";
-import Navbar from "react-bootstrap/Navbar";
+import Brand from "./Brand";
 
 const links = [
   "https://twitter.com/geminikatz",
@@ -37,18 +36,9 @@ export default function Footer() {
     <Wrapper>
       <Layout>
         <Row className="justify-content-center">
-          <Navbar.Brand href="/" className="text-light">
-            <img
-              alt=""
-              src={logo}
-              width="30"
-              height="30"
-              className="d-inline-block align-top mb-3"
-            />{" "}
-            The Geminikast
-          </Navbar.Brand>
+          <Brand />
         </Row>
-        <Row className="justify-content-center">{renderLinks()}</Row>
+        <Row className="justify-content-center mt-3">{renderLinks()}</Row>
       </Layout>
     </Wrapper>
   );

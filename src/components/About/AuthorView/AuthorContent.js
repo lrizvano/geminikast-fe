@@ -47,7 +47,7 @@ export default function AuthorContent(props) {
 
   return (
     <>
-      <h1 className="mt-3 text-primary">Content</h1>
+      <h1 className="mt-3 text-primary">Kontent</h1>
       <Row>{renderDocs()}</Row>
     </>
   );

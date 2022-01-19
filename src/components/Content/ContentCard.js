@@ -12,12 +12,26 @@ const Hover = styled.section`
   .card-body {
     color: white;
   }
+  .card-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 
   &:hover,
   &:focus-within {
     .card {
       border-color: var(--secondary);
       background-color: var(--secondary);
+    }
+    .card-title {
+      white-space: normal;
+    }
+  }
+
+  @media only screen and (max-width: 900px) {
+    .card-title {
+      white-space: normal;
     }
   }
 `;

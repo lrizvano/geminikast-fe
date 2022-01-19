@@ -13,12 +13,28 @@ const Hover = styled.section`
   .card-body {
     color: white;
   }
+  .card-title,
+  .card-subtitle {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 
   &:hover,
   &:focus-within {
     .card {
       border-color: var(--secondary);
       background-color: var(--secondary);
+    }
+    .card-title,
+    .card-subtitle {
+      white-space: normal;
+    }
+  }
+
+  @media only screen and (max-width: 900px) {
+    .card-title {
+      white-space: normal;
     }
   }
 `;
@@ -29,10 +45,10 @@ export default function ContentCard(props) {
       <Card className="mb-3">
         <Card.Link href={props.link}>
           <Row>
-            <Col xs="6" sm="4">
-              <Card.Img variant="top" src={props.image} />
+            <Col xs="5">
+              <Card.Img src={props.image} />
             </Col>
-            <Col>
+            <Col xs="7">
               <Card.Body>
                 <Card.Title className="font-weight-bold">
                   {props.title}

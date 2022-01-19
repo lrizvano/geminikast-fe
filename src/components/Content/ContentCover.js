@@ -6,7 +6,7 @@ import DateFormat from "../DateFormat.js";
 export default function ArticleCover(props) {
   return (
     <>
-      <Image fluid src={props.image} />
+      <Image className="mt-3" fluid src={props.image} />
       <h1 className="mt-3 text-primary">{props.title}</h1>
       {"By "}
       <Link replace to={`/author/${props.uid}`}>

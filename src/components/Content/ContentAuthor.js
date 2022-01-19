@@ -36,7 +36,7 @@ export default function ContentAuthor(props) {
         <>
           <Row className="justify-content-center mb-3">
             <Col xs="auto">
-              <Image src={author.data.image.url} />
+              <Image src={author.data.image.url} roundedCircle />
             </Col>
             <Wrapper>
               <Col xs="auto">
@@ -51,12 +51,16 @@ export default function ContentAuthor(props) {
               </Col>
             </Wrapper>
           </Row>
-          <div className="text-center">
-            <RichText
-              render={author.data.bio}
-              htmlSerializer={client.htmlSerializer}
-            ></RichText>
-          </div>
+          <Row className="justify-content-center">
+            <Col xs="6">
+              <div className="text-center">
+                <RichText
+                  render={author.data.bio}
+                  htmlSerializer={client.htmlSerializer}
+                ></RichText>
+              </div>
+            </Col>
+          </Row>
         </>
       );
     }

@@ -15,21 +15,21 @@ const Wrapper = styled.section`
 export default function ArticleCover(props) {
   return (
     <>
-      <Row className="mb-3">
+      <Row className="mt-3 ml-3">
         <Col xs="auto">
-          <Image src={props.image} />
+          <Image src={props.image} roundedCircle />
         </Col>
-        <Wrapper>
-          <Col xs="auto">
+        <Col xs="6" lg="8">
+          <Wrapper>
             <h1 className="mt-3 text-primary">{props.name}</h1>
             <small className="text-muted">{props.role}</small>
-          </Col>
-        </Wrapper>
+            <RichText
+              render={props.bio}
+              htmlSerializer={client.htmlSerializer}
+            ></RichText>
+          </Wrapper>
+        </Col>
       </Row>
-      <RichText
-        render={props.bio}
-        htmlSerializer={client.htmlSerializer}
-      ></RichText>
     </>
   );
 }

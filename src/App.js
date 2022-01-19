@@ -19,7 +19,7 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   color: var(--light);
-  font-size: 18px;
+  font-size: 20px;
 
   .quote {
     color: var(--secondary);

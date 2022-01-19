@@ -1,9 +1,10 @@
 import React from "react";
-import { RichText } from "prismic-reactjs";
 import ContentCard from "../Content/ContentCard.js";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import styled from "styled-components";
+import { RichText, Date } from "prismic-reactjs";
+import DateFormat from "../DateFormat.js";
 
 const Wrapper = styled.section`
   display: flex;
@@ -21,7 +22,7 @@ export default function Features(props) {
           doc.type === "article"
             ? RichText.asText(doc.data.headline)
             : RichText.asText(doc.data.game),
-        text: RichText.asText(doc.data.author.data.name),
+        text: <DateFormat date={Date(doc.data.date)} />,
       };
       return <ContentCard {...contentCardData} />;
     });

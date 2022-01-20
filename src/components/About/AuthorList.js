@@ -35,7 +35,7 @@ export default function AuthorList() {
 
   return (
     <>
-      <h1 className="mb-3 text-primary">Kast</h1>
+      <h1 className="mb-3 text-primary">The Kast</h1>
       <Row>{renderAuthors()}</Row>
     </>
   );

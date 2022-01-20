@@ -32,7 +32,7 @@ const Hover = styled.section`
 
 export default function AuthorCard(props) {
   return (
-    <Col xs="6" sm="6" md="4" lg="3" xl="3">
+    <Col xs="6" lg="3">
       <Hover>
         <Card className="mb-4">
           <Card.Link href={`author/${props.uid}`}>

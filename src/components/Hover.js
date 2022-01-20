@@ -6,9 +6,6 @@ const Hover = styled.section`
     background-color: var(--dark);
     transition: border-color 500ms ease, background-color 500ms ease;
   }
-  .card-body {
-    color: white;
-  }
   .card-title,
   .card-subtitle {
     text-overflow: ellipsis;
@@ -16,11 +13,20 @@ const Hover = styled.section`
     white-space: nowrap;
   }
 
+  #profile {
+    border-radius: 50%;
+    transition: border-radius 500ms ease;
+  }
+
   &:hover,
   &:focus-within {
     .card {
       border-color: var(--secondary);
       background-color: var(--secondary);
+    }
+
+    #profile {
+      border-radius: 0%;
     }
   }
 `;

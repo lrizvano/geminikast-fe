@@ -26,16 +26,6 @@ const Hover = styled.section`
       border-color: var(--secondary);
       background-color: var(--secondary);
     }
-    .card-title,
-    .card-subtitle {
-      white-space: normal;
-    }
-  }
-
-  @media only screen and (max-width: 900px) {
-    .card-title {
-      white-space: normal;
-    }
   }
 `;
 
@@ -45,10 +35,10 @@ export default function ContentCard(props) {
       <Card className="mb-3">
         <Card.Link href={props.link}>
           <Row>
-            <Col xs="5">
+            <Col xs="5" md="4" lg="3">
               <Card.Img src={props.image} />
             </Col>
-            <Col xs="7">
+            <Col xs="6">
               <Card.Body>
                 <Card.Title className="font-weight-bold">
                   {props.title}

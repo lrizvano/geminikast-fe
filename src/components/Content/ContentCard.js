@@ -12,7 +12,8 @@ const Hover = styled.section`
   .card-body {
     color: white;
   }
-  .card-title {
+  .card-title,
+  .card-subtitle {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -24,21 +25,12 @@ const Hover = styled.section`
       border-color: var(--secondary);
       background-color: var(--secondary);
     }
-    .card-title {
-      white-space: normal;
-    }
-  }
-
-  @media only screen and (max-width: 900px) {
-    .card-title {
-      white-space: normal;
-    }
   }
 `;
 
 export default function ContentCard(props) {
   return (
-    <Col xs="12" sm="12" md="6" lg="4" xl="4">
+    <Col xs="6" md="4">
       <Hover>
         <Card className="mb-4">
           <Card.Link href={props.link}>

@@ -36,7 +36,7 @@ export default function ArticleList() {
 
   return (
     <>
-      <h1 className="mt-5 mb-3 text-primary">All Articles</h1>
+      <h1 className="mt-5 mb-3 text-primary">All News</h1>
       {renderArticles()}
     </>
   );

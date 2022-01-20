@@ -12,11 +12,19 @@ export default function Home() {
     const fetchData = async () => {
       const reviewDocs = await client.query(
         Prismic.Predicates.at("document.type", "review"),
-        { fetchLinks: "author.name", orderings: "[my.review.date desc]" }
+        {
+          fetchLinks: "author.name",
+          orderings: "[my.review.date desc]",
+          pageSize: 6,
+        }
       );
       const articleDocs = await client.query(
         Prismic.Predicates.at("document.type", "article"),
-        { fetchLinks: "author.name", orderings: "[my.article.date desc]" }
+        {
+          fetchLinks: "author.name",
+          orderings: "[my.article.date desc]",
+          pageSize: 6,
+        }
       );
       if (reviewDocs) {
         setReviews(reviewDocs.results);

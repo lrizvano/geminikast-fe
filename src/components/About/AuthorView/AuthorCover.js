@@ -16,8 +16,8 @@ export default function ArticleCover(props) {
   return (
     <>
       <Row className="mt-3 ml-3">
-        <Col xs="auto">
-          <Image src={props.image} roundedCircle />
+        <Col xs="6" sm="auto">
+          <Image src={props.image} fluid roundedCircle />
         </Col>
         <Col xs="6" lg="8">
           <Wrapper>

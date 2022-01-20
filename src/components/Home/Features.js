@@ -31,7 +31,7 @@ export default function Features(props) {
   return (
     <>
       <h3 className="text-primary mb-3">
-        {props.page === "news" ? "Newest Articles" : "Newest Reviews"}
+        {props.page === "news" ? "Recent News" : "Featured Reviews"}
       </h3>
       <Row>{renderFeatures()}</Row>
       <Wrapper>
@@ -40,7 +40,7 @@ export default function Features(props) {
           variant="secondary"
           href={`${props.page === "news" ? "/news" : "/reviews"}`}
         >
-          {`See All ${props.page === "news" ? "Articles" : "Reviews"}`}
+          {`See All ${props.page === "news" ? "News" : "Reviews"}`}
         </Button>
       </Wrapper>
     </>

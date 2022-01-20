@@ -14,10 +14,10 @@ const Score = styled.section`
   h2 {
     position: absolute;
     top: 0;
-    left: 2%;
+    left: 0.5em;
     color: var(--light);
     background-color: var(--dark);
-    padding-bottom: 0.5em;
+    padding-bottom: 1em;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
   }
 `;
@@ -32,7 +32,7 @@ export default function ReviewBody(props) {
       <Score className="mt-3">
         <Card className="bg-secondary text-light p-3 mb-3 font-weight-bold">
           <Row>
-            <Col md={{ span: 11, offset: 1 }} xs={{ span: 10, offset: 2 }}>
+            <Col lg={{ span: 11, offset: 1 }} xs={{ span: 10, offset: 2 }}>
               {props.summary}
             </Col>
             <h2>

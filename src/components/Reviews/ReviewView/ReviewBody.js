@@ -11,7 +11,7 @@ const Score = styled.section`
   .card {
     margin: 3rem 3rem 0 3rem;
   }
-  .score {
+  h2 {
     position: absolute;
     top: 0;
     left: 2%;
@@ -35,9 +35,9 @@ export default function ReviewBody(props) {
             <Col md={{ span: 11, offset: 1 }} xs={{ span: 10, offset: 2 }}>
               {props.summary}
             </Col>
-            <div className="score">
+            <h2>
               <Badge>{props.score / 10}</Badge>
-            </div>
+            </h2>
           </Row>
         </Card>
       </Score>

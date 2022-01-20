@@ -1,33 +1,8 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-import styled from "styled-components";
 import Row from "react-bootstrap/Row";
-
-const Hover = styled.section`
-  .card {
-    border-color: var(--dark);
-    background-color: var(--dark);
-    transition: border-color 500ms ease, background-color 500ms ease;
-  }
-  .card-body {
-    color: white;
-  }
-  .card-title,
-  .card-subtitle {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  &:hover,
-  &:focus-within {
-    .card {
-      border-color: var(--secondary);
-      background-color: var(--secondary);
-    }
-  }
-`;
+import Hover from "../Hover";
 
 export default function ContentCard(props) {
   return (
@@ -35,7 +10,7 @@ export default function ContentCard(props) {
       <Card className="mb-3">
         <Card.Link href={props.link}>
           <Row>
-            <Col xs="5" md="4" lg="3">
+            <Col xs="6" md="4" lg="3">
               <Card.Img src={props.image} />
             </Col>
             <Col xs="6">

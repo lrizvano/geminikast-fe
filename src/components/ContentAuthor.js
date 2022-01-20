@@ -1,7 +1,7 @@
 import React from "react";
 import Prismic from "@prismicio/client";
 import { RichText } from "prismic-reactjs";
-import { client } from "../../prismic-configuration.js";
+import { client } from "../prismic-configuration.js";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";

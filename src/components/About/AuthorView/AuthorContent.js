@@ -3,7 +3,7 @@ import Prismic from "@prismicio/client";
 import { RichText, Date } from "prismic-reactjs";
 import { client } from "../../../prismic-configuration.js";
 import Row from "react-bootstrap/Row";
-import ContentCard from "../../Content/ContentCard.js";
+import ContentTile from "../../ContentTile.js";
 import DateFormat from "../../DateFormat.js";
 
 export default function AuthorContent(props) {
@@ -31,7 +31,7 @@ export default function AuthorContent(props) {
 
   const renderDocs = () => {
     return docs.map((doc) => {
-      const contentCardData = {
+      const contentTileData = {
         link:
           doc.type === "article" ? `/news/${doc.uid}` : `/reviews/${doc.uid}`,
         image: doc.data.image.url,
@@ -41,7 +41,7 @@ export default function AuthorContent(props) {
             : RichText.asText(doc.data.game),
         text: <DateFormat date={Date(doc.data.date)} />,
       };
-      return <ContentCard {...contentCardData} />;
+      return <ContentTile {...contentTileData} />;
     });
   };
 

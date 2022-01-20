@@ -1,7 +1,7 @@
 import React from "react";
 import Prismic from "@prismicio/client";
 import { client } from "../../prismic-configuration.js";
-import ContentRow from "../Content/ContentRow.js";
+import ContentRow from "../ContentRow.js";
 import { RichText, Date } from "prismic-reactjs";
 import DateFormat from "../DateFormat.js";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
-import DateFormat from "../DateFormat.js";
+import DateFormat from "./DateFormat.js";
 
 export default function ArticleCover(props) {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import ContentCard from "../Content/ContentCard.js";
+import ContentTile from "../ContentTile.js";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import styled from "styled-components";
@@ -15,7 +15,7 @@ export default function Features(props) {
   const renderFeatures = () => {
     console.log(props.features);
     return props.features.map((doc) => {
-      const contentCardData = {
+      const contentTileData = {
         link: doc.type === "article" ? `news/${doc.uid}` : `reviews/${doc.uid}`,
         image: doc.data.image.url || doc.data.image.url,
         title:
@@ -24,7 +24,7 @@ export default function Features(props) {
             : RichText.asText(doc.data.game),
         text: <DateFormat date={Date(doc.data.date)} />,
       };
-      return <ContentCard {...contentCardData} />;
+      return <ContentTile {...contentTileData} />;
     });
   };
 

@@ -2,9 +2,9 @@ import React from "react";
 import Prismic from "@prismicio/client";
 import { RichText, Date } from "prismic-reactjs";
 import { client } from "../../../prismic-configuration.js";
-import ContentCover from "../../Content/ContentCover.js";
+import ContentCover from "../../ContentCover.js";
 import ReviewBody from "./ReviewBody.js";
-import ContentAuthor from "../../Content/ContentAuthor.js";
+import ContentAuthor from "../../ContentAuthor.js";
 
 export default function ReviewView(props) {
   const [review, setReview] = React.useState(null);

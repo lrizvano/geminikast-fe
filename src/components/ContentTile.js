@@ -1,9 +1,9 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-import Hover from "../Hover";
+import Hover from "./Hover";
 
-export default function ContentCard(props) {
+export default function ContentColumn(props) {
   return (
     <Col xs="6" md="4">
       <Hover>

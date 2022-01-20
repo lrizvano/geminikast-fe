@@ -44,7 +44,11 @@ export default function ContentCard(props) {
                   {props.title}
                 </Card.Title>
                 <Card.Subtitle className="mb-2">
-                  {props.author} reviewed on {props.date}
+                  {props.author}{" "}
+                  {props.link.startsWith("news")
+                    ? "reported on"
+                    : "reviewed on"}{" "}
+                  {props.date}
                 </Card.Subtitle>
               </Card.Body>
             </Col>

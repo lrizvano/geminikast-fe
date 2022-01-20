@@ -3,7 +3,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Brand from "./Brand";
 
-export default function Navigation() {
+export default function Header() {
   return (
     <Navbar bg="dark" expand="lg" variant="dark">
       <Brand />

@@ -1,6 +1,6 @@
 import "./App.scss";
 import React from "react";
-import Navigation from "./components/Navigation.js";
+import Header from "./components/Header.js";
 import Home from "./components/Home/Home.js";
 import News from "./components/News/News.js";
 import ArticleView from "./components/News/ArticleView/ArticleView.js";
@@ -31,7 +31,7 @@ function App() {
   return (
     <Wrapper>
       <BrowserRouter>
-        <Navigation />
+        <Header />
         <Layout>
           <Switch>
             <Route path="/" exact component={Home} />

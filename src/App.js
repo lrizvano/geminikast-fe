@@ -8,6 +8,7 @@ import Reviews from "./components/Reviews";
 import ReviewView from "./components/Reviews/ReviewView";
 import About from "./components/About";
 import AuthorView from "./components/About/AuthorView";
+import Error404 from "./components/Error404";
 import Footer from "./components/Footer.js";
 import Layout from "./components/Layout.js";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -41,6 +42,7 @@ function App() {
             <Route path="/reviews/:uid" component={ReviewView} />
             <Route path="/about" component={About} />
             <Route path="/author/:uid" component={AuthorView} />
+            <Route component={Error404} />
           </Switch>
         </Layout>
         <Footer />

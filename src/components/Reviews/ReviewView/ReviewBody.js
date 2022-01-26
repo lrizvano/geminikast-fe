@@ -15,7 +15,7 @@ const Score = styled.section`
     position: absolute;
     top: 0;
     left: 0.5em;
-    color: var(--light);
+    color: var(--info);
     background-color: var(--dark);
     padding-bottom: 1em;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);

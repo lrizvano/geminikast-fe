@@ -10,7 +10,7 @@ export default function AuthorCard(props) {
         <Card className="mb-4">
           <Card.Link href={`author/${props.uid}`}>
             <Card.Img id="profile" src={props.image} />
-            <Card.Body className="text-light text-center">
+            <Card.Body className="text-info text-center">
               <Card.Title className="font-weight-bold">{props.name}</Card.Title>
               <Card.Subtitle className="mb-2">{props.role}</Card.Subtitle>
             </Card.Body>

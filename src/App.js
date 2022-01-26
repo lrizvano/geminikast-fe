@@ -15,11 +15,11 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.section`
-  background-color: var(--dark);
+  background-color: var(--light);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  color: var(--light);
+  color: var(--info);
   font-size: 20px;
 
   .quote {

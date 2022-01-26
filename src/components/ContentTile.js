@@ -10,7 +10,7 @@ export default function ContentColumn(props) {
         <Card className="mb-4">
           <Card.Link href={props.link}>
             <Card.Img src={props.image} />
-            <Card.Body className="text-light">
+            <Card.Body className="text-info">
               <Card.Title className="font-weight-bold">
                 {props.title}
               </Card.Title>

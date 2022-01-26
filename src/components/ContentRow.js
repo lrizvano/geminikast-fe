@@ -25,7 +25,7 @@ export default function ContentCard(props) {
                 <Card.Img src={props.image} />
               </Col>
               <Col xs="6">
-                <Card.Body className="text-light">
+                <Card.Body className="text-info">
                   <Card.Title className="font-weight-bold">
                     {props.title}
                   </Card.Title>

@@ -4,7 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 
 export default function Brand(props) {
   return (
-    <Navbar.Brand href="/" className="text-light">
+    <Navbar.Brand href="/" className="text-info">
       <img
         alt=""
         src={logo}

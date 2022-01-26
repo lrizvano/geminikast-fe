@@ -4,30 +4,49 @@ import { client } from "../../prismic-configuration.js";
 import ContentRow from "../ContentRow.js";
 import { RichText, Date } from "prismic-reactjs";
 import DateFormat from "../DateFormat.js";
-import ToggleButton from "react-bootstrap/ToggleButton";
-import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
+import Dropdown from "react-bootstrap/Dropdown";
 
-const platformList = ["PC", "Playstation", "Xbox", "Movie", "Tabletop"];
+const platformList = [
+  "All Platforms",
+  "Playstation",
+  "Xbox",
+  "Nintendo",
+  "PC",
+  "Movies",
+  "Shows",
+  "Comics",
+  "Tabletop",
+];
 
 export default function ReviewList() {
   const [reviews, setReviews] = React.useState([]);
-  const [platforms, setPlatforms] = React.useState([]);
+  const [platform, setPlatform] = React.useState("");
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const response = await client.query(
-        [
+      let response = null;
+      if (platform) {
+        response = await client.query(
+          [
+            Prismic.Predicates.at("document.type", "review"),
+            Prismic.Predicates.at("my.review.platforms.platform", platform),
+          ],
+          { fetchLinks: "author.name", orderings: "[my.review.date desc]" }
+        );
+      } else {
+        response = await client.query(
           Prismic.Predicates.at("document.type", "review"),
-          Prismic.Predicates.any("my.review.platforms.platform", platforms),
-        ],
-        { fetchLinks: "author.name", orderings: "[my.review.date desc]" }
-      );
+
+          { fetchLinks: "author.name", orderings: "[my.review.date desc]" }
+        );
+      }
+
       if (response) {
         setReviews(response.results);
       }
     };
     fetchData();
-  }, [platforms]);
+  }, [platform]);
 
   const renderReviews = () => {
     return reviews.map((review) => {
@@ -42,19 +61,33 @@ export default function ReviewList() {
     });
   };
 
+  const updatePlatform = (platform) => {
+    if (platform === "All Platforms") {
+      setPlatform("");
+    } else {
+      setPlatform(platform);
+    }
+  };
+
   return (
     <>
       <h1 className="mt-5 mb-3 text-primary">
-        {platforms.length === 0 ? "All Reviews" : "Filtered Reviews"}
+        {platform.length === 0 ? "All Reviews" : "Filtered Reviews"}
       </h1>
-      <ToggleButtonGroup type="checkbox" onChange={setPlatforms}>
-        {platformList.map((platformName) => (
-          <ToggleButton variant="dark" value={platformName}>
-            {platformName}
-          </ToggleButton>
-        ))}
-      </ToggleButtonGroup>
-      {reviews.length === 0 ? <p>No filtered reviews</p> : renderReviews()}
+      <Dropdown className="mb-5" onSelect={updatePlatform}>
+        <Dropdown.Toggle variant="secondary">
+          {platform === "" ? "All Platforms" : platform}
+        </Dropdown.Toggle>
+        <Dropdown.Menu className="mb-3">
+          {platformList.map((platformName) => (
+            <Dropdown.Item eventKey={platformName}>
+              {platformName}
+            </Dropdown.Item>
+          ))}
+        </Dropdown.Menu>
+      </Dropdown>
+
+      {reviews.length === 0 ? <p>No results found.</p> : renderReviews()}
     </>
   );
 }

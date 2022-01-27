@@ -5,6 +5,8 @@ import ContentRow from "../ContentRow.js";
 import { RichText, Date } from "prismic-reactjs";
 import DateFormat from "../DateFormat.js";
 import Dropdown from "react-bootstrap/Dropdown";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const platformList = [
   "All Platforms",
@@ -18,35 +20,44 @@ const platformList = [
   "Tabletop",
 ];
 
+const sortList = {
+  Latest: "[my.review.date desc]",
+  Oldest: "[my.review.date]",
+  "Highest Score": "[my.review.score desc]",
+  "Lowest Score": "[my.review.score]",
+  "A-Z": "[my.review.game]",
+  "Z-A": "[my.review.game desc]",
+};
+
 export default function ReviewList() {
   const [reviews, setReviews] = React.useState([]);
-  const [platform, setPlatform] = React.useState("");
+  const [platform, setPlatform] = React.useState("All Platforms");
+  const [sort, setSort] = React.useState("Latest");
 
   React.useEffect(() => {
     const fetchData = async () => {
       let response = null;
-      if (platform) {
+      if (platform !== "All Platforms") {
         response = await client.query(
           [
             Prismic.Predicates.at("document.type", "review"),
             Prismic.Predicates.at("my.review.platforms.platform", platform),
           ],
-          { fetchLinks: "author.name", orderings: "[my.review.date desc]" }
+          { fetchLinks: "author.name", orderings: sortList[sort] }
         );
       } else {
         response = await client.query(
           Prismic.Predicates.at("document.type", "review"),
 
-          { fetchLinks: "author.name", orderings: "[my.review.date desc]" }
+          { fetchLinks: "author.name", orderings: sortList[sort] }
         );
       }
-
       if (response) {
         setReviews(response.results);
       }
     };
     fetchData();
-  }, [platform]);
+  }, [platform, sort]);
 
   const renderReviews = () => {
     return reviews.map((review) => {
@@ -61,31 +72,47 @@ export default function ReviewList() {
     });
   };
 
-  const updatePlatform = (platform) => {
-    if (platform === "All Platforms") {
-      setPlatform("");
-    } else {
-      setPlatform(platform);
-    }
+  const createSortItems = () => {
+    let sortItems = [];
+    Object.entries(sortList).forEach(([key, value]) => {
+      sortItems.push(
+        <Dropdown.Item className="text-info" eventKey={key}>
+          {key}
+        </Dropdown.Item>
+      );
+    });
+    return sortItems;
   };
 
   return (
     <>
       <h1 className="mt-5 mb-3 text-primary">
-        {platform.length === 0 ? "All Reviews" : "Filtered Reviews"}
+        {platform === "All Platforms" && sort === "Latest"
+          ? "All Reviews"
+          : "Filtered Reviews"}
       </h1>
-      <Dropdown className="mb-5" onSelect={updatePlatform}>
-        <Dropdown.Toggle variant="secondary">
-          {platform === "" ? "All Platforms" : platform}
-        </Dropdown.Toggle>
-        <Dropdown.Menu className="mb-3">
-          {platformList.map((platformName) => (
-            <Dropdown.Item eventKey={platformName}>
-              {platformName}
-            </Dropdown.Item>
-          ))}
-        </Dropdown.Menu>
-      </Dropdown>
+      <Row className="mb-3">
+        <Col xs="auto">
+          <Dropdown onSelect={setPlatform}>
+            <Dropdown.Toggle variant="secondary">{platform}</Dropdown.Toggle>
+            <Dropdown.Menu className="bg-dark">
+              {platformList.map((platformName) => (
+                <Dropdown.Item eventKey={platformName} className="text-info">
+                  {platformName}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+        </Col>
+        <Col xs="auto">
+          <Dropdown onSelect={setSort}>
+            <Dropdown.Toggle variant="secondary">{sort}</Dropdown.Toggle>
+            <Dropdown.Menu className="bg-dark">
+              {createSortItems()}
+            </Dropdown.Menu>
+          </Dropdown>
+        </Col>
+      </Row>
 
       {reviews.length === 0 ? <p>No results found.</p> : renderReviews()}
     </>

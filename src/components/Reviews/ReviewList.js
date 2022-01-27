@@ -7,6 +7,16 @@ import DateFormat from "../DateFormat.js";
 import Dropdown from "react-bootstrap/Dropdown";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import styled from "styled-components";
+
+const Hover = styled.section`
+  .dropdown-item:hover,
+  .dropdown-item:focus {
+    color: #16181b;
+    text-decoration: none;
+    background-color: var(--secondary);
+  }
+`;
 
 const platformList = [
   "All Platforms",
@@ -76,9 +86,11 @@ export default function ReviewList() {
     let sortItems = [];
     Object.entries(sortList).forEach(([key, value]) => {
       sortItems.push(
-        <Dropdown.Item className="text-info" eventKey={key}>
-          {key}
-        </Dropdown.Item>
+        <Hover>
+          <Dropdown.Item className="text-info" eventKey={key}>
+            {key}
+          </Dropdown.Item>
+        </Hover>
       );
     });
     return sortItems;
@@ -97,9 +109,11 @@ export default function ReviewList() {
             <Dropdown.Toggle variant="secondary">{platform}</Dropdown.Toggle>
             <Dropdown.Menu className="bg-dark">
               {platformList.map((platformName) => (
-                <Dropdown.Item eventKey={platformName} className="text-info">
-                  {platformName}
-                </Dropdown.Item>
+                <Hover>
+                  <Dropdown.Item eventKey={platformName} className="text-info">
+                    {platformName}
+                  </Dropdown.Item>
+                </Hover>
               ))}
             </Dropdown.Menu>
           </Dropdown>

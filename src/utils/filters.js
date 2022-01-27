@@ -42,23 +42,18 @@ export const formatParam = (param) => {
 export const updateHistory = async (history, platform, sort) => {
   platform = platform.toLowerCase();
   sort = sort.replace(" ", "-").toLowerCase();
-  if (platform === "all platforms" && sort === "latest") {
-    history.push({
-      search: ``,
-    });
-  } else if (platform !== "all platforms" && sort !== "latest") {
-    history.push({
-      search: `?platform=${platform}&sort=${sort}`,
-    });
-  } else if (platform !== "all platforms") {
-    history.push({
-      search: `?platform=${platform}`,
-    });
-  } else if (sort !== "latest") {
-    history.push({
-      search: `?sort=${sort}`,
-    });
+  const queryUrl = new URL("uri:/reviews");
+  if (platform !== "all platforms" || !platform || platform.length === 0) {
+    console.log(platform);
+    queryUrl.searchParams.append("platform", platform);
   }
+  if (sort !== "latest" || !sort || sort.length === 0) {
+    console.log(sort);
+    queryUrl.searchParams.append("sort", sort);
+  }
+  history.push({
+    search: queryUrl.search,
+  });
 };
 
 export const formatPlatform = (platform) => {

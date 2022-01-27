@@ -8,7 +8,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 const Hover = styled.section`
   .dropdown-item:hover,
@@ -62,8 +62,28 @@ export default function ReviewList() {
     formatParam(platformParam) || "All Platforms"
   );
   const [sort, setSort] = React.useState(formatParam(sortParam) || "Latest");
+  let history = useHistory();
 
   React.useEffect(() => {
+    const updateHistory = async () => {
+      if (platform === "All Platforms" && sort === "Latest") {
+        history.push({
+          search: ``,
+        });
+      } else if (platform !== "All Platforms" && sort !== "Latest") {
+        history.push({
+          search: `?platform=${platform.toLowerCase()}&sort=${sort.toLowerCase()}`,
+        });
+      } else if (platform !== "All Platforms") {
+        history.push({
+          search: `?platform=${platform.toLowerCase()}`,
+        });
+      } else if (sort !== "Latest") {
+        history.push({
+          search: `?sort=${sort.toLowerCase()}`,
+        });
+      }
+    };
     const fetchData = async () => {
       let response = null;
       if (platform !== "All Platforms") {
@@ -85,6 +105,7 @@ export default function ReviewList() {
         setReviews(response.results);
       }
     };
+    updateHistory();
     fetchData();
   }, [platform, sort]);
 

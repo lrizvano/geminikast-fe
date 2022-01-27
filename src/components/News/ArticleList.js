@@ -6,13 +6,11 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useLocation, useHistory } from "react-router-dom";
-import { listDocuments, listFilterDocuments } from "../../utils/queries";
+import { listDocuments, listFilteredDocuments } from "../../utils/queries";
 import {
   platformList,
   articleSort,
-  formatParam,
   updateHistory,
-  formatPlatform,
 } from "../../utils/filters.js";
 import DropdownHover from "../styled/DropdownHover.js";
 
@@ -21,31 +19,33 @@ export default function ArticleList() {
   const search = useLocation().search;
   const platformParam = new URLSearchParams(search).get("platform");
   const sortParam = new URLSearchParams(search).get("sort");
-  const [platform, setPlatform] = React.useState(
-    formatParam(platformParam) || "All Platforms"
+  const [platformKey, setPlatformKey] = React.useState(
+    platformParam || Object.keys(platformList)[0]
   );
-  const [sort, setSort] = React.useState(formatParam(sortParam) || "Latest");
+  const [sortKey, setSortKey] = React.useState(
+    sortParam || Object.keys(articleSort)[0]
+  );
   let history = useHistory();
 
   React.useEffect(() => {
     const fetchData = async () => {
       let response = null;
-      if (platform !== "All Platforms") {
-        response = await listFilterDocuments(
+      if (platformKey !== Object.keys(platformList)[0]) {
+        response = await listFilteredDocuments(
           "article",
-          platform,
-          articleSort[sort]
+          platformKey,
+          articleSort[sortKey].query
         );
       } else {
-        response = await listDocuments("article", articleSort[sort]);
+        response = await listDocuments("article", articleSort[sortKey].query);
       }
       if (response) {
         setArticles(response.results);
       }
     };
-    updateHistory(history, platform, sort);
+    updateHistory(history, platformKey, sortKey);
     fetchData();
-  }, [history, platform, sort]);
+  }, [history, platformKey, sortKey]);
 
   const renderArticles = () => {
     return articles.map((article) => {
@@ -60,13 +60,27 @@ export default function ArticleList() {
     });
   };
 
+  const renderPlatformItems = () => {
+    let platformItems = [];
+    Object.entries(platformList).forEach(([key, value]) => {
+      platformItems.push(
+        <DropdownHover>
+          <Dropdown.Item className="text-info" eventKey={key}>
+            {value}
+          </Dropdown.Item>
+        </DropdownHover>
+      );
+    });
+    return platformItems;
+  };
+
   const renderSortItems = () => {
     let sortItems = [];
     Object.entries(articleSort).forEach(([key, value]) => {
       sortItems.push(
         <DropdownHover>
           <Dropdown.Item className="text-info" eventKey={key}>
-            {key}
+            {value.title}
           </Dropdown.Item>
         </DropdownHover>
       );
@@ -77,26 +91,30 @@ export default function ArticleList() {
   return (
     <>
       <h1 className="mt-5 mb-3 text-primary">
-        {`${sort} ${formatPlatform(platform)}`} News
+        {`${articleSort[sortKey].title} ${
+          platformList[platformKey] ===
+          platformList[Object.keys(platformList)[0]]
+            ? ""
+            : platformList[platformKey]
+        }`}{" "}
+        News
       </h1>
       <Row className="mb-3">
         <Col xs="auto">
-          <Dropdown onSelect={setPlatform}>
-            <Dropdown.Toggle variant="secondary">{platform}</Dropdown.Toggle>
+          <Dropdown onSelect={setPlatformKey}>
+            <Dropdown.Toggle variant="secondary">
+              {platformList[platformKey]}
+            </Dropdown.Toggle>
             <Dropdown.Menu className="bg-dark">
-              {platformList.map((platformName) => (
-                <DropdownHover>
-                  <Dropdown.Item eventKey={platformName} className="text-info">
-                    {platformName}
-                  </Dropdown.Item>
-                </DropdownHover>
-              ))}
+              {renderPlatformItems()}
             </Dropdown.Menu>
           </Dropdown>
         </Col>
         <Col xs="auto">
-          <Dropdown onSelect={setSort}>
-            <Dropdown.Toggle variant="secondary">{sort}</Dropdown.Toggle>
+          <Dropdown onSelect={setSortKey}>
+            <Dropdown.Toggle variant="secondary">
+              {articleSort[sortKey].title}
+            </Dropdown.Toggle>
             <Dropdown.Menu className="bg-dark">
               {renderSortItems()}
             </Dropdown.Menu>

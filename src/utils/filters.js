@@ -1,67 +1,74 @@
-export const platformList = [
-  "All Platforms",
-  "Playstation",
-  "Xbox",
-  "Nintendo",
-  "PC",
-  "Movies",
-  "Shows",
-  "Comics",
-  "Tabletop",
-];
+export const platformList = {
+  "all-platforms": "All Platforms",
+  playstation: "Playstation",
+  xbox: "Xbox",
+  nintendo: "Nintendo",
+  pc: "PC",
+  movies: "Movie",
+  shows: "Show",
+  comics: "Comic",
+  tabletop: "Tabletop",
+};
 
 export const reviewSort = {
-  Latest: "[my.review.date desc]",
-  Oldest: "[my.review.date]",
-  "Highest Rated": "[my.review.score desc]",
-  "Lowest Rated": "[my.review.score]",
-  "A-Z": "[my.review.game]",
-  "Z-A": "[my.review.game desc]",
+  latest: {
+    title: "Latest",
+    query: "[my.review.date desc]",
+  },
+  oldest: {
+    title: "Oldest",
+    query: "[my.review.date]",
+  },
+  "highest-rated": {
+    title: "Highest Rated",
+    query: "[my.review.score desc]",
+  },
+  "lowest-rated": {
+    title: "Lowest Rated",
+    query: "[my.review.score]",
+  },
+  "a-z": {
+    title: "A-Z",
+    query: "[my.review.game]",
+  },
+  "z-a": {
+    title: "Z-A",
+    query: "[my.review.game desc]",
+  },
 };
 
 export const articleSort = {
-  Latest: "[my.article.date desc]",
-  Oldest: "[my.article.date]",
-  "A-Z": "[my.article.headline]",
-  "Z-A": "[my.article.headline desc]",
-};
-
-export const formatParam = (param) => {
-  if (param === "all-platforms") {
-    return "All Platforms";
-  }
-  if (param === "pc") {
-    return "PC";
-  }
-  if (param === "a-z") {
-    return "A-Z";
-  }
-  return param?.charAt(0).toUpperCase() + param?.slice(1);
+  latest: {
+    title: "Latest",
+    query: "[my.article.date desc]",
+  },
+  oldest: {
+    title: "Oldest",
+    query: "[my.article.date]",
+  },
+  "a-z": {
+    title: "A-Z",
+    query: "[my.article.headline]",
+  },
+  "z-a": {
+    title: "Z-A",
+    query: "[my.article.headline desc]",
+  },
 };
 
 export const updateHistory = async (history, platform, sort) => {
-  platform = platform.toLowerCase();
-  sort = sort.replace(" ", "-").toLowerCase();
-  const queryUrl = new URL("uri:/reviews");
-  if (platform !== "all platforms" || !platform || platform.length === 0) {
-    console.log(platform);
+  const queryUrl = new URL("uri:/");
+  if (
+    platform !== Object.keys(platformList)[0] ||
+    !platform ||
+    platform.length === 0
+  ) {
     queryUrl.searchParams.append("platform", platform);
   }
-  if (sort !== "latest" || !sort || sort.length === 0) {
-    console.log(sort);
+  if (sort !== Object.keys(reviewSort)[0] || !sort || sort.length === 0) {
     queryUrl.searchParams.append("sort", sort);
   }
   history.push({
     search: queryUrl.search,
   });
-};
-
-export const formatPlatform = (platform) => {
-  if (platform === "All Platforms") {
-    return "";
-  }
-  if (platform.endsWith("s")) {
-    return platform.slice(0, -1);
-  }
-  return platform;
 };

@@ -15,7 +15,7 @@ export const listDocuments = (type, sort) =>
     fetchLinks: "author.name",
     orderings: sort,
   });
-export const listFilterDocuments = (type, platform, sort) =>
+export const listFilteredDocuments = (type, platform, sort) =>
   client.query(
     [
       Prismic.Predicates.at("document.type", type),

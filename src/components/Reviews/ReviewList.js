@@ -5,14 +5,12 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useLocation, useHistory } from "react-router-dom";
-import { listDocuments, listFilterDocuments } from "../../utils/queries";
+import { listDocuments, listFilteredDocuments } from "../../utils/queries";
 import { RichText, Date } from "prismic-reactjs";
 import {
   platformList,
   reviewSort,
-  formatParam,
   updateHistory,
-  formatPlatform,
 } from "../../utils/filters.js";
 import DropdownHover from "../styled/DropdownHover.js";
 
@@ -21,31 +19,33 @@ export default function ReviewList() {
   const search = useLocation().search;
   const platformParam = new URLSearchParams(search).get("platform");
   const sortParam = new URLSearchParams(search).get("sort");
-  const [platform, setPlatform] = React.useState(
-    formatParam(platformParam) || "All Platforms"
+  const [platformKey, setPlatformKey] = React.useState(
+    platformParam || Object.keys(platformList)[0]
   );
-  const [sort, setSort] = React.useState(formatParam(sortParam) || "Latest");
+  const [sortKey, setSortKey] = React.useState(
+    sortParam || Object.keys(reviewSort)[0]
+  );
   let history = useHistory();
 
   React.useEffect(() => {
     const fetchData = async () => {
       let response = null;
-      if (platform !== "All Platforms") {
-        response = await listFilterDocuments(
+      if (platformKey !== Object.keys(platformList)[0]) {
+        response = await listFilteredDocuments(
           "review",
-          platform,
-          reviewSort[sort]
+          platformKey,
+          reviewSort[sortKey].query
         );
       } else {
-        response = await listDocuments("review", reviewSort[sort]);
+        response = await listDocuments("review", reviewSort[sortKey].query);
       }
       if (response) {
         setReviews(response.results);
       }
     };
-    updateHistory(history, platform, sort);
+    updateHistory(history, platformKey, sortKey);
     fetchData();
-  }, [history, platform, sort]);
+  }, [history, platformKey, sortKey]);
 
   const renderReviews = () => {
     return reviews.map((review) => {
@@ -60,13 +60,27 @@ export default function ReviewList() {
     });
   };
 
+  const renderPlatformItems = () => {
+    let platformItems = [];
+    Object.entries(platformList).forEach(([key, value]) => {
+      platformItems.push(
+        <DropdownHover>
+          <Dropdown.Item className="text-info" eventKey={key}>
+            {value}
+          </Dropdown.Item>
+        </DropdownHover>
+      );
+    });
+    return platformItems;
+  };
+
   const renderSortItems = () => {
     let sortItems = [];
     Object.entries(reviewSort).forEach(([key, value]) => {
       sortItems.push(
         <DropdownHover>
           <Dropdown.Item className="text-info" eventKey={key}>
-            {key}
+            {value.title}
           </Dropdown.Item>
         </DropdownHover>
       );
@@ -77,26 +91,30 @@ export default function ReviewList() {
   return (
     <>
       <h1 className="mt-5 mb-3 text-primary">
-        {`${sort} ${formatPlatform(platform)}`} Reviews
+        {`${reviewSort[sortKey].title} ${
+          platformList[platformKey] ===
+          platformList[Object.keys(platformList)[0]]
+            ? ""
+            : platformList[platformKey]
+        }`}{" "}
+        Reviews
       </h1>
       <Row className="mb-3">
         <Col xs="auto">
-          <Dropdown onSelect={setPlatform}>
-            <Dropdown.Toggle variant="secondary">{platform}</Dropdown.Toggle>
+          <Dropdown onSelect={setPlatformKey}>
+            <Dropdown.Toggle variant="secondary">
+              {platformList[platformKey]}
+            </Dropdown.Toggle>
             <Dropdown.Menu className="bg-dark">
-              {platformList.map((platformName) => (
-                <DropdownHover>
-                  <Dropdown.Item eventKey={platformName} className="text-info">
-                    {platformName}
-                  </Dropdown.Item>
-                </DropdownHover>
-              ))}
+              {renderPlatformItems()}
             </Dropdown.Menu>
           </Dropdown>
         </Col>
         <Col xs="auto">
-          <Dropdown onSelect={setSort}>
-            <Dropdown.Toggle variant="secondary">{sort}</Dropdown.Toggle>
+          <Dropdown onSelect={setSortKey}>
+            <Dropdown.Toggle variant="secondary">
+              {reviewSort[sortKey].title}
+            </Dropdown.Toggle>
             <Dropdown.Menu className="bg-dark">
               {renderSortItems()}
             </Dropdown.Menu>

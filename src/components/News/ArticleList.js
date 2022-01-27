@@ -54,7 +54,7 @@ export default function ArticleList() {
     };
     updateHistory(history, platform, sort);
     fetchData();
-  }, [platform, sort]);
+  }, [history, platform, sort]);
 
   const renderArticles = () => {
     return articles.map((article) => {

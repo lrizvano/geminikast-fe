@@ -54,7 +54,7 @@ export default function ReviewList() {
     };
     updateHistory(history, platform, sort);
     fetchData();
-  }, [platform, sort]);
+  }, [history, platform, sort]);
 
   const renderReviews = () => {
     return reviews.map((review) => {

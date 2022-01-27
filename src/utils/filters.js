@@ -20,10 +20,10 @@ export const reviewSort = {
 };
 
 export const articleSort = {
-  Latest: "[my.review.date desc]",
-  Oldest: "[my.review.date]",
-  "A-Z": "[my.review.game]",
-  "Z-A": "[my.review.game desc]",
+  Latest: "[my.article.date desc]",
+  Oldest: "[my.article.date]",
+  "A-Z": "[my.article.headline]",
+  "Z-A": "[my.article.headline desc]",
 };
 
 export const formatParam = (param) => {

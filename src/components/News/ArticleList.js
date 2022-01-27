@@ -94,12 +94,20 @@ export default function ArticleList() {
     return sortItems;
   };
 
+  const formatPlatform = (word) => {
+    if (word === "All Platforms") {
+      return "All";
+    }
+    if (word.endsWith("s")) {
+      return word.slice(0, -1);
+    }
+    return word;
+  };
+
   return (
     <>
       <h1 className="mt-5 mb-3 text-primary">
-        {platform === "All Platforms" && sort === "Latest"
-          ? "All News"
-          : "Filtered News"}
+        {formatPlatform(platform)} News
       </h1>
       <Row className="mb-3">
         <Col xs="auto">

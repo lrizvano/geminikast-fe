@@ -96,12 +96,20 @@ export default function ReviewList() {
     return sortItems;
   };
 
+  const formatPlatform = (word) => {
+    if (word === "All Platforms") {
+      return "All";
+    }
+    if (word.endsWith("s")) {
+      return word.slice(0, -1);
+    }
+    return word;
+  };
+
   return (
     <>
       <h1 className="mt-5 mb-3 text-primary">
-        {platform === "All Platforms" && sort === "Latest"
-          ? "All Reviews"
-          : "Filtered Reviews"}
+        {formatPlatform(platform)} Reviews
       </h1>
       <Row className="mb-3">
         <Col xs="auto">

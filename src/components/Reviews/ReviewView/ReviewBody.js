@@ -15,7 +15,6 @@ const Score = styled.section`
     position: absolute;
     top: 0;
     left: 0.5em;
-    color: var(--info);
     background-color: var(--dark);
     padding-bottom: 1em;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
@@ -30,7 +29,7 @@ export default function ReviewBody(props) {
         htmlSerializer={client.htmlSerializer}
       ></RichText>
       <Score className="mt-3">
-        <Card className="bg-secondary text-light p-3 mb-3 font-weight-bold">
+        <Card className="bg-secondary text-info p-3 mb-3 font-weight-bold">
           <Row>
             <Col lg={{ span: 11, offset: 1 }} xs={{ span: 10, offset: 2 }}>
               {props.summary}

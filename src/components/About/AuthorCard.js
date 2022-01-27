@@ -1,12 +1,12 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-import Hover from "../Hover.js";
+import CardHover from "../styled/CardHover.js";
 
 export default function AuthorCard(props) {
   return (
     <Col xs="6" lg="3">
-      <Hover>
+      <CardHover>
         <Card className="mb-4">
           <Card.Link href={`author/${props.uid}`}>
             <Card.Img id="profile" src={props.image} />
@@ -16,7 +16,7 @@ export default function AuthorCard(props) {
             </Card.Body>
           </Card.Link>
         </Card>
-      </Hover>
+      </CardHover>
     </Col>
   );
 }

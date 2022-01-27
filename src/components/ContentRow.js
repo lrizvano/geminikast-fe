@@ -2,7 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Hover from "./Hover";
+import CardHover from "./styled/CardHover";
 import styled from "styled-components";
 
 const Padding = styled.section`
@@ -16,7 +16,7 @@ const Padding = styled.section`
 
 export default function ContentCard(props) {
   return (
-    <Hover>
+    <CardHover>
       <Card className="mb-3">
         <Card.Link href={props.link}>
           <Padding>
@@ -42,6 +42,6 @@ export default function ContentCard(props) {
           </Padding>
         </Card.Link>
       </Card>
-    </Hover>
+    </CardHover>
   );
 }

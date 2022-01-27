@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Hover = styled.section`
+const CardHover = styled.section`
   .card {
     border-color: var(--dark);
     background-color: var(--dark);
@@ -31,4 +31,4 @@ const Hover = styled.section`
   }
 `;
 
-export default Hover;
+export default CardHover;

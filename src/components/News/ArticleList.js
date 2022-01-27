@@ -5,7 +5,6 @@ import DateFormat from "../DateFormat.js";
 import Dropdown from "react-bootstrap/Dropdown";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import styled from "styled-components";
 import { useLocation, useHistory } from "react-router-dom";
 import { listDocuments, listFilterDocuments } from "../../utils/queries";
 import {
@@ -15,15 +14,7 @@ import {
   updateHistory,
   formatPlatform,
 } from "../../utils/filters.js";
-
-const Hover = styled.section`
-  .dropdown-item:hover,
-  .dropdown-item:focus {
-    color: #16181b;
-    text-decoration: none;
-    background-color: var(--secondary);
-  }
-`;
+import DropdownHover from "../styled/DropdownHover.js";
 
 export default function ArticleList() {
   const [articles, setArticles] = React.useState([]);
@@ -73,11 +64,11 @@ export default function ArticleList() {
     let sortItems = [];
     Object.entries(articleSort).forEach(([key, value]) => {
       sortItems.push(
-        <Hover>
+        <DropdownHover>
           <Dropdown.Item className="text-info" eventKey={key}>
             {key}
           </Dropdown.Item>
-        </Hover>
+        </DropdownHover>
       );
     });
     return sortItems;
@@ -94,11 +85,11 @@ export default function ArticleList() {
             <Dropdown.Toggle variant="secondary">{platform}</Dropdown.Toggle>
             <Dropdown.Menu className="bg-dark">
               {platformList.map((platformName) => (
-                <Hover>
+                <DropdownHover>
                   <Dropdown.Item eventKey={platformName} className="text-info">
                     {platformName}
                   </Dropdown.Item>
-                </Hover>
+                </DropdownHover>
               ))}
             </Dropdown.Menu>
           </Dropdown>

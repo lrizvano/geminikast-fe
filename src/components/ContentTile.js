@@ -1,12 +1,12 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-import Hover from "./Hover";
+import CardHover from "./styled/CardHover";
 
 export default function ContentColumn(props) {
   return (
     <Col xs="6" md="4">
-      <Hover>
+      <CardHover>
         <Card className="mb-4">
           <Card.Link href={props.link}>
             <Card.Img src={props.image} />
@@ -18,7 +18,7 @@ export default function ContentColumn(props) {
             </Card.Body>
           </Card.Link>
         </Card>
-      </Hover>
+      </CardHover>
     </Col>
   );
 }

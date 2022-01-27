@@ -8,6 +8,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 
 const Hover = styled.section`
   .dropdown-item:hover,
@@ -39,10 +40,28 @@ const sortList = {
   "Z-A": "[my.review.game desc]",
 };
 
+const formatParam = (param) => {
+  if (param === "all-platforms") {
+    return "All Platforms";
+  }
+  if (param === "pc") {
+    return "PC";
+  }
+  if (param === "a-z") {
+    return "A-Z";
+  }
+  return param?.charAt(0).toUpperCase() + param?.slice(1);
+};
+
 export default function ReviewList() {
   const [reviews, setReviews] = React.useState([]);
-  const [platform, setPlatform] = React.useState("All Platforms");
-  const [sort, setSort] = React.useState("Latest");
+  const search = useLocation().search;
+  const platformParam = new URLSearchParams(search).get("platform");
+  const sortParam = new URLSearchParams(search).get("sort");
+  const [platform, setPlatform] = React.useState(
+    formatParam(platformParam) || "All Platforms"
+  );
+  const [sort, setSort] = React.useState(formatParam(sortParam) || "Latest");
 
   React.useEffect(() => {
     const fetchData = async () => {

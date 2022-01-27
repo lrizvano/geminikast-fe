@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import CardHover from "./styled/CardHover";
 
-export default function ContentColumn(props) {
+export default function ContentTile(props) {
   return (
     <Col xs="6" md="4">
       <CardHover>

@@ -2,7 +2,7 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { client } from "../../../prismic-configuration.js";
 
-export default function ReviewBody(props) {
+export default function ArticleBody(props) {
   return (
     <>
       <RichText

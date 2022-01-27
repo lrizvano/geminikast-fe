@@ -12,7 +12,7 @@ const Wrapper = styled.section`
   justify-content: center;
 `;
 
-export default function ArticleCover(props) {
+export default function AuthorCover(props) {
   return (
     <>
       <Row className="mt-3 ml-3">

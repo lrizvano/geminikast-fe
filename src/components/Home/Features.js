@@ -13,7 +13,6 @@ const Wrapper = styled.section`
 
 export default function Features(props) {
   const renderFeatures = () => {
-    console.log(props.features);
     return props.features.map((doc) => {
       const contentTileData = {
         link: doc.type === "article" ? `news/${doc.uid}` : `reviews/${doc.uid}`,

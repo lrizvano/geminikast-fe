@@ -96,7 +96,7 @@ export default function ArticleList() {
 
   const formatPlatform = (word) => {
     if (word === "All Platforms") {
-      return "All";
+      return "";
     }
     if (word.endsWith("s")) {
       return word.slice(0, -1);
@@ -107,7 +107,7 @@ export default function ArticleList() {
   return (
     <>
       <h1 className="mt-5 mb-3 text-primary">
-        {formatPlatform(platform)} News
+        {`${sort} ${formatPlatform(platform)}`} News
       </h1>
       <Row className="mb-3">
         <Col xs="auto">

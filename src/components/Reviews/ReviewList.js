@@ -33,8 +33,8 @@ const platformList = [
 const sortList = {
   Latest: "[my.review.date desc]",
   Oldest: "[my.review.date]",
-  "Highest Score": "[my.review.score desc]",
-  "Lowest Score": "[my.review.score]",
+  Best: "[my.review.score desc]",
+  Worst: "[my.review.score]",
   "A-Z": "[my.review.game]",
   "Z-A": "[my.review.game desc]",
 };
@@ -96,20 +96,20 @@ export default function ReviewList() {
     return sortItems;
   };
 
-  const formatPlatform = (word) => {
-    if (word === "All Platforms") {
-      return "All";
+  const formatPlatform = (platform) => {
+    if (platform === "All Platforms") {
+      return "";
     }
-    if (word.endsWith("s")) {
-      return word.slice(0, -1);
+    if (platform.endsWith("s")) {
+      return platform.slice(0, -1);
     }
-    return word;
+    return platform;
   };
 
   return (
     <>
       <h1 className="mt-5 mb-3 text-primary">
-        {formatPlatform(platform)} Reviews
+        {`${sort} ${formatPlatform(platform)}`} Reviews
       </h1>
       <Row className="mb-3">
         <Col xs="auto">

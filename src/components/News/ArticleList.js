@@ -1,7 +1,7 @@
 import React from "react";
 import ContentRow from "../ContentRow.js";
 import { RichText, Date } from "prismic-reactjs";
-import DateFormat from "../DateFormat.js";
+import { formatDate } from "../../utils/utils.js";
 import Dropdown from "react-bootstrap/Dropdown";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -54,7 +54,7 @@ export default function ArticleList() {
         image: article.data.image.url,
         title: RichText.asText(article.data.headline),
         author: RichText.asText(article.data.author.data.name),
-        date: <DateFormat date={Date(article.data.date)} />,
+        date: formatDate(Date(article.data.date)),
       };
       return <ContentRow {...contentRowData} />;
     });

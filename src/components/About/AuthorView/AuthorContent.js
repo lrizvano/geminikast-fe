@@ -2,7 +2,7 @@ import React from "react";
 import { RichText, Date } from "prismic-reactjs";
 import Row from "react-bootstrap/Row";
 import ContentTile from "../../ContentTile.js";
-import DateFormat from "../../DateFormat.js";
+import { formatDate } from "../../../utils/utils.js";
 import { listAuthorDocuments } from "../../../utils/queries";
 
 export default function AuthorContent(props) {
@@ -32,7 +32,7 @@ export default function AuthorContent(props) {
           doc.type === "article"
             ? RichText.asText(doc.data.headline)
             : RichText.asText(doc.data.game),
-        text: <DateFormat date={Date(doc.data.date)} />,
+        text: formatDate(Date(doc.data.date)),
       };
       return <ContentTile {...contentTileData} />;
     });

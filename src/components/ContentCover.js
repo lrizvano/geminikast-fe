@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
-import DateFormat from "./DateFormat.js";
+import { formatDate } from "../utils/utils.js";
 
 export default function ArticleCover(props) {
   return (
@@ -12,9 +12,7 @@ export default function ArticleCover(props) {
         {props.name}
       </Link>
       <br />
-      <small className="text-muted">
-        <DateFormat date={props.date} />
-      </small>
+      <small className="text-muted">{formatDate(props.date)}</small>
     </>
   );
 }

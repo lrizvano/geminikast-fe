@@ -1,6 +1,6 @@
 import React from "react";
 import ContentRow from "../ContentRow.js";
-import DateFormat from "../DateFormat.js";
+import { formatDate } from "../../utils/utils.js";
 import Dropdown from "react-bootstrap/Dropdown";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -54,7 +54,7 @@ export default function ReviewList() {
         image: review.data.image.url,
         title: RichText.asText(review.data.game),
         author: RichText.asText(review.data.author.data.name),
-        date: <DateFormat date={Date(review.data.date)} />,
+        date: formatDate(Date(review.data.date)),
       };
       return <ContentRow {...contentRowData} />;
     });

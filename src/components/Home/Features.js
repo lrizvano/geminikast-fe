@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import styled from "styled-components";
 import { RichText, Date } from "prismic-reactjs";
-import DateFormat from "../DateFormat.js";
+import { formatDate } from "../../utils/utils.js";
 
 const Wrapper = styled.section`
   display: flex;
@@ -22,7 +22,7 @@ export default function Features(props) {
           doc.type === "article"
             ? RichText.asText(doc.data.headline)
             : RichText.asText(doc.data.game),
-        text: <DateFormat date={Date(doc.data.date)} />,
+        text: formatDate(Date(doc.data.date)),
       };
       return <ContentTile {...contentTileData} />;
     });

@@ -29,6 +29,10 @@ export const viewDocument = (type, uid) =>
   client.query(Prismic.Predicates.at(`my.${type}.uid`, uid), {
     fetchLinks: "author.name",
   });
+export const viewDocumentAuthor = (id) =>
+  client.query(Prismic.Predicates.at("my.author.uid", id), {
+    lang: "*",
+  });
 
 //used on about page
 export const listAuthors = () =>

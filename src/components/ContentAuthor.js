@@ -1,5 +1,4 @@
 import React from "react";
-import Prismic from "@prismicio/client";
 import { RichText } from "prismic-reactjs";
 import { client } from "../prismic-configuration.js";
 import Image from "react-bootstrap/Image";
@@ -7,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { viewDocumentAuthor } from "../utils/queries";
 
 const Wrapper = styled.section`
   display: flex;
@@ -19,10 +19,7 @@ export default function ContentAuthor(props) {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const response = await client.query(
-        Prismic.Predicates.at("my.author.uid", `${props.uid}`),
-        { lang: "*" }
-      );
+      const response = await viewDocumentAuthor(props.uid);
       if (response) {
         setAuthor(response.results[0]);
       }

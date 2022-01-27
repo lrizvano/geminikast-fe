@@ -1,21 +1,22 @@
 import React from "react";
-import ContentRow from "../ContentRow.js";
-import { RichText, Date } from "prismic-reactjs";
-import { formatDate } from "../../utils/utils.js";
+import ContentRow from "./ContentRow.js";
+import { formatDate } from "../utils/utils.js";
 import Dropdown from "react-bootstrap/Dropdown";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useLocation, useHistory } from "react-router-dom";
-import { listDocuments, listFilteredDocuments } from "../../utils/queries";
+import { listDocuments, listFilteredDocuments } from "../utils/queries";
+import { RichText, Date } from "prismic-reactjs";
 import {
   platformList,
+  reviewSort,
   articleSort,
   updateHistory,
-} from "../../utils/filters.js";
-import DropdownHover from "../styled/DropdownHover.js";
+} from "../utils/filters.js";
+import DropdownHover from "./styled/DropdownHover.js";
 
-export default function ArticleList() {
-  const [articles, setArticles] = React.useState([]);
+export default function ContentList(props) {
+  const [documents, setDocuments] = React.useState([]);
   const search = useLocation().search;
   const platformParam = new URLSearchParams(search).get("platform");
   const sortParam = new URLSearchParams(search).get("sort");
@@ -23,7 +24,9 @@ export default function ArticleList() {
     platformParam || Object.keys(platformList)[0]
   );
   const [sortKey, setSortKey] = React.useState(
-    sortParam || Object.keys(articleSort)[0]
+    sortParam || props.type === "review"
+      ? Object.keys(reviewSort)[0]
+      : Object.keys(articleSort)[0]
   );
   let history = useHistory();
 
@@ -32,29 +35,39 @@ export default function ArticleList() {
       let response = null;
       if (platformKey !== Object.keys(platformList)[0]) {
         response = await listFilteredDocuments(
-          "article",
+          props.type,
           platformKey,
-          articleSort[sortKey].query
+          props.type === "review"
+            ? reviewSort[sortKey].query
+            : articleSort[sortKey].query
         );
       } else {
-        response = await listDocuments("article", articleSort[sortKey].query);
+        response = await listDocuments(
+          props.type,
+          props.type === "review"
+            ? reviewSort[sortKey].query
+            : articleSort[sortKey].query
+        );
       }
       if (response) {
-        setArticles(response.results);
+        setDocuments(response.results);
       }
     };
     updateHistory(history, platformKey, sortKey);
     fetchData();
   }, [history, platformKey, sortKey]);
 
-  const renderArticles = () => {
-    return articles.map((article) => {
+  const renderDocuments = () => {
+    return documents.map((doc) => {
       const contentRowData = {
-        link: `news/${article.uid}`,
-        image: article.data.image.url,
-        title: RichText.asText(article.data.headline),
-        author: RichText.asText(article.data.author.data.name),
-        date: formatDate(Date(article.data.date)),
+        link: `${props.type === "review" ? "reviews" : "news"}/${doc.uid}`,
+        image: doc.data.image.url,
+        title:
+          props.type === "review"
+            ? RichText.asText(doc.data.game)
+            : RichText.asText(doc.data.headline),
+        author: RichText.asText(doc.data.author.data.name),
+        date: formatDate(Date(doc.data.date)),
       };
       return <ContentRow {...contentRowData} />;
     });
@@ -76,28 +89,30 @@ export default function ArticleList() {
 
   const renderSortItems = () => {
     let sortItems = [];
-    Object.entries(articleSort).forEach(([key, value]) => {
-      sortItems.push(
-        <DropdownHover>
-          <Dropdown.Item className="text-info" eventKey={key}>
-            {value.title}
-          </Dropdown.Item>
-        </DropdownHover>
-      );
-    });
+    Object.entries(props.type === "review" ? reviewSort : articleSort).forEach(
+      ([key, value]) => {
+        sortItems.push(
+          <DropdownHover>
+            <Dropdown.Item className="text-info" eventKey={key}>
+              {value.title}
+            </Dropdown.Item>
+          </DropdownHover>
+        );
+      }
+    );
     return sortItems;
   };
 
   return (
     <>
       <h1 className="mt-5 mb-3 text-primary">
-        {`${articleSort[sortKey].title} ${
+        {`${reviewSort[sortKey].title} ${
           platformList[platformKey] ===
           platformList[Object.keys(platformList)[0]]
             ? ""
             : platformList[platformKey]
         }`}{" "}
-        News
+        {props.type === "review" ? "Reviews" : "News"}
       </h1>
       <Row className="mb-3">
         <Col xs="auto">
@@ -113,7 +128,7 @@ export default function ArticleList() {
         <Col xs="auto">
           <Dropdown onSelect={setSortKey}>
             <Dropdown.Toggle variant="secondary">
-              {articleSort[sortKey].title}
+              {reviewSort[sortKey].title}
             </Dropdown.Toggle>
             <Dropdown.Menu className="bg-dark">
               {renderSortItems()}
@@ -122,7 +137,7 @@ export default function ArticleList() {
         </Col>
       </Row>
 
-      {articles.length === 0 ? <p>No results found.</p> : renderArticles()}
+      {documents.length === 0 ? <p>No results found.</p> : renderDocuments()}
     </>
   );
 }

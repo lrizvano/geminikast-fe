@@ -1,5 +1,5 @@
 import React from "react";
-import ReviewList from "./ReviewList.js";
+import ContentList from "../ContentList.js";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
 export default function Reviews() {
@@ -13,7 +13,7 @@ export default function Reviews() {
         </h2>
       </Jumbotron>
       <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
-      <ReviewList />
+      <ContentList type="review" />
       <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
     </>
   );

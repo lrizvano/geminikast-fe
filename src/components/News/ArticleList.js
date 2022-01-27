@@ -8,6 +8,13 @@ import Col from "react-bootstrap/Col";
 import styled from "styled-components";
 import { useLocation, useHistory } from "react-router-dom";
 import { listDocuments, listFilterDocuments } from "../../utils/queries";
+import {
+  platformList,
+  articleSort,
+  formatParam,
+  updateHistory,
+  formatPlatform,
+} from "../../utils/filters.js";
 
 const Hover = styled.section`
   .dropdown-item:hover,
@@ -17,38 +24,6 @@ const Hover = styled.section`
     background-color: var(--secondary);
   }
 `;
-
-const platformList = [
-  "All Platforms",
-  "Playstation",
-  "Xbox",
-  "Nintendo",
-  "PC",
-  "Movies",
-  "Shows",
-  "Comics",
-  "Tabletop",
-];
-
-const sortList = {
-  Latest: "[my.article.date desc]",
-  Oldest: "[my.article.date]",
-  "A-Z": "[my.article.headline]",
-  "Z-A": "[my.article.headline desc]",
-};
-
-const formatParam = (param) => {
-  if (param === "all-platforms") {
-    return "All Platforms";
-  }
-  if (param === "pc") {
-    return "PC";
-  }
-  if (param === "a-z") {
-    return "A-Z";
-  }
-  return param?.charAt(0).toUpperCase() + param?.slice(1);
-};
 
 export default function ArticleList() {
   const [articles, setArticles] = React.useState([]);
@@ -62,41 +37,22 @@ export default function ArticleList() {
   let history = useHistory();
 
   React.useEffect(() => {
-    const updateHistory = async () => {
-      if (platform === "All Platforms" && sort === "Latest") {
-        history.push({
-          search: ``,
-        });
-      } else if (platform !== "All Platforms" && sort !== "Latest") {
-        history.push({
-          search: `?platform=${platform.toLowerCase()}&sort=${sort.toLowerCase()}`,
-        });
-      } else if (platform !== "All Platforms") {
-        history.push({
-          search: `?platform=${platform.toLowerCase()}`,
-        });
-      } else if (sort !== "Latest") {
-        history.push({
-          search: `?sort=${sort.toLowerCase()}`,
-        });
-      }
-    };
     const fetchData = async () => {
       let response = null;
       if (platform !== "All Platforms") {
         response = await listFilterDocuments(
           "article",
           platform,
-          sortList[sort]
+          articleSort[sort]
         );
       } else {
-        response = await listDocuments("article", sortList[sort]);
+        response = await listDocuments("article", articleSort[sort]);
       }
       if (response) {
         setArticles(response.results);
       }
     };
-    updateHistory();
+    updateHistory(history, platform, sort);
     fetchData();
   }, [platform, sort]);
 
@@ -113,9 +69,9 @@ export default function ArticleList() {
     });
   };
 
-  const createSortItems = () => {
+  const renderSortItems = () => {
     let sortItems = [];
-    Object.entries(sortList).forEach(([key, value]) => {
+    Object.entries(articleSort).forEach(([key, value]) => {
       sortItems.push(
         <Hover>
           <Dropdown.Item className="text-info" eventKey={key}>
@@ -125,16 +81,6 @@ export default function ArticleList() {
       );
     });
     return sortItems;
-  };
-
-  const formatPlatform = (word) => {
-    if (word === "All Platforms") {
-      return "";
-    }
-    if (word.endsWith("s")) {
-      return word.slice(0, -1);
-    }
-    return word;
   };
 
   return (
@@ -161,7 +107,7 @@ export default function ArticleList() {
           <Dropdown onSelect={setSort}>
             <Dropdown.Toggle variant="secondary">{sort}</Dropdown.Toggle>
             <Dropdown.Menu className="bg-dark">
-              {createSortItems()}
+              {renderSortItems()}
             </Dropdown.Menu>
           </Dropdown>
         </Col>

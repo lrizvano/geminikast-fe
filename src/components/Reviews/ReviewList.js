@@ -8,6 +8,13 @@ import styled from "styled-components";
 import { useLocation, useHistory } from "react-router-dom";
 import { listDocuments, listFilterDocuments } from "../../utils/queries";
 import { RichText, Date } from "prismic-reactjs";
+import {
+  platformList,
+  reviewSort,
+  formatParam,
+  updateHistory,
+  formatPlatform,
+} from "../../utils/filters.js";
 
 const Hover = styled.section`
   .dropdown-item:hover,
@@ -17,40 +24,6 @@ const Hover = styled.section`
     background-color: var(--secondary);
   }
 `;
-
-const platformList = [
-  "All Platforms",
-  "Playstation",
-  "Xbox",
-  "Nintendo",
-  "PC",
-  "Movies",
-  "Shows",
-  "Comics",
-  "Tabletop",
-];
-
-const sortList = {
-  Latest: "[my.review.date desc]",
-  Oldest: "[my.review.date]",
-  Best: "[my.review.score desc]",
-  Worst: "[my.review.score]",
-  "A-Z": "[my.review.game]",
-  "Z-A": "[my.review.game desc]",
-};
-
-const formatParam = (param) => {
-  if (param === "all-platforms") {
-    return "All Platforms";
-  }
-  if (param === "pc") {
-    return "PC";
-  }
-  if (param === "a-z") {
-    return "A-Z";
-  }
-  return param?.charAt(0).toUpperCase() + param?.slice(1);
-};
 
 export default function ReviewList() {
   const [reviews, setReviews] = React.useState([]);
@@ -64,41 +37,22 @@ export default function ReviewList() {
   let history = useHistory();
 
   React.useEffect(() => {
-    const updateHistory = async () => {
-      if (platform === "All Platforms" && sort === "Latest") {
-        history.push({
-          search: ``,
-        });
-      } else if (platform !== "All Platforms" && sort !== "Latest") {
-        history.push({
-          search: `?platform=${platform.toLowerCase()}&sort=${sort.toLowerCase()}`,
-        });
-      } else if (platform !== "All Platforms") {
-        history.push({
-          search: `?platform=${platform.toLowerCase()}`,
-        });
-      } else if (sort !== "Latest") {
-        history.push({
-          search: `?sort=${sort.toLowerCase()}`,
-        });
-      }
-    };
     const fetchData = async () => {
       let response = null;
       if (platform !== "All Platforms") {
         response = await listFilterDocuments(
           "review",
           platform,
-          sortList[sort]
+          reviewSort[sort]
         );
       } else {
-        response = await listDocuments("review", sortList[sort]);
+        response = await listDocuments("review", reviewSort[sort]);
       }
       if (response) {
         setReviews(response.results);
       }
     };
-    updateHistory();
+    updateHistory(history, platform, sort);
     fetchData();
   }, [platform, sort]);
 
@@ -115,9 +69,9 @@ export default function ReviewList() {
     });
   };
 
-  const createSortItems = () => {
+  const renderSortItems = () => {
     let sortItems = [];
-    Object.entries(sortList).forEach(([key, value]) => {
+    Object.entries(reviewSort).forEach(([key, value]) => {
       sortItems.push(
         <Hover>
           <Dropdown.Item className="text-info" eventKey={key}>
@@ -127,16 +81,6 @@ export default function ReviewList() {
       );
     });
     return sortItems;
-  };
-
-  const formatPlatform = (platform) => {
-    if (platform === "All Platforms") {
-      return "";
-    }
-    if (platform.endsWith("s")) {
-      return platform.slice(0, -1);
-    }
-    return platform;
   };
 
   return (
@@ -163,7 +107,7 @@ export default function ReviewList() {
           <Dropdown onSelect={setSort}>
             <Dropdown.Toggle variant="secondary">{sort}</Dropdown.Toggle>
             <Dropdown.Menu className="bg-dark">
-              {createSortItems()}
+              {renderSortItems()}
             </Dropdown.Menu>
           </Dropdown>
         </Col>

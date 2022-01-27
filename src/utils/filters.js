@@ -13,8 +13,8 @@ export const platformList = [
 export const reviewSort = {
   Latest: "[my.review.date desc]",
   Oldest: "[my.review.date]",
-  Best: "[my.review.score desc]",
-  Worst: "[my.review.score]",
+  "Highest Rated": "[my.review.score desc]",
+  "Lowest Rated": "[my.review.score]",
   "A-Z": "[my.review.game]",
   "Z-A": "[my.review.game desc]",
 };
@@ -40,21 +40,23 @@ export const formatParam = (param) => {
 };
 
 export const updateHistory = async (history, platform, sort) => {
-  if (platform === "All Platforms" && sort === "Latest") {
+  platform = platform.toLowerCase();
+  sort = sort.replace(" ", "-").toLowerCase();
+  if (platform === "all platforms" && sort === "latest") {
     history.push({
       search: ``,
     });
-  } else if (platform !== "All Platforms" && sort !== "Latest") {
+  } else if (platform !== "all platforms" && sort !== "latest") {
     history.push({
-      search: `?platform=${platform.toLowerCase()}&sort=${sort.toLowerCase()}`,
+      search: `?platform=${platform}&sort=${sort}`,
     });
-  } else if (platform !== "All Platforms") {
+  } else if (platform !== "all platforms") {
     history.push({
-      search: `?platform=${platform.toLowerCase()}`,
+      search: `?platform=${platform}`,
     });
-  } else if (sort !== "Latest") {
+  } else if (sort !== "latest") {
     history.push({
-      search: `?sort=${sort.toLowerCase()}`,
+      search: `?sort=${sort}`,
     });
   }
 };

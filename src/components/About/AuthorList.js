@@ -1,18 +1,15 @@
 import React from "react";
-import Prismic from "@prismicio/client";
 import { RichText } from "prismic-reactjs";
-import { client } from "../../prismic-configuration.js";
 import Row from "react-bootstrap/Row";
 import AuthorCard from "./AuthorCard.js";
+import { listAuthors } from "../../utils/queries";
 
 export default function AuthorList() {
   const [authors, setAuthors] = React.useState([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const response = await client.query(
-        Prismic.Predicates.at("document.type", "author")
-      );
+      const response = await listAuthors();
       if (response) {
         setAuthors(response.results);
       }

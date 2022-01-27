@@ -1,24 +1,17 @@
 import React from "react";
-import Prismic from "@prismicio/client";
 import { RichText, Date } from "prismic-reactjs";
-import { client } from "../../../prismic-configuration.js";
 import Row from "react-bootstrap/Row";
 import ContentTile from "../../ContentTile.js";
 import DateFormat from "../../DateFormat.js";
+import { listAuthorDocuments } from "../../../utils/queries";
 
 export default function AuthorContent(props) {
   const [docs, setDocs] = React.useState([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const articles = await client.query([
-        Prismic.Predicates.at("document.type", "article"),
-        Prismic.Predicates.at("my.article.author", `${props.id}`),
-      ]);
-      const reviews = await client.query([
-        Prismic.Predicates.at("document.type", "review"),
-        Prismic.Predicates.at("my.review.author", `${props.id}`),
-      ]);
+      const articles = await listAuthorDocuments("article", props.id);
+      const reviews = await listAuthorDocuments("review", props.id);
       if (articles && reviews) {
         const response = articles.results
           .concat(reviews.results)

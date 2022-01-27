@@ -1,14 +1,13 @@
 import React from "react";
-import Prismic from "@prismicio/client";
-import { client } from "../../prismic-configuration.js";
 import ContentRow from "../ContentRow.js";
-import { RichText, Date } from "prismic-reactjs";
 import DateFormat from "../DateFormat.js";
 import Dropdown from "react-bootstrap/Dropdown";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styled from "styled-components";
 import { useLocation, useHistory } from "react-router-dom";
+import { listDocuments, listFilterDocuments } from "../../utils/queries";
+import { RichText, Date } from "prismic-reactjs";
 
 const Hover = styled.section`
   .dropdown-item:hover,
@@ -87,19 +86,13 @@ export default function ReviewList() {
     const fetchData = async () => {
       let response = null;
       if (platform !== "All Platforms") {
-        response = await client.query(
-          [
-            Prismic.Predicates.at("document.type", "review"),
-            Prismic.Predicates.at("my.review.platforms.platform", platform),
-          ],
-          { fetchLinks: "author.name", orderings: sortList[sort] }
+        response = await listFilterDocuments(
+          "review",
+          platform,
+          sortList[sort]
         );
       } else {
-        response = await client.query(
-          Prismic.Predicates.at("document.type", "review"),
-
-          { fetchLinks: "author.name", orderings: sortList[sort] }
-        );
+        response = await listDocuments("review", sortList[sort]);
       }
       if (response) {
         setReviews(response.results);

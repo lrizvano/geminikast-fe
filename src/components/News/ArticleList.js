@@ -1,6 +1,4 @@
 import React from "react";
-import Prismic from "@prismicio/client";
-import { client } from "../../prismic-configuration.js";
 import ContentRow from "../ContentRow.js";
 import { RichText, Date } from "prismic-reactjs";
 import DateFormat from "../DateFormat.js";
@@ -9,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styled from "styled-components";
 import { useLocation, useHistory } from "react-router-dom";
+import { listDocuments, listFilterDocuments } from "../../utils/queries";
 
 const Hover = styled.section`
   .dropdown-item:hover,
@@ -85,19 +84,13 @@ export default function ArticleList() {
     const fetchData = async () => {
       let response = null;
       if (platform !== "All Platforms") {
-        response = await client.query(
-          [
-            Prismic.Predicates.at("document.type", "article"),
-            Prismic.Predicates.at("my.article.platforms.platform", platform),
-          ],
-          { fetchLinks: "author.name", orderings: sortList[sort] }
+        response = await listFilterDocuments(
+          "article",
+          platform,
+          sortList[sort]
         );
       } else {
-        response = await client.query(
-          Prismic.Predicates.at("document.type", "article"),
-
-          { fetchLinks: "author.name", orderings: sortList[sort] }
-        );
+        response = await listDocuments("article", sortList[sort]);
       }
       if (response) {
         setArticles(response.results);

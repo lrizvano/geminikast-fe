@@ -1,19 +1,15 @@
 import React from "react";
-import Prismic from "@prismicio/client";
 import { RichText } from "prismic-reactjs";
-import { client } from "../../../prismic-configuration.js";
 import AuthorCover from "./AuthorCover.js";
 import AuthorContent from "./AuthorContent.js";
+import { viewAuthor } from "../../../utils/queries";
 
 export default function AuthorView(props) {
   const [author, setAuthor] = React.useState(null);
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const response = await client.query(
-        Prismic.Predicates.at("my.author.uid", `${props.match.params.uid}`),
-        { lang: "*" }
-      );
+      const response = await viewAuthor(props.match.params.uid);
       if (response) {
         setAuthor(response.results[0]);
       }

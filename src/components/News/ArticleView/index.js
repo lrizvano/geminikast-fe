@@ -1,20 +1,16 @@
 import React from "react";
-import Prismic from "@prismicio/client";
 import { RichText, Date } from "prismic-reactjs";
-import { client } from "../../../prismic-configuration.js";
 import ContentCover from "../../ContentCover.js";
 import ArticleBody from "./ArticleBody.js";
 import ContentAuthor from "../../ContentAuthor.js";
+import { viewDocument } from "../../../utils/queries";
 
 export default function ArticleView(props) {
   const [article, setArticle] = React.useState(null);
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const response = await client.query(
-        Prismic.Predicates.at("my.article.uid", `${props.match.params.uid}`),
-        { fetchLinks: "author.name" }
-      );
+      const response = await viewDocument("article", props.match.params.uid);
       if (response) {
         setArticle(response.results[0]);
       }

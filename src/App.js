@@ -1,6 +1,6 @@
 import "./App.scss";
 import React from "react";
-import Header from "./components/Header.js";
+import Header from "./components/common/Header.js";
 import Home from "./components/Home";
 import News from "./components/News";
 import ArticleView from "./components/News/ArticleView";
@@ -9,8 +9,8 @@ import ReviewView from "./components/Reviews/ReviewView";
 import About from "./components/About";
 import AuthorView from "./components/About/AuthorView";
 import Error404 from "./components/Error404";
-import Footer from "./components/Footer.js";
-import Layout from "./components/Layout.js";
+import Footer from "./components/common/Footer.js";
+import Layout from "./components/common/Layout.js";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 

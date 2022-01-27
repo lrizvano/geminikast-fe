@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../geminikast-logo.svg";
+import logo from "../../geminikast-logo.svg";
 import Navbar from "react-bootstrap/Navbar";
 
 export default function Brand(props) {

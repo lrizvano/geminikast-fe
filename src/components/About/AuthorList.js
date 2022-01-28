@@ -1,8 +1,8 @@
 import React from "react";
-import { RichText } from "prismic-reactjs";
 import Row from "react-bootstrap/Row";
 import AuthorCard from "./AuthorCard.js";
 import { listAuthors } from "../../utils/queries";
+import { formatAuthorData } from "../../utils/formatters";
 
 export default function AuthorList() {
   const [authors, setAuthors] = React.useState([]);
@@ -17,18 +17,8 @@ export default function AuthorList() {
     fetchData();
   }, []);
 
-  const renderAuthors = () => {
-    return authors.map((author) => {
-      const authorCardData = {
-        uid: author.uid,
-        image: author.data.image.url,
-        name: RichText.asText(author.data.name),
-        role: RichText.asText(author.data.role),
-      };
-
-      return <AuthorCard {...authorCardData} />;
-    });
-  };
+  const renderAuthors = () =>
+    authors.map((author) => <AuthorCard {...formatAuthorData(author)} />);
 
   return (
     <>

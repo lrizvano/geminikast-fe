@@ -1,12 +1,11 @@
 import React from "react";
 import ContentRow from "./ContentRow.js";
-import { formatDate } from "../utils/utils.js";
+import { formatRowData } from "../utils/formatters.js";
 import Dropdown from "react-bootstrap/Dropdown";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useLocation, useHistory } from "react-router-dom";
 import { listDocuments, listFilteredDocuments } from "../utils/queries";
-import { RichText, Date } from "prismic-reactjs";
 import { platformList, sortList, updateHistory } from "../utils/filters.js";
 import DropdownHover from "./styled/DropdownHover.js";
 
@@ -46,21 +45,12 @@ export default function ContentList(props) {
     fetchData();
   }, [history, platformKey, sortKey, props.type]);
 
-  const renderDocuments = () => {
-    return documents.map((doc) => {
-      const contentRowData = {
-        link: `${props.type === "review" ? "reviews" : "news"}/${doc.uid}`,
-        image: doc.data.image.url,
-        title:
-          props.type === "review"
-            ? RichText.asText(doc.data.game)
-            : RichText.asText(doc.data.headline),
-        author: RichText.asText(doc.data.author.data.name),
-        date: formatDate(Date(doc.data.date)),
-      };
-      return <ContentRow {...contentRowData} />;
-    });
-  };
+  const renderDocuments = () =>
+    documents.length === 0 ? (
+      <p>No results found.</p>
+    ) : (
+      documents.map((doc) => <ContentRow {...formatRowData(doc)} />)
+    );
 
   const renderDropdownItems = (filter) => {
     let dropdownItems = [];
@@ -111,8 +101,7 @@ export default function ContentList(props) {
         {renderDropdown("platform")}
         {renderDropdown("sort")}
       </Row>
-
-      {documents.length === 0 ? <p>No results found.</p> : renderDocuments()}
+      {renderDocuments()}
     </>
   );
 }

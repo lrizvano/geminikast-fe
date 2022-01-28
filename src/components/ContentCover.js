@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
-import { formatDate } from "../utils/utils.js";
+import { formatDate } from "../utils/formatters.js";
 
 export default function ContentCover(props) {
   return (

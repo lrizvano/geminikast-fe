@@ -1,8 +1,8 @@
 import React from "react";
-import { RichText } from "prismic-reactjs";
 import AuthorCover from "./AuthorCover.js";
 import AuthorContent from "./AuthorContent.js";
 import { viewAuthor } from "../../../utils/queries";
+import { formatAuthorCover } from "../../../utils/formatters";
 
 export default function AuthorView(props) {
   const [author, setAuthor] = React.useState(null);
@@ -19,20 +19,13 @@ export default function AuthorView(props) {
 
   const renderAuthor = () => {
     if (author) {
-      const authorCoverData = {
-        image: author.data.image.url,
-        name: RichText.asText(author.data.name),
-        role: RichText.asText(author.data.role),
-        bio: author.data.bio,
-      };
-
       const authorContentData = {
         id: author.id,
       };
 
       return (
         <>
-          <AuthorCover {...authorCoverData} />
+          <AuthorCover {...formatAuthorCover(author)} />
           <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
           <AuthorContent {...authorContentData} />
         </>

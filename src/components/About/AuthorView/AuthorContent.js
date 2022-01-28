@@ -1,9 +1,8 @@
 import React from "react";
-import { RichText, Date } from "prismic-reactjs";
 import Row from "react-bootstrap/Row";
 import ContentTile from "../../ContentTile.js";
-import { formatDate } from "../../../utils/utils.js";
 import { listAuthorDocuments } from "../../../utils/queries";
+import { formatTileData } from "../../../utils/formatters.js";
 
 export default function AuthorContent(props) {
   const [docs, setDocs] = React.useState([]);
@@ -22,21 +21,8 @@ export default function AuthorContent(props) {
     fetchData();
   }, [props.id]);
 
-  const renderDocs = () => {
-    return docs.map((doc) => {
-      const contentTileData = {
-        link:
-          doc.type === "article" ? `/news/${doc.uid}` : `/reviews/${doc.uid}`,
-        image: doc.data.image.url,
-        title:
-          doc.type === "article"
-            ? RichText.asText(doc.data.headline)
-            : RichText.asText(doc.data.game),
-        text: formatDate(Date(doc.data.date)),
-      };
-      return <ContentTile {...contentTileData} />;
-    });
-  };
+  const renderDocs = () =>
+    docs.map((doc) => <ContentTile {...formatTileData(doc)} />);
 
   return (
     <>

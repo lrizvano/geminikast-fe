@@ -20,21 +20,13 @@ export default function ArticleView(props) {
 
   const renderArticle = () => {
     if (article) {
-      const articleBodyData = {
-        body: article.data.body,
-      };
-
-      const contentAuthorData = {
-        uid: article.data.author.uid,
-      };
-
       return (
         <>
           <ContentCover {...formatDocumentCover(article)} />
           <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
-          <ArticleBody {...articleBodyData} />
+          <ArticleBody {...article.data} />
           <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
-          <ContentAuthor {...contentAuthorData} />
+          <ContentAuthor {...article.data.author} />
           <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
         </>
       );

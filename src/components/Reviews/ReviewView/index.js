@@ -23,17 +23,13 @@ export default function ReviewView(props) {
 
   const renderReview = () => {
     if (review) {
-      const contentAuthorData = {
-        uid: review.data.author.uid,
-      };
-
       return (
         <>
           <ContentCover {...formatDocumentCover(review)} />
           <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
           <ReviewBody {...formatReviewBody(review)} />
           <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
-          <ContentAuthor {...contentAuthorData} />
+          <ContentAuthor {...review.data.author} />
           <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
         </>
       );

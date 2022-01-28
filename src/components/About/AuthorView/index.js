@@ -19,15 +19,11 @@ export default function AuthorView(props) {
 
   const renderAuthor = () => {
     if (author) {
-      const authorContentData = {
-        id: author.id,
-      };
-
       return (
         <>
           <AuthorCover {...formatAuthorCover(author)} />
           <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
-          <AuthorContent {...authorContentData} />
+          <AuthorContent {...author} />
         </>
       );
     }

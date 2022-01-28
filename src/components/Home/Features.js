@@ -16,7 +16,7 @@ export default function Features(props) {
     return props.features.map((doc) => {
       const contentTileData = {
         link: doc.type === "article" ? `news/${doc.uid}` : `reviews/${doc.uid}`,
-        image: doc.data.image.url || doc.data.image.url,
+        image: doc.data.image.url,
         title:
           doc.type === "article"
             ? RichText.asText(doc.data.headline)

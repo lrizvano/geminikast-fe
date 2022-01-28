@@ -59,14 +59,10 @@ export const sortList = {
 
 export const updateHistory = async (history, platform, sort, type) => {
   const queryUrl = new URL("uri:/");
-  if (
-    platform !== Object.keys(platformList)[0] ||
-    !platform ||
-    platform.length === 0
-  ) {
+  if (platform !== Object.keys(platformList)[0]) {
     queryUrl.searchParams.append("platform", platform);
   }
-  if (sort !== Object.keys(sortList[type])[0] || !sort || sort.length === 0) {
+  if (sort !== Object.keys(sortList[type])[0]) {
     queryUrl.searchParams.append("sort", sort);
   }
   history.push({

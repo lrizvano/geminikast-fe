@@ -62,32 +62,20 @@ export default function ContentList(props) {
     });
   };
 
-  const renderPlatformItems = () => {
-    let platformItems = [];
-    Object.entries(platformList).forEach(([key, value]) => {
-      platformItems.push(
+  const renderDropdownItems = (filter) => {
+    let dropdownItems = [];
+    Object.entries(
+      filter === "platform" ? platformList : sortList[props.type]
+    ).forEach(([key, value]) => {
+      dropdownItems.push(
         <DropdownHover>
           <Dropdown.Item className="text-info" eventKey={key}>
-            {value}
+            {filter === "platform" ? value : value.title}
           </Dropdown.Item>
         </DropdownHover>
       );
     });
-    return platformItems;
-  };
-
-  const renderSortItems = () => {
-    let sortItems = [];
-    Object.entries(sortList[props.type]).forEach(([key, value]) => {
-      sortItems.push(
-        <DropdownHover>
-          <Dropdown.Item className="text-info" eventKey={key}>
-            {value.title}
-          </Dropdown.Item>
-        </DropdownHover>
-      );
-    });
-    return sortItems;
+    return dropdownItems;
   };
 
   return (
@@ -107,7 +95,7 @@ export default function ContentList(props) {
               {platformList[platformKey]}
             </Dropdown.Toggle>
             <Dropdown.Menu className="bg-dark">
-              {renderPlatformItems()}
+              {renderDropdownItems("platform")}
             </Dropdown.Menu>
           </Dropdown>
         </Col>
@@ -117,7 +105,7 @@ export default function ContentList(props) {
               {sortList[props.type][sortKey].title}
             </Dropdown.Toggle>
             <Dropdown.Menu className="bg-dark">
-              {renderSortItems()}
+              {renderDropdownItems("sort")}
             </Dropdown.Menu>
           </Dropdown>
         </Col>

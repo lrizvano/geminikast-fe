@@ -78,6 +78,25 @@ export default function ContentList(props) {
     return dropdownItems;
   };
 
+  const renderDropdown = (filter) => {
+    return (
+      <Col xs="auto">
+        <Dropdown
+          onSelect={filter === "platform" ? setPlatformKey : setSortKey}
+        >
+          <Dropdown.Toggle variant="secondary">
+            {filter === "platform"
+              ? platformList[platformKey]
+              : sortList[props.type][sortKey].title}
+          </Dropdown.Toggle>
+          <Dropdown.Menu className="bg-dark">
+            {renderDropdownItems(filter)}
+          </Dropdown.Menu>
+        </Dropdown>
+      </Col>
+    );
+  };
+
   return (
     <>
       <h1 className="mt-5 mb-3 text-primary">
@@ -89,26 +108,8 @@ export default function ContentList(props) {
         {props.type === "review" ? "Reviews" : "News"}
       </h1>
       <Row className="mb-3">
-        <Col xs="auto">
-          <Dropdown onSelect={setPlatformKey}>
-            <Dropdown.Toggle variant="secondary">
-              {platformList[platformKey]}
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="bg-dark">
-              {renderDropdownItems("platform")}
-            </Dropdown.Menu>
-          </Dropdown>
-        </Col>
-        <Col xs="auto">
-          <Dropdown onSelect={setSortKey}>
-            <Dropdown.Toggle variant="secondary">
-              {sortList[props.type][sortKey].title}
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="bg-dark">
-              {renderDropdownItems("sort")}
-            </Dropdown.Menu>
-          </Dropdown>
-        </Col>
+        {renderDropdown("platform")}
+        {renderDropdown("sort")}
       </Row>
 
       {documents.length === 0 ? <p>No results found.</p> : renderDocuments()}

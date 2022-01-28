@@ -7,12 +7,7 @@ import Col from "react-bootstrap/Col";
 import { useLocation, useHistory } from "react-router-dom";
 import { listDocuments, listFilteredDocuments } from "../utils/queries";
 import { RichText, Date } from "prismic-reactjs";
-import {
-  platformList,
-  reviewSort,
-  articleSort,
-  updateHistory,
-} from "../utils/filters.js";
+import { platformList, sortList, updateHistory } from "../utils/filters.js";
 import DropdownHover from "./styled/DropdownHover.js";
 
 export default function ContentList(props) {
@@ -24,9 +19,7 @@ export default function ContentList(props) {
     platformParam || Object.keys(platformList)[0]
   );
   const [sortKey, setSortKey] = React.useState(
-    sortParam || props.type === "review"
-      ? Object.keys(reviewSort)[0]
-      : Object.keys(articleSort)[0]
+    sortParam || Object.keys(sortList[props.type])[0]
   );
   let history = useHistory();
 
@@ -37,25 +30,21 @@ export default function ContentList(props) {
         response = await listFilteredDocuments(
           props.type,
           platformKey,
-          props.type === "review"
-            ? reviewSort[sortKey].query
-            : articleSort[sortKey].query
+          sortList[props.type][sortKey].query
         );
       } else {
         response = await listDocuments(
           props.type,
-          props.type === "review"
-            ? reviewSort[sortKey].query
-            : articleSort[sortKey].query
+          sortList[props.type][sortKey].query
         );
       }
       if (response) {
         setDocuments(response.results);
       }
     };
-    updateHistory(history, platformKey, sortKey);
+    updateHistory(history, platformKey, sortKey, props.type);
     fetchData();
-  }, [history, platformKey, sortKey]);
+  }, [history, platformKey, sortKey, props.type]);
 
   const renderDocuments = () => {
     return documents.map((doc) => {
@@ -89,26 +78,23 @@ export default function ContentList(props) {
 
   const renderSortItems = () => {
     let sortItems = [];
-    Object.entries(props.type === "review" ? reviewSort : articleSort).forEach(
-      ([key, value]) => {
-        sortItems.push(
-          <DropdownHover>
-            <Dropdown.Item className="text-info" eventKey={key}>
-              {value.title}
-            </Dropdown.Item>
-          </DropdownHover>
-        );
-      }
-    );
+    Object.entries(sortList[props.type]).forEach(([key, value]) => {
+      sortItems.push(
+        <DropdownHover>
+          <Dropdown.Item className="text-info" eventKey={key}>
+            {value.title}
+          </Dropdown.Item>
+        </DropdownHover>
+      );
+    });
     return sortItems;
   };
 
   return (
     <>
       <h1 className="mt-5 mb-3 text-primary">
-        {`${reviewSort[sortKey].title} ${
-          platformList[platformKey] ===
-          platformList[Object.keys(platformList)[0]]
+        {`${sortList[props.type][sortKey].title} ${
+          platformKey === Object.keys(platformList)[0]
             ? ""
             : platformList[platformKey]
         }`}{" "}
@@ -128,7 +114,7 @@ export default function ContentList(props) {
         <Col xs="auto">
           <Dropdown onSelect={setSortKey}>
             <Dropdown.Toggle variant="secondary">
-              {reviewSort[sortKey].title}
+              {sortList[props.type][sortKey].title}
             </Dropdown.Toggle>
             <Dropdown.Menu className="bg-dark">
               {renderSortItems()}

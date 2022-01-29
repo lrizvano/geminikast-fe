@@ -5,7 +5,11 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useLocation, useHistory } from "react-router-dom";
-import { listDocuments, listFilteredDocuments } from "../../utils/queries";
+import {
+  documentTypes,
+  listDocuments,
+  listFilteredDocuments,
+} from "../../utils/queries";
 import { platformList, sortList, updateHistory } from "../../utils/filters.js";
 import DropdownHover from "../styled/DropdownHover.js";
 
@@ -95,7 +99,7 @@ export default function DocumentList(props) {
             ? ""
             : platformList[platformKey]
         }`}{" "}
-        {props.type === "review" ? "Reviews" : "News"}
+        {documentTypes[props.type].name}
       </h1>
       <Row className="mb-3">
         {renderDropdown("platform")}

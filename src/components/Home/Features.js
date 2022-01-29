@@ -3,8 +3,8 @@ import ContentTile from "../templates/TileItem.js";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import styled from "styled-components";
-import { formatTileData, documentTypes } from "../../utils/formatters.js";
-import { featureDocuments } from "../../utils/queries";
+import { formatTileData } from "../../utils/formatters.js";
+import { documentTypes, featureDocuments } from "../../utils/queries";
 
 const Wrapper = styled.section`
   display: flex;
@@ -30,7 +30,7 @@ export default function Features(props) {
   return (
     <>
       <h3 className="text-primary mb-3">
-        {props.page === "news" ? "Recent News" : "Featured Reviews"}
+        Latest {documentTypes[props.type].name}
       </h3>
       <Row>{renderFeatures()}</Row>
       <Wrapper>
@@ -39,7 +39,7 @@ export default function Features(props) {
           variant="secondary"
           href={documentTypes[props.type].link}
         >
-          {`See All ${documentTypes[props.type].title}`}
+          {`See All ${documentTypes[props.type].name}`}
         </Button>
       </Wrapper>
     </>

@@ -1,6 +1,19 @@
 import Prismic from "@prismicio/client";
 import { client } from "../prismic-configuration.js";
 
+export const documentTypes = {
+  article: {
+    name: "News",
+    link: "/news",
+    title: "headline",
+  },
+  review: {
+    name: "Reviews",
+    link: "/reviews",
+    title: "game",
+  },
+};
+
 //used on home page
 export const featureDocuments = (type) =>
   client.query(Prismic.Predicates.at("document.type", type), {

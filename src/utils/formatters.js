@@ -1,15 +1,5 @@
 import { RichText, Date } from "prismic-reactjs";
-
-export const documentTypes = {
-  article: {
-    title: "News",
-    link: "/news",
-  },
-  review: {
-    title: "Reviews",
-    link: "/reviews",
-  },
-};
+import { documentTypes } from "./queries";
 
 export const formatDate = (date) => {
   return new Intl.DateTimeFormat("en-US", {
@@ -22,11 +12,9 @@ export const formatDate = (date) => {
 //used in home and author pages
 export const formatTileData = (doc) => {
   return {
-    link: `/${doc.type === "article" ? "new" : doc.type}s/${doc.uid}`,
+    link: `${documentTypes[doc.type].link}/${doc.uid}`,
     image: doc.data.image.url,
-    title: RichText.asText(
-      doc.type === "article" ? doc.data.headline : doc.data.game
-    ),
+    title: RichText.asText(doc.data[documentTypes[doc.type].title]),
     text: formatDate(Date(doc.data.date)),
   };
 };
@@ -34,11 +22,9 @@ export const formatTileData = (doc) => {
 //used in article and news list
 export const formatRowData = (doc) => {
   return {
-    link: `/${doc.type === "article" ? "new" : doc.type}s/${doc.uid}`,
+    link: `${documentTypes[doc.type].link}/${doc.uid}`,
     image: doc.data.image.url,
-    title: RichText.asText(
-      doc.type === "review" ? doc.data.game : doc.data.headline
-    ),
+    title: RichText.asText(doc.data[documentTypes[doc.type].title]),
     author: RichText.asText(doc.data.author.data.name),
     date: formatDate(Date(doc.data.date)),
   };
@@ -55,16 +41,13 @@ export const formatAuthorData = (author) => {
 };
 
 //used in article and review view
-export const formatContentCover = (document) => {
+export const formatContentCover = (doc) => {
   return {
-    image: document.data.image.url,
-    title: RichText.asText(
-      document.type === "article" ? document.data.headline : document.data.game
-    ),
-
-    uid: document.data.author.uid,
-    name: RichText.asText(document.data.author.data.name),
-    date: Date(document.data.date),
+    image: doc.data.image.url,
+    title: RichText.asText(doc.data[documentTypes[doc.type].title]),
+    uid: doc.data.author.uid,
+    name: RichText.asText(doc.data.author.data.name),
+    date: Date(doc.data.date),
   };
 };
 

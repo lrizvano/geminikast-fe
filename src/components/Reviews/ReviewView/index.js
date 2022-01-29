@@ -1,7 +1,7 @@
 import React from "react";
-import ContentCover from "../../ContentCover.js";
+import ContentCover from "../../templates/ContentHeader.js";
 import ReviewBody from "./ReviewBody.js";
-import ContentAuthor from "../../ContentAuthor.js";
+import ContentAuthor from "../../templates/ContentFooter.js";
 import { viewDocument } from "../../../utils/queries";
 import {
   formatDocumentCover,

@@ -1,9 +1,9 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-import CardHover from "./styled/CardHover";
+import CardHover from "../styled/CardHover";
 
-export default function ContentTile(props) {
+export default function TileItem(props) {
   return (
     <Col xs="6" md="4">
       <CardHover>

@@ -1,6 +1,6 @@
 import React from "react";
 import Row from "react-bootstrap/Row";
-import ContentTile from "../../ContentTile.js";
+import ContentTile from "../../templates/TileItem.js";
 import { listAuthorDocuments } from "../../../utils/queries";
 import { formatTileData } from "../../../utils/formatters.js";
 

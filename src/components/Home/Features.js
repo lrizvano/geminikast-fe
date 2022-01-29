@@ -1,5 +1,5 @@
 import React from "react";
-import ContentTile from "../ContentTile.js";
+import ContentTile from "../templates/TileItem.js";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import styled from "styled-components";

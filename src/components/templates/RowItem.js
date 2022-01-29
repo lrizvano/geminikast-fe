@@ -2,7 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import CardHover from "./styled/CardHover";
+import CardHover from "../styled/CardHover";
 import styled from "styled-components";
 
 const Padding = styled.section`
@@ -14,7 +14,7 @@ const Padding = styled.section`
   }
 `;
 
-export default function ContentRow(props) {
+export default function RowItem(props) {
   return (
     <CardHover>
       <Card className="mb-3">

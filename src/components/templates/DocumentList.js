@@ -1,15 +1,15 @@
 import React from "react";
-import ContentRow from "./ContentRow.js";
-import { formatRowData } from "../utils/formatters.js";
+import ContentRow from "./RowItem.js";
+import { formatRowData } from "../../utils/formatters.js";
 import Dropdown from "react-bootstrap/Dropdown";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useLocation, useHistory } from "react-router-dom";
-import { listDocuments, listFilteredDocuments } from "../utils/queries";
-import { platformList, sortList, updateHistory } from "../utils/filters.js";
-import DropdownHover from "./styled/DropdownHover.js";
+import { listDocuments, listFilteredDocuments } from "../../utils/queries";
+import { platformList, sortList, updateHistory } from "../../utils/filters.js";
+import DropdownHover from "../styled/DropdownHover.js";
 
-export default function ContentList(props) {
+export default function DocumentList(props) {
   const [documents, setDocuments] = React.useState([]);
   const search = useLocation().search;
   const platformParam = new URLSearchParams(search).get("platform");

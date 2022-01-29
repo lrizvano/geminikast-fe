@@ -1,5 +1,5 @@
 import React from "react";
-import ContentList from "../ContentList.js";
+import ContentList from "../templates/DocumentList.js";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
 export default function News() {

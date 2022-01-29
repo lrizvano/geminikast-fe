@@ -1,7 +1,7 @@
 import React from "react";
-import ContentCover from "../../ContentCover.js";
+import ContentCover from "../../templates/ContentHeader.js";
 import ArticleBody from "./ArticleBody.js";
-import ContentAuthor from "../../ContentAuthor.js";
+import ContentAuthor from "../../templates/ContentFooter.js";
 import { viewDocument } from "../../../utils/queries";
 import { formatDocumentCover } from "../../../utils/formatters";
 import Error404 from "../../Error404/index.js";

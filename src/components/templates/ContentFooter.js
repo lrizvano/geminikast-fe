@@ -1,12 +1,12 @@
 import React from "react";
 import { RichText } from "prismic-reactjs";
-import { client } from "../prismic-configuration.js";
+import { client } from "../../prismic-configuration.js";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { viewDocumentAuthor } from "../utils/queries";
+import { viewDocumentAuthor } from "../../utils/queries";
 
 const Wrapper = styled.section`
   display: flex;
@@ -14,7 +14,7 @@ const Wrapper = styled.section`
   justify-content: center;
 `;
 
-export default function ContentAuthor(props) {
+export default function ContentFooter(props) {
   const [author, setAuthor] = React.useState(null);
 
   React.useEffect(() => {

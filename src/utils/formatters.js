@@ -59,9 +59,7 @@ export const formatContentCover = (document) => {
   return {
     image: document.data.image.url,
     title: RichText.asText(
-      document.type === "article"
-        ? document.data.headline
-        : `${RichText.asText(document.data.game)} Review`
+      document.type === "article" ? document.data.headline : document.data.game
     ),
 
     uid: document.data.author.uid,

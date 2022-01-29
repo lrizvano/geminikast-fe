@@ -3,7 +3,8 @@ import ContentTile from "../templates/TileItem.js";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import styled from "styled-components";
-import { formatTileData, capitalizeWord } from "../../utils/formatters.js";
+import { formatTileData, documentTypes } from "../../utils/formatters.js";
+import { featureDocuments } from "../../utils/queries";
 
 const Wrapper = styled.section`
   display: flex;
@@ -11,8 +12,20 @@ const Wrapper = styled.section`
 `;
 
 export default function Features(props) {
+  const [documents, setDocuments] = React.useState([]);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const response = await featureDocuments(props.type);
+      if (response) {
+        setDocuments(response.results);
+      }
+    };
+    fetchData();
+  }, [props.type]);
+
   const renderFeatures = () =>
-    props.features.map((doc) => <ContentTile {...formatTileData(doc)} />);
+    documents.map((doc) => <ContentTile {...formatTileData(doc)} />);
 
   return (
     <>
@@ -24,9 +37,9 @@ export default function Features(props) {
         <Button
           className="align-content-center"
           variant="secondary"
-          href={`/${props.page}`}
+          href={documentTypes[props.type].link}
         >
-          {`See All ${capitalizeWord(props.page)}`}
+          {`See All ${documentTypes[props.type].title}`}
         </Button>
       </Wrapper>
     </>

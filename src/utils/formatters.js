@@ -1,5 +1,16 @@
 import { RichText, Date } from "prismic-reactjs";
 
+export const documentTypes = {
+  article: {
+    title: "News",
+    link: "/news",
+  },
+  review: {
+    title: "Reviews",
+    link: "/reviews",
+  },
+};
+
 export const formatDate = (date) => {
   return new Intl.DateTimeFormat("en-US", {
     year: "numeric",
@@ -7,8 +18,6 @@ export const formatDate = (date) => {
     day: "2-digit",
   }).format(date);
 };
-
-export const capitalizeWord = (word) => word[0].toUpperCase() + word.slice(1);
 
 //used in home and author pages
 export const formatTileData = (doc) => {

@@ -7,15 +7,19 @@ import {
   formatDocumentCover,
   formatReviewBody,
 } from "../../../utils/formatters";
+import Error404 from "../../Error404/index.js";
 
 export default function ReviewView(props) {
   const [review, setReview] = React.useState(null);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       const response = await viewDocument("review", props.match.params.uid);
       if (response) {
         setReview(response.results[0]);
+        setIsLoading(false);
       }
     };
     fetchData();
@@ -34,8 +38,12 @@ export default function ReviewView(props) {
         </>
       );
     }
-    return <></>;
+    return (
+      <>
+        <Error404></Error404>
+      </>
+    );
   };
 
-  return <>{renderReview()}</>;
+  return <>{!isLoading && renderReview()}</>;
 }

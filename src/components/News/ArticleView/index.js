@@ -4,15 +4,19 @@ import ArticleBody from "./ArticleBody.js";
 import ContentAuthor from "../../ContentAuthor.js";
 import { viewDocument } from "../../../utils/queries";
 import { formatDocumentCover } from "../../../utils/formatters";
+import Error404 from "../../Error404/index.js";
 
 export default function ArticleView(props) {
   const [article, setArticle] = React.useState(null);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       const response = await viewDocument("article", props.match.params.uid);
       if (response) {
         setArticle(response.results[0]);
+        setIsLoading(false);
       }
     };
     fetchData();
@@ -31,8 +35,12 @@ export default function ArticleView(props) {
         </>
       );
     }
-    return <></>;
+    return (
+      <>
+        <Error404></Error404>
+      </>
+    );
   };
 
-  return <>{renderArticle()}</>;
+  return <>{!isLoading && renderArticle()}</>;
 }

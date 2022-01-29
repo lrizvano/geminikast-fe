@@ -26,7 +26,7 @@ export default function AuthorContent(props) {
 
   return (
     <>
-      {docs > 0 && <h1 className="mt-3 text-primary">Content</h1>}
+      {docs.length > 0 && <h1 className="mt-3 text-primary">Content</h1>}
       <Row>{renderDocs()}</Row>
     </>
   );

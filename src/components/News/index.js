@@ -1,6 +1,7 @@
 import React from "react";
 import ContentList from "../templates/DocumentList.js";
 import Jumbotron from "react-bootstrap/Jumbotron";
+import Divider from "../common/Divider.js";
 
 export default function News() {
   return (
@@ -11,9 +12,9 @@ export default function News() {
           See what's new surrounding the video game and entertainment world!
         </h2>
       </Jumbotron>
-      <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
+      <Divider />
       <ContentList type="article" />
-      <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
+      <Divider />
     </>
   );
 }

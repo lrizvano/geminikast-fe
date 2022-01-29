@@ -1,6 +1,7 @@
 import React from "react";
 import ContentList from "../templates/DocumentList.js";
 import Jumbotron from "react-bootstrap/Jumbotron";
+import Divider from "../common/Divider.js";
 
 export default function Reviews() {
   return (
@@ -12,9 +13,9 @@ export default function Reviews() {
           movies, shows, and more!
         </h2>
       </Jumbotron>
-      <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
+      <Divider />
       <ContentList type="review" />
-      <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
+      <Divider />
     </>
   );
 }

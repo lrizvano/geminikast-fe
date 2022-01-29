@@ -2,6 +2,7 @@ import React from "react";
 import Podcast from "./Podcast.js";
 import Features from "./Features.js";
 import { featureDocuments } from "../../utils/queries";
+import Divider from "../common/Divider.js";
 
 export default function Home() {
   const [reviews, setReviews] = React.useState([]);
@@ -24,11 +25,11 @@ export default function Home() {
   return (
     <>
       <Podcast />
-      <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
+      <Divider />
       <Features page={"reviews"} features={reviews} />
-      <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
+      <Divider />
       <Features page={"news"} features={articles} />
-      <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
+      <Divider />
     </>
   );
 }

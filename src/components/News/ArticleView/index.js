@@ -5,6 +5,7 @@ import ContentAuthor from "../../templates/ContentFooter.js";
 import { viewDocument } from "../../../utils/queries";
 import { formatDocumentCover } from "../../../utils/formatters";
 import Error404 from "../../Error404/index.js";
+import Divider from "../../common/Divider.js";
 
 export default function ArticleView(props) {
   const [article, setArticle] = React.useState(null);
@@ -27,11 +28,11 @@ export default function ArticleView(props) {
       return (
         <>
           <ContentCover {...formatDocumentCover(article)} />
-          <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
+          <Divider />
           <ArticleBody {...article.data} />
-          <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
+          <Divider />
           <ContentAuthor {...article.data.author} />
-          <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
+          <Divider />
         </>
       );
     }

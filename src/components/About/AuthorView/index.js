@@ -4,6 +4,7 @@ import AuthorContent from "./AuthorContent.js";
 import { viewAuthor } from "../../../utils/queries";
 import { formatAuthorCover } from "../../../utils/formatters";
 import Error404 from "../../Error404/index.js";
+import Divider from "../../common/Divider.js";
 
 export default function AuthorView(props) {
   const [author, setAuthor] = React.useState(null);
@@ -26,7 +27,7 @@ export default function AuthorView(props) {
       return (
         <>
           <AuthorCover {...formatAuthorCover(author)} />
-          <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
+          <Divider />
           <AuthorContent {...author} />
         </>
       );

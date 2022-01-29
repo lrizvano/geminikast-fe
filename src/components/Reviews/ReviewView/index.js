@@ -8,6 +8,7 @@ import {
   formatReviewBody,
 } from "../../../utils/formatters";
 import Error404 from "../../Error404/index.js";
+import Divider from "../../common/Divider.js";
 
 export default function ReviewView(props) {
   const [review, setReview] = React.useState(null);
@@ -30,11 +31,11 @@ export default function ReviewView(props) {
       return (
         <>
           <ContentCover {...formatDocumentCover(review)} />
-          <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
+          <Divider />
           <ReviewBody {...formatReviewBody(review)} />
-          <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
+          <Divider />
           <ContentAuthor {...review.data.author} />
-          <hr className="bg-primary ml-3 mr-3 mt-5 mb-5" />
+          <Divider />
         </>
       );
     }

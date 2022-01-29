@@ -36,7 +36,9 @@ export const viewDocumentAuthor = (id) =>
 
 //used on about page
 export const listAuthors = () =>
-  client.query(Prismic.Predicates.at("document.type", "author"));
+  client.query(Prismic.Predicates.at("document.type", "author"), {
+    orderings: "[my.author.index]",
+  });
 
 //used on about/:uid pages
 export const viewAuthor = (uid) =>

@@ -39,10 +39,10 @@ export default function Footer() {
   return (
     <Wrapper>
       <Layout>
-        <Row className="justify-content-center">
+        <Row className="justify-content-center mb-3">
           <Brand />
         </Row>
-        <Row className="justify-content-center mt-3">{renderLinks()}</Row>
+        <Row className="justify-content-center">{renderLinks()}</Row>
       </Layout>
     </Wrapper>
   );

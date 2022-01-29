@@ -6,8 +6,8 @@ import { formatDate } from "../../utils/formatters.js";
 export default function ContentHeader(props) {
   return (
     <>
-      <Image className="mt-3" fluid src={props.image} />
-      <h1 className="mt-3 text-primary">{props.title}</h1>
+      <Image fluid src={props.image} className="mb-3" />
+      <h1 className="text-primary">{props.title}</h1>
       <Link replace to={`/author/${props.uid}`} className="text-white">
         {props.name}
       </Link>

@@ -3,7 +3,7 @@ import React from "react";
 export default function Podcast() {
   return (
     <>
-      <h3 className="text-primary mt-3 mb-3">Latest Episode</h3>
+      <h3 className="text-primary mb-3">Latest Episode</h3>
       <iframe
         title="podcast"
         src="https://open.spotify.com/embed-podcast/show/77QfKMGg067YXiJnb1Ic3q"

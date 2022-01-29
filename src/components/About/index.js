@@ -5,7 +5,7 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 export default function About() {
   return (
     <>
-      <Jumbotron className="mt-3 bg-secondary text-info">
+      <Jumbotron className="bg-secondary text-info">
         <h1 className="font-weight-bold">The Geminikast</h1>
         <h2>Meet our incredible staff!</h2>
       </Jumbotron>

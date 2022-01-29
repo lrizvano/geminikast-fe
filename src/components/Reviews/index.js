@@ -5,7 +5,7 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 export default function Reviews() {
   return (
     <>
-      <Jumbotron className="mt-3 bg-secondary text-info">
+      <Jumbotron className="bg-secondary text-info">
         <h1 className="font-weight-bold">The Geminikast's Reviews</h1>
         <h2>
           Check out all of our reviews and impressions of the latest games,

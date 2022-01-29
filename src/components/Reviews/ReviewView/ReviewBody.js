@@ -28,7 +28,7 @@ export default function ReviewBody(props) {
         render={props.body}
         htmlSerializer={client.htmlSerializer}
       ></RichText>
-      <Score className="mt-3">
+      <Score>
         <Card className="bg-secondary text-info p-3 mb-3 font-weight-bold">
           <Row>
             <Col lg={{ span: 11, offset: 1 }} xs={{ span: 10, offset: 2 }}>

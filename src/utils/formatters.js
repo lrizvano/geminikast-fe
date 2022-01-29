@@ -8,10 +8,12 @@ export const formatDate = (date) => {
   }).format(date);
 };
 
+export const capitalizeWord = (word) => word[0].toUpperCase() + word.slice(1);
+
 //used in home and author pages
 export const formatTileData = (doc) => {
   return {
-    link: `/${doc.type === "review" ? "reviews" : "news"}/${doc.uid}`,
+    link: `/${doc.type === "article" ? "new" : doc.type}s/${doc.uid}`,
     image: doc.data.image.url,
     title: RichText.asText(
       doc.type === "article" ? doc.data.headline : doc.data.game
@@ -23,7 +25,7 @@ export const formatTileData = (doc) => {
 //used in article and news list
 export const formatRowData = (doc) => {
   return {
-    link: `/${doc.type === "review" ? "reviews" : "news"}/${doc.uid}`,
+    link: `/${doc.type === "article" ? "new" : doc.type}s/${doc.uid}`,
     image: doc.data.image.url,
     title: RichText.asText(
       doc.type === "review" ? doc.data.game : doc.data.headline
@@ -44,13 +46,15 @@ export const formatAuthorData = (author) => {
 };
 
 //used in article and review view
-export const formatDocumentCover = (document) => {
+export const formatContentCover = (document) => {
   return {
     image: document.data.image.url,
-    title:
+    title: RichText.asText(
       document.type === "article"
-        ? RichText.asText(document.data.headline)
-        : `${RichText.asText(document.data.game)} Review`,
+        ? document.data.headline
+        : `${RichText.asText(document.data.game)} Review`
+    ),
+
     uid: document.data.author.uid,
     name: RichText.asText(document.data.author.data.name),
     date: Date(document.data.date),

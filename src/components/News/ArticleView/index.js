@@ -3,7 +3,7 @@ import ContentCover from "../../templates/ContentHeader.js";
 import ArticleBody from "./ArticleBody.js";
 import ContentAuthor from "../../templates/ContentFooter.js";
 import { viewDocument } from "../../../utils/queries";
-import { formatDocumentCover } from "../../../utils/formatters";
+import { formatContentCover } from "../../../utils/formatters";
 import Error404 from "../../Error404/index.js";
 import Divider from "../../common/Divider.js";
 
@@ -27,7 +27,7 @@ export default function ArticleView(props) {
     if (article) {
       return (
         <>
-          <ContentCover {...formatDocumentCover(article)} />
+          <ContentCover {...formatContentCover(article)} />
           <Divider />
           <ArticleBody {...article.data} />
           <Divider />

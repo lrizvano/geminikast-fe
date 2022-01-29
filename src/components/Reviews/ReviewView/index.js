@@ -4,7 +4,7 @@ import ReviewBody from "./ReviewBody.js";
 import ContentAuthor from "../../templates/ContentFooter.js";
 import { viewDocument } from "../../../utils/queries";
 import {
-  formatDocumentCover,
+  formatContentCover,
   formatReviewBody,
 } from "../../../utils/formatters";
 import Error404 from "../../Error404/index.js";
@@ -30,7 +30,7 @@ export default function ReviewView(props) {
     if (review) {
       return (
         <>
-          <ContentCover {...formatDocumentCover(review)} />
+          <ContentCover {...formatContentCover(review)} />
           <Divider />
           <ReviewBody {...formatReviewBody(review)} />
           <Divider />

@@ -3,7 +3,7 @@ import ContentTile from "../templates/TileItem.js";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import styled from "styled-components";
-import { formatTileData } from "../../utils/formatters.js";
+import { formatTileData, capitalizeWord } from "../../utils/formatters.js";
 
 const Wrapper = styled.section`
   display: flex;
@@ -24,9 +24,9 @@ export default function Features(props) {
         <Button
           className="align-content-center"
           variant="secondary"
-          href={`/${props.page === "news" ? "news" : "reviews"}`}
+          href={`/${props.page}`}
         >
-          {`See All ${props.page === "news" ? "News" : "Reviews"}`}
+          {`See All ${capitalizeWord(props.page)}`}
         </Button>
       </Wrapper>
     </>

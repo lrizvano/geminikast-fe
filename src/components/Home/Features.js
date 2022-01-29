@@ -24,7 +24,7 @@ export default function Features(props) {
         <Button
           className="align-content-center"
           variant="secondary"
-          href={`${props.page === "news" ? "/news" : "/reviews"}`}
+          href={`/${props.page === "news" ? "news" : "reviews"}`}
         >
           {`See All ${props.page === "news" ? "News" : "Reviews"}`}
         </Button>

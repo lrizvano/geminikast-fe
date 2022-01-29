@@ -11,12 +11,11 @@ export const formatDate = (date) => {
 //used in home and author pages
 export const formatTileData = (doc) => {
   return {
-    link: doc.type === "article" ? `news/${doc.uid}` : `reviews/${doc.uid}`,
+    link: `/${doc.type === "review" ? "reviews" : "news"}/${doc.uid}`,
     image: doc.data.image.url,
-    title:
-      doc.type === "article"
-        ? RichText.asText(doc.data.headline)
-        : RichText.asText(doc.data.game),
+    title: RichText.asText(
+      doc.type === "article" ? doc.data.headline : doc.data.game
+    ),
     text: formatDate(Date(doc.data.date)),
   };
 };
@@ -24,12 +23,11 @@ export const formatTileData = (doc) => {
 //used in article and news list
 export const formatRowData = (doc) => {
   return {
-    link: `${doc.type === "review" ? "reviews" : "news"}/${doc.uid}`,
+    link: `/${doc.type === "review" ? "reviews" : "news"}/${doc.uid}`,
     image: doc.data.image.url,
-    title:
-      doc.type === "review"
-        ? RichText.asText(doc.data.game)
-        : RichText.asText(doc.data.headline),
+    title: RichText.asText(
+      doc.type === "review" ? doc.data.game : doc.data.headline
+    ),
     author: RichText.asText(doc.data.author.data.name),
     date: formatDate(Date(doc.data.date)),
   };

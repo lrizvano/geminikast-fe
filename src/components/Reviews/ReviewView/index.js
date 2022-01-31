@@ -1,10 +1,10 @@
 import React from "react";
-import ContentCover from "../../templates/ContentHeader.js";
+import ContentHeader from "../../templates/ContentHeader.js";
 import ReviewBody from "./ReviewBody.js";
-import ContentAuthor from "../../templates/ContentFooter.js";
+import ContentFooter from "../../templates/ContentFooter.js";
 import { viewDocument } from "../../../utils/queries";
 import {
-  formatContentCover,
+  formatContentHeaderData,
   formatReviewBody,
 } from "../../../utils/formatters";
 import Error404 from "../../Error404/index.js";
@@ -30,11 +30,11 @@ export default function ReviewView(props) {
     if (review) {
       return (
         <>
-          <ContentCover {...formatContentCover(review)} />
+          <ContentHeader {...formatContentHeaderData(review)} />
           <Divider />
           <ReviewBody {...formatReviewBody(review)} />
           <Divider />
-          <ContentAuthor {...review.data.author} />
+          <ContentFooter {...review.data.author} />
           <Divider />
         </>
       );

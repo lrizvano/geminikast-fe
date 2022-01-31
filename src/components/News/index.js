@@ -1,5 +1,5 @@
 import React from "react";
-import ContentList from "../templates/DocumentList.js";
+import DocumentList from "../templates/DocumentList.js";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Divider from "../common/Divider.js";
 
@@ -13,7 +13,7 @@ export default function News() {
         </h2>
       </Jumbotron>
       <Divider />
-      <ContentList type="article" />
+      <DocumentList type="article" />
       <Divider />
     </>
   );

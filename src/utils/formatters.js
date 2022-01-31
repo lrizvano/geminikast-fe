@@ -42,7 +42,7 @@ export const formatAuthorData = (author) => {
 };
 
 //used in article and review view
-export const formatContentCover = (doc) => {
+export const formatContentHeaderData = (doc) => {
   return {
     image: doc.data.image.url,
     title: RichText.asText(doc.data[documentTypes[doc.type].title]),

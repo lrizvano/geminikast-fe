@@ -1,9 +1,9 @@
 import React from "react";
-import ContentCover from "../../templates/ContentHeader.js";
+import ContentHeader from "../../templates/ContentHeader.js";
 import ArticleBody from "./ArticleBody.js";
-import ContentAuthor from "../../templates/ContentFooter.js";
+import ContentFooter from "../../templates/ContentFooter.js";
 import { viewDocument } from "../../../utils/queries";
-import { formatContentCover } from "../../../utils/formatters";
+import { formatContentHeaderData } from "../../../utils/formatters";
 import Error404 from "../../Error404/index.js";
 import Divider from "../../common/Divider.js";
 
@@ -27,11 +27,11 @@ export default function ArticleView(props) {
     if (article) {
       return (
         <>
-          <ContentCover {...formatContentCover(article)} />
+          <ContentHeader {...formatContentHeaderData(article)} />
           <Divider />
           <ArticleBody {...article.data} />
           <Divider />
-          <ContentAuthor {...article.data.author} />
+          <ContentFooter {...article.data.author} />
           <Divider />
         </>
       );

@@ -1,5 +1,5 @@
 import React from "react";
-import ContentList from "../templates/DocumentList.js";
+import DocumentList from "../templates/DocumentList.js";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Divider from "../common/Divider.js";
 
@@ -14,7 +14,7 @@ export default function Reviews() {
         </h2>
       </Jumbotron>
       <Divider />
-      <ContentList type="review" />
+      <DocumentList type="review" />
       <Divider />
     </>
   );

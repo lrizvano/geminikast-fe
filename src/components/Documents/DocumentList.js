@@ -1,5 +1,5 @@
 import React from "react";
-import RowCard from "./RowCard.js";
+import RowCard from "../templates/RowCard.js";
 import { formatRowData } from "../../utils/formatters.js";
 import Dropdown from "react-bootstrap/Dropdown";
 import Row from "react-bootstrap/Row";

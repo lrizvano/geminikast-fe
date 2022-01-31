@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styled from "styled-components";
+import { documentTypes } from "../../../utils/queries.js";
 
 const Score = styled.section`
   .card {
@@ -28,18 +29,20 @@ export default function ReviewBody(props) {
         render={props.body}
         htmlSerializer={client.htmlSerializer}
       ></RichText>
-      <Score>
-        <Card className="bg-secondary text-info p-3 mb-3 font-weight-bold">
-          <Row>
-            <Col lg={{ span: 11, offset: 1 }} xs={{ span: 10, offset: 2 }}>
-              {props.summary}
-            </Col>
-            <h2>
-              <Badge>{props.score / 10}</Badge>
-            </h2>
-          </Row>
-        </Card>
-      </Score>
+      {props.type === Object.keys(documentTypes)[1] && (
+        <Score>
+          <Card className="bg-secondary text-info p-3 mb-3 font-weight-bold">
+            <Row>
+              <Col lg={{ span: 11, offset: 1 }} xs={{ span: 10, offset: 2 }}>
+                {props.summary}
+              </Col>
+              <h2>
+                <Badge>{props.score / 10}</Badge>
+              </h2>
+            </Row>
+          </Card>
+        </Score>
+      )}
     </>
   );
 }

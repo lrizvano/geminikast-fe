@@ -19,7 +19,7 @@ export const formatTileData = (doc) => {
   };
 };
 
-//used in article and news list
+//used in document list
 export const formatRowData = (doc) => {
   return {
     link: `${documentTypes[doc.type].link}/${doc.uid}`,
@@ -41,8 +41,8 @@ export const formatAuthorData = (author) => {
   };
 };
 
-//used in article and review view
-export const formatContentHeaderData = (doc) => {
+//used in document view
+export const formatDocumentHeaderData = (doc) => {
   return {
     image: doc.data.image.url,
     title: RichText.asText(doc.data[documentTypes[doc.type].title]),
@@ -53,7 +53,7 @@ export const formatContentHeaderData = (doc) => {
 };
 
 //used in review view
-export const formatReviewBody = (review) => {
+export const formatDocumentBodyData = (review) => {
   return {
     body: review.data.body,
     score: review.data.score,

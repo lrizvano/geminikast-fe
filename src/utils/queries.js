@@ -6,11 +6,15 @@ export const documentTypes = {
     name: "News",
     link: "/news",
     title: "headline",
+    description:
+      "See what's new surrounding the video game and entertainment world!",
   },
   review: {
     name: "Reviews",
     link: "/reviews",
     title: "game",
+    description:
+      "Check out all of our reviews and impressions of the latest games, movies, shows, and more!",
   },
 };
 

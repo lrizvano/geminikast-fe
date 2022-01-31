@@ -2,10 +2,8 @@ import "./App.scss";
 import React from "react";
 import Header from "./components/common/Header.js";
 import Home from "./components/Home";
-import News from "./components/News";
-import ArticleView from "./components/News/ArticleView";
-import Reviews from "./components/Reviews";
-import ReviewView from "./components/Reviews/ReviewView";
+import Documents from "./components/Documents";
+import DocumentView from "./components/Documents/DocumentView";
 import About from "./components/About";
 import AuthorView from "./components/About/AuthorView";
 import Error404 from "./components/Error404";
@@ -13,6 +11,7 @@ import Footer from "./components/common/Footer.js";
 import Layout from "./components/common/Layout.js";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
+import { documentTypes } from "./utils/queries";
 
 const Wrapper = styled.section`
   background-color: var(--light);
@@ -28,6 +27,26 @@ const Wrapper = styled.section`
   }
 `;
 
+const renderDocumentRoutes = () => {
+  let documentRoutes = [];
+  for (let type in documentTypes) {
+    documentRoutes.push(
+      <Route
+        path={documentTypes[type].link}
+        exact
+        render={() => <Documents type={type} />}
+      />
+    );
+    documentRoutes.push(
+      <Route
+        path={`${documentTypes[type].link}/:uid`}
+        render={(props) => <DocumentView type={type} {...props} />}
+      />
+    );
+  }
+  return documentRoutes;
+};
+
 function App() {
   return (
     <Wrapper>
@@ -36,10 +55,7 @@ function App() {
         <Layout>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/news" exact component={News} />
-            <Route path="/news/:uid" component={ArticleView} />
-            <Route path="/reviews" exact component={Reviews} />
-            <Route path="/reviews/:uid" component={ReviewView} />
+            {renderDocumentRoutes()}
             <Route path="/about" component={About} />
             <Route path="/author/:uid" component={AuthorView} />
             <Route component={Error404} />

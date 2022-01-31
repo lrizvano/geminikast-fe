@@ -10,7 +10,7 @@ import {
   listDocuments,
   listFilteredDocuments,
 } from "../../utils/queries";
-import { platformList, sortList, updateHistory } from "../../utils/filters.js";
+import { filterFields, updateHistory } from "../../utils/filters.js";
 import DropdownHover from "../styled/DropdownHover.js";
 
 export default function DocumentList(props) {
@@ -19,26 +19,26 @@ export default function DocumentList(props) {
   const platformParam = new URLSearchParams(search).get("platform");
   const sortParam = new URLSearchParams(search).get("sort");
   const [platformKey, setPlatformKey] = React.useState(
-    platformParam || Object.keys(platformList)[0]
+    platformParam || Object.keys(filterFields.platform)[0]
   );
   const [sortKey, setSortKey] = React.useState(
-    sortParam || Object.keys(sortList[props.type])[0]
+    sortParam || Object.keys(filterFields.sort[props.type])[0]
   );
   let history = useHistory();
 
   React.useEffect(() => {
     const fetchData = async () => {
       let response = null;
-      if (platformKey !== Object.keys(platformList)[0]) {
+      if (platformKey !== Object.keys(filterFields.platform)[0]) {
         response = await listFilteredDocuments(
           props.type,
           platformKey,
-          sortList[props.type][sortKey].query
+          filterFields.sort[props.type][sortKey].query
         );
       } else {
         response = await listDocuments(
           props.type,
-          sortList[props.type][sortKey].query
+          filterFields.sort[props.type][sortKey].query
         );
       }
       if (response) {
@@ -59,7 +59,9 @@ export default function DocumentList(props) {
   const renderDropdownItems = (filter) => {
     let dropdownItems = [];
     Object.entries(
-      filter === "platform" ? platformList : sortList[props.type]
+      filter === "platform"
+        ? filterFields.platform
+        : filterFields.sort[props.type]
     ).forEach(([key, value]) => {
       dropdownItems.push(
         <DropdownHover>
@@ -80,8 +82,8 @@ export default function DocumentList(props) {
         >
           <Dropdown.Toggle variant="secondary">
             {filter === "platform"
-              ? platformList[platformKey]
-              : sortList[props.type][sortKey].title}
+              ? filterFields.platform[platformKey]
+              : filterFields.sort[props.type][sortKey].title}
           </Dropdown.Toggle>
           <Dropdown.Menu className="bg-dark">
             {renderDropdownItems(filter)}
@@ -94,10 +96,10 @@ export default function DocumentList(props) {
   return (
     <>
       <h1 className="mb-3 text-primary">
-        {`${sortList[props.type][sortKey].title} ${
-          platformKey === Object.keys(platformList)[0]
+        {`${filterFields.sort[props.type][sortKey].title} ${
+          platformKey === Object.keys(filterFields.platform)[0]
             ? ""
-            : platformList[platformKey]
+            : filterFields.platform[platformKey]
         }`}{" "}
         {documentTypes[props.type].name}
       </h1>

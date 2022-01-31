@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
-import { formatDate } from "../../../utils/formatters.js";
 
 export default function DocumentHeader(props) {
   return (
@@ -12,7 +11,7 @@ export default function DocumentHeader(props) {
         {props.name}
       </Link>
       <br />
-      <small className="text-muted">{formatDate(props.date)}</small>
+      <small className="text-muted">{props.date}</small>
     </>
   );
 }

@@ -49,7 +49,7 @@ export const formatDocumentHeaderData = (doc) => {
     title: RichText.asText(doc.data[documentTypes[doc.type].title]),
     uid: doc.data.author.uid,
     name: RichText.asText(doc.data.author.data.name),
-    date: Date(doc.data.date),
+    date: formatDate(Date(doc.data.date)),
   };
 };
 export const formatDocumentBodyData = (doc) => {

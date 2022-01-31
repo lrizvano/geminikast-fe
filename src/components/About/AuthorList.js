@@ -2,7 +2,7 @@ import React from "react";
 import Row from "react-bootstrap/Row";
 import AuthorCard from "./AuthorCard.js";
 import { listAuthors } from "../../utils/queries";
-import { formatAuthorData } from "../../utils/formatters";
+import { formatAuthorCardData } from "../../utils/formatters";
 
 export default function AuthorList() {
   const [authors, setAuthors] = React.useState([]);
@@ -18,7 +18,7 @@ export default function AuthorList() {
   }, []);
 
   const renderAuthors = () =>
-    authors.map((author) => <AuthorCard {...formatAuthorData(author)} />);
+    authors.map((author) => <AuthorCard {...formatAuthorCardData(author)} />);
 
   return (
     <>

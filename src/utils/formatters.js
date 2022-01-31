@@ -32,7 +32,7 @@ export const formatRowData = (doc) => {
 };
 
 //used in about page
-export const formatAuthorData = (author) => {
+export const formatAuthorCardData = (author) => {
   return {
     uid: author.uid,
     image: author.data.image.url,
@@ -62,7 +62,7 @@ export const formatDocumentBodyData = (review) => {
 };
 
 //used in author view
-export const formatAuthorCover = (author) => {
+export const formatAuthorHeaderData = (author) => {
   return {
     image: author.data.image.url,
     name: RichText.asText(author.data.name),

@@ -1,6 +1,6 @@
 import React from "react";
 import Row from "react-bootstrap/Row";
-import ContentTile from "../../templates/TileItem.js";
+import TileCard from "../../templates/TileCard.js";
 import { listAuthorDocuments } from "../../../utils/queries";
 import { formatTileData } from "../../../utils/formatters.js";
 
@@ -22,7 +22,7 @@ export default function AuthorContent(props) {
   }, [props.id]);
 
   const renderDocs = () =>
-    docs.map((doc) => <ContentTile {...formatTileData(doc)} />);
+    docs.map((doc) => <TileCard {...formatTileData(doc)} />);
 
   return (
     <>

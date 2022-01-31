@@ -27,6 +27,7 @@ export const formatRowData = (doc) => {
     title: RichText.asText(doc.data[documentTypes[doc.type].title]),
     author: RichText.asText(doc.data.author.data.name),
     date: formatDate(Date(doc.data.date)),
+    platforms: doc.data.platforms,
   };
 };
 

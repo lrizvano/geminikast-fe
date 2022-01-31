@@ -4,6 +4,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import CardHover from "../styled/CardHover";
 import styled from "styled-components";
+import ContentPlatforms from "./PlatformIcons";
 
 const Padding = styled.section`
   .col-6 {
@@ -21,7 +22,7 @@ export default function RowItem(props) {
         <Card.Link href={props.link}>
           <Padding>
             <Row>
-              <Col xs="6" md="4" lg="3">
+              <Col xs="6" lg="3" className="align-self-center">
                 <Card.Img src={props.image} />
               </Col>
               <Col xs="6">
@@ -30,11 +31,14 @@ export default function RowItem(props) {
                     {props.title}
                   </Card.Title>
                   <Card.Subtitle className="mb-2">
-                    {props.author}{" "}
-                    {props.link.startsWith("news")
-                      ? "reported on"
-                      : "reviewed on"}{" "}
-                    {props.date}
+                    <div className="mb-1">
+                      {props.author}{" "}
+                      {props.link.startsWith("news")
+                        ? "reported on"
+                        : "reviewed on"}{" "}
+                      {props.date}
+                    </div>
+                    <ContentPlatforms {...props.platforms} />
                   </Card.Subtitle>
                 </Card.Body>
               </Col>

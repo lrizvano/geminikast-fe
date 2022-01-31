@@ -1,5 +1,5 @@
 import React from "react";
-import ContentTile from "../templates/TileItem.js";
+import TileCard from "../templates/TileCard.js";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import styled from "styled-components";
@@ -25,7 +25,7 @@ export default function Features(props) {
   }, [props.type]);
 
   const renderFeatures = () =>
-    documents.map((doc) => <ContentTile {...formatTileData(doc)} />);
+    documents.map((doc) => <TileCard {...formatTileData(doc)} />);
 
   return (
     <>

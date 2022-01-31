@@ -1,5 +1,5 @@
 import React from "react";
-import ContentRow from "./RowItem.js";
+import RowCard from "./RowCard.js";
 import { formatRowData } from "../../utils/formatters.js";
 import Dropdown from "react-bootstrap/Dropdown";
 import Row from "react-bootstrap/Row";
@@ -53,7 +53,7 @@ export default function DocumentList(props) {
     documents.length === 0 ? (
       <p>No results found.</p>
     ) : (
-      documents.map((doc) => <ContentRow {...formatRowData(doc)} />)
+      documents.map((doc) => <RowCard {...formatRowData(doc)} />)
     );
 
   const renderDropdownItems = (filter) => {

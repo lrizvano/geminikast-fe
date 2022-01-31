@@ -1,6 +1,4 @@
 import React from "react";
-import { RichText } from "prismic-reactjs";
-import { client } from "../../../prismic-configuration.js";
 import Badge from "react-bootstrap/Badge";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
@@ -22,13 +20,10 @@ const Score = styled.section`
   }
 `;
 
-export default function ReviewBody(props) {
+export default function DocumentBody(props) {
   return (
     <>
-      <RichText
-        render={props.body}
-        htmlSerializer={client.htmlSerializer}
-      ></RichText>
+      <p>{props.body}</p>
       {props.type === Object.keys(documentTypes)[1] && (
         <Score>
           <Card className="bg-secondary text-info p-3 mb-3 font-weight-bold">

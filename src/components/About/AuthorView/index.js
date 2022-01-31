@@ -2,7 +2,7 @@ import React from "react";
 import AuthorHeader from "./AuthorHeader.js";
 import AuthorDocuments from "./AuthorDocuments.js";
 import { viewAuthor } from "../../../utils/queries";
-import { formatAuthorHeaderData } from "../../../utils/formatters";
+import { formatAuthorData } from "../../../utils/formatters";
 import Error404 from "../../Error404/index.js";
 import Divider from "../../common/Divider.js";
 
@@ -26,7 +26,7 @@ export default function AuthorView(props) {
     if (author) {
       return (
         <>
-          <AuthorHeader {...formatAuthorHeaderData(author)} />
+          <AuthorHeader {...formatAuthorData(author)} />
           <Divider />
           <AuthorDocuments {...author} />
         </>

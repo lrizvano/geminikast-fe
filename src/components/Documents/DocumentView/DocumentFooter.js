@@ -1,12 +1,11 @@
 import React from "react";
-import { RichText } from "prismic-reactjs";
-import { client } from "../../../prismic-configuration.js";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { viewDocumentAuthor } from "../../../utils/queries";
+import { formatAuthorData } from "../../../utils/formatters.js";
 
 const Wrapper = styled.section`
   display: flex;
@@ -14,7 +13,7 @@ const Wrapper = styled.section`
   justify-content: center;
 `;
 
-export default function ContentFooter(props) {
+export default function DocumentFooter(props) {
   const [author, setAuthor] = React.useState(null);
 
   React.useEffect(() => {
@@ -29,33 +28,27 @@ export default function ContentFooter(props) {
 
   const renderAuthor = () => {
     if (author) {
+      const documentFooterData = formatAuthorData(author);
       return (
         <>
           <Row className="justify-content-center mb-3">
             <Col xs="auto">
-              <Image src={author.data.image.url} roundedCircle />
+              <Image src={documentFooterData.image} roundedCircle />
             </Col>
             <Wrapper>
               <Col xs="auto">
                 <h1 className="mt-3 text-primary">
                   <Link replace to={`/author/${props.uid}`}>
-                    {RichText.asText(author.data.name)}
+                    {documentFooterData.name}
                   </Link>
                 </h1>
-                <small className="text-muted">
-                  {RichText.asText(author.data.role)}
-                </small>
+                <small className="text-muted">{documentFooterData.role}</small>
               </Col>
             </Wrapper>
           </Row>
           <Row className="justify-content-center">
             <Col xs="6">
-              <div className="text-center">
-                <RichText
-                  render={author.data.bio}
-                  htmlSerializer={client.htmlSerializer}
-                ></RichText>
-              </div>
+              <div className="text-center">{documentFooterData.bio}</div>
             </Col>
           </Row>
         </>

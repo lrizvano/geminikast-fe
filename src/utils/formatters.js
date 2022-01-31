@@ -1,4 +1,5 @@
 import { RichText, Date } from "prismic-reactjs";
+import { client } from "../prismic-configuration.js";
 import { documentTypes } from "./queries";
 
 export const formatDate = (date) => {
@@ -51,22 +52,30 @@ export const formatDocumentHeaderData = (doc) => {
     date: Date(doc.data.date),
   };
 };
-
-//used in review view
-export const formatDocumentBodyData = (review) => {
+export const formatDocumentBodyData = (doc) => {
   return {
-    body: review.data.body,
-    score: review.data.score,
-    summary: RichText.asText(review.data.summary),
+    body: (
+      <RichText
+        render={doc.data.body}
+        htmlSerializer={client.htmlSerializer}
+      ></RichText>
+    ),
+    score: doc.data.score,
+    summary: RichText.asText(doc.data.summary),
   };
 };
 
-//used in author view
-export const formatAuthorHeaderData = (author) => {
+//used in author view and document view
+export const formatAuthorData = (author) => {
   return {
     image: author.data.image.url,
     name: RichText.asText(author.data.name),
     role: RichText.asText(author.data.role),
-    bio: author.data.bio,
+    bio: (
+      <RichText
+        render={author.data.bio}
+        htmlSerializer={client.htmlSerializer}
+      ></RichText>
+    ),
   };
 };

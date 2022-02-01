@@ -13,7 +13,6 @@ export default function Documents(props) {
         </h1>
         <h2>{documentTypes[props.type].description}</h2>
       </Jumbotron>
-      <Divider />
       <DocumentList type={props.type} />
       <Divider />
     </>

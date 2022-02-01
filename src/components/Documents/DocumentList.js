@@ -103,7 +103,7 @@ export default function DocumentList(props) {
 
   return (
     <>
-      <h1 className="mb-3 text-primary">
+      <h1 className="mb-3 text-info">
         {`${filterFields.sort[props.type][sortKey].title} ${
           platformKey === Object.keys(filterFields.platform)[0]
             ? ""

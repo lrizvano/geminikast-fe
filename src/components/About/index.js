@@ -8,7 +8,7 @@ export default function About() {
     <>
       <Jumbotron className="bg-secondary text-info">
         <h1 className="font-weight-bold">The Geminikast</h1>
-        <h2>Games, Tech, and Movie Discussions</h2>
+        <h2>Games, Tech, and Movie Discussions!</h2>
       </Jumbotron>
       <AuthorList />
       <Divider />

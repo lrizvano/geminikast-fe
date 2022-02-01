@@ -59,14 +59,14 @@ export default function DocumentList(props) {
   const renderDropdownItems = (filter) => {
     let dropdownItems = [];
     Object.entries(
-      filter === "platform"
+      filter === Object.keys(filterFields)[0]
         ? filterFields.platform
         : filterFields.sort[props.type]
     ).forEach(([key, value]) => {
       dropdownItems.push(
         <DropdownHover>
           <Dropdown.Item className="text-info" eventKey={key}>
-            {filter === "platform" ? value : value.title}
+            {filter === Object.keys(filterFields)[0] ? value : value.title}
           </Dropdown.Item>
         </DropdownHover>
       );
@@ -74,23 +74,31 @@ export default function DocumentList(props) {
     return dropdownItems;
   };
 
-  const renderDropdown = (filter) => {
-    return (
-      <Col xs="auto">
-        <Dropdown
-          onSelect={filter === "platform" ? setPlatformKey : setSortKey}
-        >
-          <Dropdown.Toggle variant="secondary">
-            {filter === "platform"
-              ? filterFields.platform[platformKey]
-              : filterFields.sort[props.type][sortKey].title}
-          </Dropdown.Toggle>
-          <Dropdown.Menu className="bg-dark">
-            {renderDropdownItems(filter)}
-          </Dropdown.Menu>
-        </Dropdown>
-      </Col>
-    );
+  const renderDropdowns = () => {
+    let dropdowns = [];
+    for (let filter in filterFields) {
+      dropdowns.push(
+        <Col xs="auto">
+          <Dropdown
+            onSelect={
+              filter === Object.keys(filterFields)[0]
+                ? setPlatformKey
+                : setSortKey
+            }
+          >
+            <Dropdown.Toggle variant="secondary">
+              {filter === Object.keys(filterFields)[0]
+                ? filterFields.platform[platformKey]
+                : filterFields.sort[props.type][sortKey].title}
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="bg-dark">
+              {renderDropdownItems(filter)}
+            </Dropdown.Menu>
+          </Dropdown>
+        </Col>
+      );
+    }
+    return dropdowns;
   };
 
   return (
@@ -103,10 +111,7 @@ export default function DocumentList(props) {
         }`}{" "}
         {documentTypes[props.type].name}
       </h1>
-      <Row className="mb-3">
-        {renderDropdown("platform")}
-        {renderDropdown("sort")}
-      </Row>
+      <Row className="mb-3">{renderDropdowns()}</Row>
       {renderDocuments()}
     </>
   );

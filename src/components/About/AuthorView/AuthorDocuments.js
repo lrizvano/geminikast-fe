@@ -4,7 +4,7 @@ import TileCard from "../../templates/TileCard.js";
 import { listAuthorDocuments } from "../../../utils/queries";
 import { formatTileData } from "../../../utils/formatters.js";
 
-export default function AuthorDocument(props) {
+export default function AuthorDocuments(props) {
   const [docs, setDocs] = React.useState([]);
 
   React.useEffect(() => {
@@ -26,7 +26,7 @@ export default function AuthorDocument(props) {
 
   return (
     <>
-      {docs.length > 0 && <h1 className="text-primary">Content</h1>}
+      {docs.length > 0 && <h1 className="text-info">Content</h1>}
       <Row>{renderDocs()}</Row>
     </>
   );

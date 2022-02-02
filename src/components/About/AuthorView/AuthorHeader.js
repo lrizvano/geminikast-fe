@@ -19,7 +19,7 @@ export default function AuthorHeader(props) {
         </Col>
         <Col xs="6" lg="8">
           <Wrapper>
-            <h1 className="mt-3 text-primary">{props.name}</h1>
+            <h1 className="mt-3 text-info font-weight-bold">{props.name}</h1>
             <small className="text-muted">{props.role}</small>
             <p>{props.bio}</p>
           </Wrapper>

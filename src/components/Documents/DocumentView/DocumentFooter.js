@@ -37,8 +37,12 @@ export default function DocumentFooter(props) {
             </Col>
             <Wrapper>
               <Col xs="auto">
-                <h1 className="mt-3 text-primary">
-                  <Link replace to={`/author/${props.uid}`}>
+                <h1>
+                  <Link
+                    replace
+                    to={`/author/${props.uid}`}
+                    className="mt-3 text-primary"
+                  >
                     {documentFooterData.name}
                   </Link>
                 </h1>

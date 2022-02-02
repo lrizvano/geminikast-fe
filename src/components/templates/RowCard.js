@@ -15,7 +15,7 @@ const Padding = styled.section`
   }
 `;
 
-export default function RowItem(props) {
+export default function RowCard(props) {
   return (
     <CardHover>
       <Card className="mb-3">
